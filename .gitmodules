@@ -1,0 +1,6 @@
+[submodule "ESOData"]
+	path = ESOData
+	url = https://unwind-project.org/ope/ESOData.git
+[submodule "DirectXTex/DirectXTex"]
+	path = DirectXTex/DirectXTex
+	url = https://github.com/microsoft/DirectXTex.git
