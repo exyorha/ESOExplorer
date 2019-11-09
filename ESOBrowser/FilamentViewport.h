@@ -1,7 +1,7 @@
 #ifndef FILAMENT_VIEWPORT_H
 #define FILAMENT_VIEWPORT_H
 
-#include <QWidget>
+#include <QWindow>
 #include "FilamentTypeHelpers.h"
 
 #include <utils/Entity.h>
@@ -10,11 +10,11 @@ class FilamentEngineInstance;
 
 QT_FORWARD_DECLARE_CLASS(QTimer)
 
-class FilamentViewport final : public QWidget {
+class FilamentViewport final : public QWindow {
 	Q_OBJECT
 
 public:
-	explicit FilamentViewport(QWidget* parent = nullptr);
+	explicit FilamentViewport(QScreen *screen = nullptr);
 	~FilamentViewport() override;
 
 	void initialize(FilamentEngineInstance* engine);
@@ -24,14 +24,12 @@ public:
 	}
 
 private:
-	void paintEvent(QPaintEvent* event) override;
-	void showEvent(QShowEvent* event) override;
-	void hideEvent(QHideEvent* event) override;
-
-private slots:
+	void exposeEvent(QExposeEvent* event) override;
+	bool event(QEvent* event) override;
+	
+private:
 	void drawFrame();
 
-private:
 	FilamentEngineInstance* m_engine;
 	FilamentSwapChain m_swapchain;
 	FilamentRenderer m_renderer;
@@ -39,7 +37,6 @@ private:
 	FilamentView m_view;
 	FilamentCamera m_camera;
 	utils::Entity m_lightEntity;
-	QTimer* m_frameTimer;
 };
 
 #endif

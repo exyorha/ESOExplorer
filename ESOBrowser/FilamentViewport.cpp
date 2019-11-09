@@ -10,14 +10,8 @@
 
 #include <QTimer>
 
-FilamentViewport::FilamentViewport(QWidget* parent) : QWidget(parent) {
-	setAttribute(Qt::WA_OpaquePaintEvent);
-	setAttribute(Qt::WA_NoSystemBackground);
-	setAttribute(Qt::WA_DontCreateNativeAncestors);
+FilamentViewport::FilamentViewport(QScreen *screen) : QWindow(screen), m_engine(nullptr) {
 
-	m_frameTimer = new QTimer(this);
-	m_frameTimer->setInterval(16);
-	connect(m_frameTimer, &QTimer::timeout, this, &FilamentViewport::drawFrame);
 }
 
 FilamentViewport::~FilamentViewport() {
@@ -62,7 +56,13 @@ void FilamentViewport::initialize(FilamentEngineInstance* engine) {
 	m_view->setCamera(m_camera.get());
 }
 
-void FilamentViewport::paintEvent(QPaintEvent* event) {
+void FilamentViewport::exposeEvent(QExposeEvent* event) {
+	if (isExposed()) {
+		drawFrame();
+	}
+}
+
+void FilamentViewport::drawFrame() {
 	m_view->setViewport(filament::Viewport(0, 0, width(), height()));
 
 	auto f = m_engine->engine();
@@ -93,20 +93,15 @@ void FilamentViewport::paintEvent(QPaintEvent* event) {
 		m_renderer->render(m_view.get());
 		m_renderer->endFrame();
 	}
+
+	if (isExposed())
+		requestUpdate();
 }
 
-void FilamentViewport::showEvent(QShowEvent* event) {
-	QWidget::showEvent(event);
+bool FilamentViewport::event(QEvent* event) {
+	if (event->type() == QEvent::Type::UpdateRequest) {
+		drawFrame();
+	}
 
-	m_frameTimer->start();
-}
-
-void FilamentViewport::hideEvent(QHideEvent* event) {
-	QWidget::hideEvent(event);
-
-	m_frameTimer->stop();
-}
-
-void FilamentViewport::drawFrame() {
-	update();
+	return QWindow::event(event);
 }

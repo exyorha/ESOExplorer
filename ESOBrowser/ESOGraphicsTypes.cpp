@@ -24,6 +24,16 @@ const granny_data_type_definition ESOMeshExtendedDataType[]{
 	{ GrannyEndMember }
 };
 
+static granny_data_type_definition ESOMaterialTypeMapEnables[]{
+	{ GrannyInt32Member, "Int32" },
+	{ GrannyEndMember }
+};
+
+static granny_data_type_definition ESOMaterialTypeMapAmounts[]{
+	{ GrannyReal32Member, "Real32" },
+	{ GrannyEndMember }
+};
+
 const granny_data_type_definition ESOMaterialType[]{
 	{ GrannyStringMember, "Diffuse" },
 	{ GrannyStringMember, "normal" },
@@ -47,6 +57,13 @@ const granny_data_type_definition ESOMaterialType[]{
 	{ GrannyReal32Member, "ZosDuskGlow" },
 	{ GrannyReal32Member, "ZosNightGlow" },
 	{ GrannyInt32Member,  "ZosPlayerLight" },
+	{ GrannyReal32Member, "SoftAlphaDepth" },
+	{ GrannyStringMember, "tintmaskPath" },
+	{ GrannyStringMember, "diffusePath" },
+	{ GrannyStringMember, "normalPath" },
+	{ GrannyStringMember, "detailPath" },
+	{ GrannyStringMember, "diffuse2Path" },
+	{ GrannyStringMember, "specularPath" },
 	{ GrannyStringMember, "tintmask" },
 	{ GrannyReal32Member, "f4DiffuseTintPrimary", nullptr, 4 },
 	{ GrannyReal32Member, "f4SpecularTintPrimary", nullptr, 4 },
@@ -61,7 +78,42 @@ const granny_data_type_definition ESOMaterialType[]{
 	{ GrannyInt32Member,  "TintSecondaryID" },
 	{ GrannyInt32Member,  "TintAccentID" },
 	{ GrannyInt32Member,  "DrawOrder" },
+	{ GrannyInt32Member,  "NoShadows" },
 	{ GrannyStringMember, "typeName" },
+	{ GrannyInt32Member,  "Shader Type" },
+	{ GrannyInt32Member,  "Wire" },
+	{ GrannyInt32Member,  "Two-sided" },
+	{ GrannyInt32Member,  "Face Map" },
+	{ GrannyInt32Member,  "Faceted" },
+	{ GrannyStringMember, "Shader Name" },
+	{ GrannyInt32Member,  "Opacity Type" },
+	{ GrannyReal32Member, "Opacity" },
+	{ GrannyReal32Member, "Filter Color", nullptr, 3 },
+	{ GrannyInt32Member,  "Falloff Type" },
+	{ GrannyReal32Member, "Falloff" },
+	{ GrannyReal32Member, "Index of Refraction" },
+	{ GrannyReal32Member, "Wire Size" },
+	{ GrannyInt32Member, "Wire Units" },
+	{ GrannyInt32Member, "Apply Reflection Dimming" },
+	{ GrannyReal32Member, "Dim Level" },
+	{ GrannyReal32Member, "Reflection Level" },
+	{ GrannyInt32Member, "Pixel Sampler" },
+	{ GrannyReal32Member, "Sampler Quality" },
+	{ GrannyInt32Member, "Sampler Enable" },
+	{ GrannyReal32Member, "Adaptive Threshold" },
+	{ GrannyInt32Member, "Adaptive On" },
+	{ GrannyInt32Member, "SubSample Textures" },
+	{ GrannyInt32Member, "Advanced Options..." },
+	{ GrannyStringMember, "Sampler Name" },
+	{ GrannyReal32Member, "Optional Param0" },
+	{ GrannyReal32Member, "Optional Param1" },
+	{ GrannyInt32Member, "Use Global Settings" },
+	{ GrannyReferenceToArrayMember, "Map Enables", ESOMaterialTypeMapEnables },
+	{ GrannyReferenceToArrayMember, "Map Amounts", ESOMaterialTypeMapAmounts },
+	{ GrannyInt32Member, "Ambient-Diffuse Texture Lock" },
+	{ GrannyReal32Member, "Bounce Coefficient" },
+	{ GrannyReal32Member, "Static Friction" },
+	{ GrannyReal32Member, "Sliding Friction" },
 	{ GrannyInt32Member,  "bDiffuseEnable" },
 	{ GrannyStringMember, "DiffuseTexture" },
 	{ GrannyInt32Member,  "bSpecularEnable" },

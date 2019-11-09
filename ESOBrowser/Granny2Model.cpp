@@ -188,7 +188,7 @@ void Granny2Model::load() {
 	for (int index = 0, count = info->MaterialCount; index < count; index++) {
 		auto material = info->Materials[index];
 
-		if (material->MapCount != 0) {
+		if (material->Texture == nullptr) {
 			auto instance = FilamentMaterialInstance(m_engine->esoLikeMaterial()->createInstance(), e);
 			
 			ESOMaterial parameters;

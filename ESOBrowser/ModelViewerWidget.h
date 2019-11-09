@@ -10,6 +10,7 @@
 class DataStorage;
 class ESOBrowserMainWindow;
 class Granny2Renderable;
+class FilamentViewport;
 
 struct granny_variant;
 struct granny_data_type_definition;
@@ -34,6 +35,7 @@ private:
 	QStandardItemModel* m_structureModel;
 	std::unordered_set<void*> m_printedNodes;
 	std::shared_ptr<Granny2Renderable> m_model;
+	FilamentViewport* m_viewport;
 };
 
 #endif

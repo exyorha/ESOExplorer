@@ -4,6 +4,7 @@
 #include "Granny2TypeHelpers.h"
 #include "Granny2Model.h"
 #include "Granny2Renderable.h"
+#include "FilamentViewport.h"
 
 #include <filament/Scene.h>
 
@@ -14,7 +15,15 @@ ModelViewerWidget::ModelViewerWidget(ESOBrowserMainWindow *window, QWidget* pare
 
 	m_structureModel = new QStandardItemModel(this);
 	ui.structure->setModel(m_structureModel);
-	ui.viewport->initialize(window->filament());
+
+	m_viewport = new FilamentViewport();
+	auto container = QWidget::createWindowContainer(m_viewport, ui.viewport);
+
+	auto layout = new QVBoxLayout(ui.viewport);
+	layout->addWidget(container);
+	ui.viewport->setLayout(layout);
+
+	m_viewport->initialize(window->filament());
 }
 
 ModelViewerWidget::~ModelViewerWidget() = default;
@@ -36,7 +45,7 @@ void ModelViewerWidget::loadSingleModel(uint64_t key) {
 		}
 
 		m_model = m_window->filament()->loadModel(key)->createInstance();
-		ui.viewport->scene()->addEntity(m_model->entity);
+		m_viewport->scene()->addEntity(m_model->entity);
 	}
 	catch (const std::exception& e) {
 		ui.notification->setText(tr("Failed to load model: %1").arg(QString::fromStdString(e.what())));

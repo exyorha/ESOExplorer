@@ -48,6 +48,13 @@ struct ESOMaterial {
 	float ZosDuskGlow;
 	float ZosNightGlow;
 	int ZosPlayerLight;
+	float SoftAlphaDepth;
+	const char* tintmaskPath;
+	const char* diffusePath;
+	const char* normalPath;
+	const char* detailPath;
+	const char* diffuse2Path;
+	const char* specularPath;
 	const char* tintmask;
 	float f4DiffuseTintPrimary[4];
 	float f4SpecularTintPrimary[4];
@@ -62,7 +69,44 @@ struct ESOMaterial {
 	int TintSecondaryID;
 	int TintAccentID;
 	int DrawOrder;
+
+	int NoShadows;
 	const char* typeName;
+	int ShaderType;
+	int Wire;
+	int TwoSided;
+	int FaceMap;
+	int Faceted;
+	const char* ShaderName;
+	int OpacityType;
+	float Opacity;
+	float FilterColor[3];
+	int FalloffType;
+	float Falloff;
+	float IndexOfRefraction;
+	float WireSize;
+	int WireUnits;
+	int ApplyReflectionDimming;
+	float DimLevel;
+	float ReflectionLevel;
+	int PixelSampler;
+	float SamplerQuality;
+	int SamplerEnable;
+	float AdaptiveThreshold;
+	int AdaptiveOn;
+	int SubSampleTextures;
+	int AdvancedOptions;
+	const char* SamplerName;
+	float OptionalParam0;
+	float OptionalParam1;
+	int UseGlobalSettings;
+	int *MapEnables;
+	float* MapAmounts;
+	int AmbientDiffuseTextureLock;
+	float BounceCoefficient;
+	float StaticFriction;
+	float SlidingFriction;
+
 	int bDiffuseEnable;
 	const char* DiffuseTexture;
 	int bSpecularEnable;
@@ -108,6 +152,7 @@ struct ESOMaterial {
 	int ForceSoftwareRender;
 	int Technique;
 	int DoubleQuestionMark;
+
 	float AmbientColor[3];
 	float DiffuseColor[3];
 	float SpecularColor[3];

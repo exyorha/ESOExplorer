@@ -37,7 +37,7 @@
        </sizepolicy>
       </property>
      </widget>
-     <widget class="FilamentViewport" name="viewport" native="true">
+     <widget class="QWidget" name="viewport" native="true">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
@@ -49,14 +49,6 @@
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>FilamentViewport</class>
-   <extends>QWidget</extends>
-   <header>FilamentViewport.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
