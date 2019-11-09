@@ -5,6 +5,7 @@
 #include "BinaryFileViewWidget.h"
 #include "TextFileViewWidget.h"
 #include "DDSFileViewWidget.h"
+#include "Granny2FileViewWidget.h"
 
 #include <QMessageBox>
 
@@ -91,6 +92,10 @@ void FilesystemBrowserWidget::openAutodetect(uint64_t id) {
 
 	case DetectedFileType::DDS:
 		open<DDSFileViewWidget>(id);
+		break;
+
+	case DetectedFileType::Granny2:
+		open<Granny2FileViewWidget>(id);
 		break;
 	}
 }

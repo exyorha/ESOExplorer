@@ -11,6 +11,7 @@
 #include "DDSFileViewWidget.h"
 #include "TextFileViewWidget.h"
 #include "FilesystemBrowserWidget.h"
+#include "Granny2FileViewWidget.h"
 
 ESOBrowserMainWindow::ESOBrowserMainWindow(DataStorage* storage, QWidget* parent) :
 	QMainWindow(parent),
@@ -188,6 +189,6 @@ const std::unordered_map<std::string, QWidget* (ESOBrowserMainWindow::*)()> ESOB
 	{ "BinaryFileViewWidget", &ESOBrowserMainWindow::createTab<BinaryFileViewWidget> },
 	{ "DDSFileViewWidget", &ESOBrowserMainWindow::createTab<DDSFileViewWidget> },
 	{ "TextFileViewWidget", &ESOBrowserMainWindow::createTab<TextFileViewWidget> },
-	{ "FilesystemBrowserWidget", &ESOBrowserMainWindow::createTab<FilesystemBrowserWidget> }
+	{ "FilesystemBrowserWidget", &ESOBrowserMainWindow::createTab<FilesystemBrowserWidget> },
+	{ "Granny2FileViewWidget", &ESOBrowserMainWindow::createTab<Granny2FileViewWidget> }
 };
-

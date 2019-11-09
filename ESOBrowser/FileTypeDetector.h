@@ -6,7 +6,8 @@
 enum class DetectedFileType {
 	Unknown,
 	Text,
-	DDS
+	DDS,
+	Granny2
 };
 
 class FileTypeDetector {
@@ -21,6 +22,8 @@ public:
 
 private:
 	static const unsigned char m_ddsSignature[4];
+	static const unsigned char m_granny2Signature1[16];
+	static const unsigned char m_granny2Signature2[16];
 };
 
 #endif

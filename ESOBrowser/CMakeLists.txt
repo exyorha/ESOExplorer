@@ -28,9 +28,14 @@ add_executable(ESOBrowser WIN32
 	FileViewWidget.cpp
 	FileViewWidget.h
 	FileViewWidget.ui
+	Granny2FileViewWidget.cpp
+	Granny2FileViewWidget.h
 	HexView.cpp
 	HexView.h
 	main.cpp
+	ModelViewerWidget.cpp
+	ModelViewerWidget.h
+	ModelViewerWidget.ui
 	PersistentTabWidget.cpp
 	PersistentTabWidget.h
 	SupportedVersionsDirectiveFile.cpp
@@ -39,7 +44,7 @@ add_executable(ESOBrowser WIN32
 	TextFileViewWidget.h
 )
 
-target_link_libraries(ESOBrowser PRIVATE Qt5::Widgets ESOData DirectXTex)
+target_link_libraries(ESOBrowser PRIVATE Qt5::Widgets ESOData DirectXTex granny)
 
 set_target_properties(ESOBrowser PROPERTIES 
 	AUTOMOC TRUE
@@ -49,4 +54,7 @@ set_target_properties(ESOBrowser PROPERTIES
 	CXX_STANDARD_REQUIRED TRUE
 )
 
-add_custom_command(TARGET ESOBrowser POST_BUILD ${AssetCopyCommands})
+add_custom_command(TARGET ESOBrowser POST_BUILD
+	${AssetCopyCommands}
+	COMMAND cmake -E copy_if_different ${GRANNY2_EXECUTABLE} $<TARGET_FILE_DIR:ESOBrowser>
+)
