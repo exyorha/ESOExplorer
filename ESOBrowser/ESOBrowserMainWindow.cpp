@@ -16,7 +16,7 @@
 ESOBrowserMainWindow::ESOBrowserMainWindow(DataStorage* storage, QWidget* parent) :
 	QMainWindow(parent),
 	m_storage(storage),
-	m_command(MainWindowCommand::None), m_dummyTab(nullptr), m_populated(false) {
+	m_command(MainWindowCommand::None), m_dummyTab(nullptr), m_populated(false), m_filament(m_storage->filesystem()) {
 
 	ui.setupUi(this);
 
@@ -42,7 +42,11 @@ ESOBrowserMainWindow::ESOBrowserMainWindow(DataStorage* storage, QWidget* parent
 	addDummyTabIfNecessary();
 }
 
-ESOBrowserMainWindow::~ESOBrowserMainWindow() = default;
+ESOBrowserMainWindow::~ESOBrowserMainWindow() {
+	while (!m_dummyTab) {
+		on_tabs_tabCloseRequested(0);
+	}
+}
 
 void ESOBrowserMainWindow::on_actionReloadDirectives_triggered() {
 	m_command = MainWindowCommand::ReloadDirectives;

@@ -9,7 +9,7 @@ Granny2FileViewWidget::Granny2FileViewWidget(ESOBrowserMainWindow* window, QWidg
 Granny2FileViewWidget::~Granny2FileViewWidget() = default;
 
 QWidget* Granny2FileViewWidget::createViewWidget() {
-	auto widget = new ModelViewerWidget(m_window->storage(), this);
+	auto widget = new ModelViewerWidget(m_window, this);
 	widget->loadSingleModel(m_id);
 	return widget;
 }

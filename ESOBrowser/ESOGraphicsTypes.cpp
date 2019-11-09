@@ -1,0 +1,126 @@
+#include "ESOGraphicsTypes.h"
+
+#include <granny.h>
+
+const granny_data_type_definition ESOLikeVertexType[]{
+	{ GrannyReal32Member, "Position", nullptr, 3 },
+	{ GrannyUInt8Member,  "DiffuseColor0", nullptr, 4 },
+	{ GrannyReal16Member, "TextureCoord0", nullptr, 2 },
+	{ GrannyReal16Member, "TextureCoord1", nullptr, 2 },
+	{ GrannyEndMember }
+};
+
+const granny_data_type_definition ESOLikeVertexAsideType[]{
+	{ GrannyReal16Member, "Normal", nullptr, 2 },
+	{ GrannyReal16Member, "Tangent", nullptr, 2 },
+	{ GrannyReal16Member, "Binormal", nullptr, 2 },
+	{ GrannyEndMember }
+};
+
+const granny_data_type_definition ESOMeshExtendedDataType[]{
+	{ GrannyReal32Member, "BBoxMin", nullptr, 3 },
+	{ GrannyReal32Member, "BBoxMax", nullptr, 3 },
+	{ GrannyReal32Member, "Radius", nullptr, 1 },
+	{ GrannyEndMember }
+};
+
+const granny_data_type_definition ESOMaterialType[]{
+	{ GrannyStringMember, "Diffuse" },
+	{ GrannyStringMember, "normal" },
+	{ GrannyStringMember, "detail" },
+	{ GrannyStringMember, "diffuse2" },
+	{ GrannyInt32Member,  "ZosSphericalLighting" },
+	{ GrannyReal32Member, "ZosFresnel2" },
+	{ GrannyReal32Member, "ZosGlow2" },
+	{ GrannyReal32Member, "ZosGlossiness2" },
+	{ GrannyReal32Member, "AnimateU_Layer1" },
+	{ GrannyReal32Member, "AnimateV_Layer1" },
+	{ GrannyReal32Member, "AnimateU_Layer2" },
+	{ GrannyReal32Member, "AnimateV_Layer2" },
+	{ GrannyInt32Member,  "alpha" },
+	{ GrannyInt32Member,  "twoSided" },
+	{ GrannyStringMember, "Specular" },
+	{ GrannyInt32Member,  "materialType" },
+	{ GrannyInt32Member,  "NoHalo" },
+	{ GrannyInt32Member,  "ZosExportVersion" },
+	{ GrannyReal32Member, "ZosDayGlow" },
+	{ GrannyReal32Member, "ZosDuskGlow" },
+	{ GrannyReal32Member, "ZosNightGlow" },
+	{ GrannyInt32Member,  "ZosPlayerLight" },
+	{ GrannyStringMember, "tintmask" },
+	{ GrannyReal32Member, "f4DiffuseTintPrimary", nullptr, 4 },
+	{ GrannyReal32Member, "f4SpecularTintPrimary", nullptr, 4 },
+	{ GrannyReal32Member, "f4NormalTintPrimary", nullptr, 4 },
+	{ GrannyReal32Member, "f4DiffuseTintSecondary", nullptr, 4 },
+	{ GrannyReal32Member, "f4SpecularTintSecondary", nullptr, 4 },
+	{ GrannyReal32Member, "f4NormalTintSecondary", nullptr, 4 },
+	{ GrannyReal32Member, "f4DiffuseTintAccent", nullptr, 4 },
+	{ GrannyReal32Member, "f4SpecularTintAccent", nullptr, 4 },
+	{ GrannyReal32Member, "f4NormalTintAccent", nullptr, 4 },
+	{ GrannyInt32Member,  "TintPrimaryID" },
+	{ GrannyInt32Member,  "TintSecondaryID" },
+	{ GrannyInt32Member,  "TintAccentID" },
+	{ GrannyInt32Member,  "DrawOrder" },
+	{ GrannyStringMember, "typeName" },
+	{ GrannyInt32Member,  "bDiffuseEnable" },
+	{ GrannyStringMember, "DiffuseTexture" },
+	{ GrannyInt32Member,  "bSpecularEnable" },
+	{ GrannyStringMember, "SpecularTexture" },
+	{ GrannyInt32Member,  "bNormalEnable" },
+	{ GrannyStringMember, "NormalTexture" },
+	{ GrannyInt32Member,  "bDetailBlendEnable" },
+	{ GrannyStringMember, "DetailBlendTexture" },
+	{ GrannyInt32Member,  "bDiffuseSpecular2Enable" },
+	{ GrannyStringMember, "DiffuseSpecular2Texture" },
+	{ GrannyInt32Member,  "bDiffuse2Enable" },
+	{ GrannyStringMember, "Diffuse2Texture" },
+	{ GrannyInt32Member,  "bSpecular2Enable" },
+	{ GrannyStringMember, "Specular2Texture" },
+	{ GrannyInt32Member,  "bNormal2Enable" },
+	{ GrannyStringMember, "Normal2Texture" },
+	{ GrannyInt32Member,  "bMaskEnable" },
+	{ GrannyStringMember, "MaskTexture" },
+	{ GrannyReal32Member, "f2UVScrolling", nullptr, 4 },
+	{ GrannyReal32Member, "fGlossiness2" },
+	{ GrannyReal32Member, "fFresnel2" },
+	{ GrannyReal32Member, "fGlow2" },
+	{ GrannyInt32Member,  "bEnvironmentEnable" },
+	{ GrannyStringMember, "EnvironmentTexture" },
+	{ GrannyInt32Member,  "bTwoMaterial" },
+	{ GrannyInt32Member,  "bFresnel" },
+	{ GrannyInt32Member,  "bFresnelMode" },
+	{ GrannyInt32Member,  "bGlowEnable" },
+	{ GrannyInt32Member,  "bOutputGlow" },
+	{ GrannyInt32Member,  "bGlossinessEnable" },
+	{ GrannyInt32Member,  "bAlphaMaskEnable" },
+	{ GrannyInt32Member,  "bAlphaTrasparency" },
+	{ GrannyInt32Member,  "bGrayDiffuse" },
+	{ GrannyInt32Member,  "bTwoSided" },
+	{ GrannyReal32Member, "fCubeRotation" },
+	{ GrannyInt32Member,  "bSunEnabled" },
+	{ GrannyReal32Member, "f3SunDirection", nullptr, 3 },
+	{ GrannyReal32Member, "f3SunColor", nullptr, 3 },
+	{ GrannyReal32Member, "f3EnvironmentTint", nullptr, 3 },
+	{ GrannyStringMember, "EffectFile" },
+	{ GrannyInt32Member,  "Software Rendering" },
+	{ GrannyReal32Member, "Shaded Color", nullptr, 3 },
+	{ GrannyInt32Member,  "Force Software Render" },
+	{ GrannyInt32Member,  "Technique" },
+	{ GrannyInt32Member,  "??" },
+	{ GrannyReal32Member, "Ambient Color", nullptr, 3 },
+	{ GrannyReal32Member, "Diffuse Color", nullptr, 3 },
+	{ GrannyReal32Member, "Specular Color", nullptr, 3 },
+	{ GrannyReal32Member, "Shininess" },
+	{ GrannyReal32Member, "Shininess Strength" },
+	{ GrannyReal32Member, "Transparency" },
+	{ GrannyReal32Member, "Self Illumination" },
+	{ GrannyInt32Member, "SelfIlluminationIsOn" },
+	{ GrannyReal32Member, "Self Illumination Color", nullptr, 3 },
+	{ GrannyEndMember }
+};
+
+
+const granny_data_type_definition ESOTextureType[]{
+	{ GrannyInt32Member, "fileIndex" },
+	{ GrannyEndMember }
+};

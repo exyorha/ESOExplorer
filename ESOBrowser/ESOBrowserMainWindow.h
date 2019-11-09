@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "ui_ESOBrowserMainWindow.h"
+#include "FilamentEngineInstance.h"
 
 class DataStorage;
 class DummyTabWidget;
@@ -33,6 +34,10 @@ public:
 	}
 
 	void addTab(QWidget* widget);
+
+	inline FilamentEngineInstance *filament() {
+		return &m_filament;
+	}
 
 private slots:
 	void on_actionReloadDirectives_triggered();
@@ -64,6 +69,7 @@ private:
 	MainWindowCommand m_command;
 	DummyTabWidget* m_dummyTab;
 	bool m_populated;
+	FilamentEngineInstance m_filament;
 
 	static const std::unordered_map<std::string, QWidget *(ESOBrowserMainWindow::*)()> m_tabConstructors;
 };
