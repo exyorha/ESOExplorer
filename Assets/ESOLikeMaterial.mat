@@ -228,8 +228,7 @@ fragment {
 
 		return f3Normal;
 	}
-
-
+		
 	void material(inout MaterialInputs material) {
 		vec4 f4DiffuseColor = SampleDiffuseMap(materialParams_diffuseTexture, ScaleUV(getUV0()));
 		vec4 f4SpecularColor = SampleSpecularMap(materialParams_specularTexture, ScaleUV(getUV0()));
@@ -253,21 +252,16 @@ fragment {
 		 * TODO: alpha clipping
 		 */
 
-		/*
-		 * TODO: lighting
-		 */
+		material.normal = f3Normal;
 
-		/*
-		 * TODO: fresnel
-		 */
+		prepareMaterial(material);
+		
+		fFresnelMask *= pow(1.0 - getNdotV(), 3.0);
+		f4SpecularColor.rgb = mix(f4SpecularColor.rgb, vec3(1.0), fFresnelMask);
 
 		material.baseColor = f4DiffuseColor;
 		material.emissive = vec4(f4DiffuseColor.rgb * fGlowMask, 1.0);
 		material.specularColor = f4SpecularColor.rgb;
 		material.glossiness = f4SpecularColor.a;
-		material.normal = f3Normal;
-
-		prepareMaterial(material);
-
 	}
 }
