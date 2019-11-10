@@ -93,10 +93,6 @@ material {
 }
 
 fragment {
-	vec2 ScaleUV(vec2 uv) {
-		return uv * 128.0;
-	}
-
 	vec4 SampleDiffuseMap(sampler2D textureSampler, vec2 f2TexCoord) {
 		if(materialParams.diffuseTexturePresent) {
 			return texture(textureSampler, f2TexCoord);
@@ -230,12 +226,12 @@ fragment {
 	}
 		
 	void material(inout MaterialInputs material) {
-		vec4 f4DiffuseColor = SampleDiffuseMap(materialParams_diffuseTexture, ScaleUV(getUV0()));
-		vec4 f4SpecularColor = SampleSpecularMap(materialParams_specularTexture, ScaleUV(getUV0()));
-		vec4 f4NormalColor = SampleNormalMap(materialParams_normalTexture, ScaleUV(getUV0()));
-		vec4 f4DetailColor = SampleDetailMap(materialParams_detailTexture, ScaleUV(getUV1()));
-		vec4 f4Diffuse2Color = SampleDiffuse2Map(materialParams_diffuse2Texture, ScaleUV(getUV0()));
-		vec4 f4TintMask = SampleTintMask(materialParams_tintMaskTexture, ScaleUV(getUV0()));
+		vec4 f4DiffuseColor = SampleDiffuseMap(materialParams_diffuseTexture, getUV0());
+		vec4 f4SpecularColor = SampleSpecularMap(materialParams_specularTexture, getUV0());
+		vec4 f4NormalColor = SampleNormalMap(materialParams_normalTexture, getUV0());
+		vec4 f4DetailColor = SampleDetailMap(materialParams_detailTexture, getUV1());
+		vec4 f4Diffuse2Color = SampleDiffuse2Map(materialParams_diffuse2Texture, getUV0());
+		vec4 f4TintMask = SampleTintMask(materialParams_tintMaskTexture, getUV0());
 
 		ApplyDetailBlend(f4DiffuseColor, f4SpecularColor, f4NormalColor, f4DetailColor, f4Diffuse2Color, getColor());
 	    ApplyTintMask(f4DiffuseColor, f4SpecularColor, f4NormalColor, f4TintMask);

@@ -47,7 +47,7 @@ void FilamentViewport::initialize(FilamentEngineInstance* engine) {
 
 	m_lightEntity = utils::EntityManager::get().create();
 	filament::LightManager::Builder lightBuilder(filament::LightManager::Type::DIRECTIONAL);
-	lightBuilder.intensity(25000.0f);
+	lightBuilder.intensity(50000.0f);
 	lightBuilder.direction(filament::math::float3(0.0, -0.5f, -0.5f));
 	lightBuilder.build(*f, m_lightEntity);
 

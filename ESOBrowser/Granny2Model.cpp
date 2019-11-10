@@ -78,6 +78,36 @@ static void unpackAttribute(std::vector<filament::math::float3>& dest, const voi
 	}
 }
 
+static void translateUVSet(
+	void* data,
+	size_t vertexCount,
+	size_t stride,
+	filament::VertexBuffer::AttributeType& attributeType
+) {
+	if (attributeType == filament::VertexBuffer::AttributeType::FLOAT2)
+		return;
+
+	for (size_t index = 0; index < vertexCount; index++) {
+		if (attributeType == filament::VertexBuffer::AttributeType::SHORT2) {
+			auto values = static_cast<int16_t*>(data);
+			float u = values[0] / 256.0f;
+			float v = values[1] / 256.0f;
+
+			auto dest = reinterpret_cast<uint16_t*>(values);
+			dest[0] = GrannyReal32ToReal16(u);
+			dest[1] = GrannyReal32ToReal16(v);
+		}
+		else {
+			throw std::runtime_error("cannot translate UV set, type " + std::to_string(static_cast<int>(attributeType)));
+		}
+
+		data = reinterpret_cast<uint8_t*>(data) + stride;
+	}
+
+	attributeType = filament::VertexBuffer::AttributeType::HALF2;
+}
+
+
 Granny2Model::Granny2Model(FilamentEngineInstance* engine, uint64_t key) : m_engine(engine), m_key(key) {
 
 }
@@ -106,6 +136,8 @@ void Granny2Model::load() {
 		filament::VertexBuffer::Builder builder;
 		builder.bufferCount(2);
 		builder.vertexCount(data->VertexCount);
+
+		filament::math::float2 uvScales(1.0f, 1.0f);
 
 		std::vector<filament::math::float3> normals(data->VertexCount);
 		std::vector<filament::math::float3> tangents(data->VertexCount);
@@ -247,16 +279,19 @@ void Granny2Model::load() {
 				unpackAttribute(binormals, static_cast<uint8_t*>(data->Vertices) + offset, data->VertexCount, vertexSize, attributeType, normalized);
 			}
 			else if (strcmp(type->Name, "TextureCoord0") == 0 || strcmp(type->Name, "TextureCoordinates0") == 0) {
+				translateUVSet(static_cast<uint8_t*>(data->Vertices) + offset, data->VertexCount, vertexSize, attributeType);
+
 				builder.attribute(filament::VertexAttribute::UV0, 0, attributeType, offset, vertexSize);
 				builder.normalized(filament::VertexAttribute::UV0, normalized);
 				attributesPresent |= 1 << filament::VertexAttribute::UV0;
 			}
 			else if (strcmp(type->Name, "TextureCoord1") == 0 || strcmp(type->Name, "TextureCoordinates1") == 0) {
+				translateUVSet(static_cast<uint8_t*>(data->Vertices) + offset, data->VertexCount, vertexSize, attributeType);
+
 				builder.attribute(filament::VertexAttribute::UV1, 0, attributeType, offset, vertexSize);
 				builder.normalized(filament::VertexAttribute::UV1, normalized);
 				attributesPresent |= 1 << filament::VertexAttribute::UV1;
 			}
-
 
 			offset += GrannyGetMemberTypeSize(type);
 		}
@@ -389,14 +424,32 @@ void Granny2Model::load() {
 				instance->setParameter("normalTexture", texture->texture(), CommonESOLikeSampler);
 			}
 
+			bool hasDetail = findMap(material, "detail", key);
+
+			instance->setParameter("detailTexturePresent", hasDetail);
+			if (hasDetail) {
+				auto texture = m_engine->loadTexture(key);
+				m_requiredTextures.emplace(texture);
+				instance->setParameter("detailTexture", texture->texture(), CommonESOLikeSampler);
+			}
+			bool hasDiffuse2 = findMap(material, "diffuse2", key);
+
+			instance->setParameter("diffuse2TexturePresent", hasDiffuse2);
+			if (hasDiffuse2) {
+				auto texture = m_engine->loadTexture(key);
+				m_requiredTextures.emplace(texture);
+				instance->setParameter("diffuse2Texture", texture->texture(), CommonESOLikeSampler);
+			}
+
 			bool hasSpecular = findMap(material, "specular", key);
 
-			instance->setParameter("specularTexturePresent", hasNormal);
+			instance->setParameter("specularTexturePresent", hasSpecular);
 			if (hasSpecular) {
 				auto texture = m_engine->loadTexture(key);
 				m_requiredTextures.emplace(texture);
 				instance->setParameter("specularTexture", texture->texture(), CommonESOLikeSampler);
 			}
+
 
 			instance->setParameter("fresnel", parameters.bFresnel != 0);
 			instance->setParameter("glow", parameters.bGlowEnable != 0);
