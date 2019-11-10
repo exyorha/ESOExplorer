@@ -1,0 +1,167 @@
+vec4 SampleDiffuseMap(sampler2D textureSampler, vec2 f2TexCoord) {
+	if(materialParams.diffuseTexturePresent) {
+		return texture(textureSampler, f2TexCoord);
+	} else {
+		return vec4(0, 0, 0, 1);
+	}
+}
+	
+vec4 SampleSpecularMap(sampler2D textureSampler, vec2 f2TexCoord) {
+	if(materialParams.specularTexturePresent) {
+		return texture(textureSampler, f2TexCoord);
+	} else {
+		return vec4(0, 0, 0, 0);
+	}
+}
+	
+vec4 SampleNormalMap(sampler2D textureSampler, vec2 f2TexCoord) {
+	if(materialParams.normalTexturePresent) {
+		return texture(textureSampler, f2TexCoord);
+	} else {
+		return vec4(0, 0, 1, 0);
+	}
+}
+	
+vec4 SampleDetailMap(sampler2D textureSampler, vec2 f2TexCoord) {
+	if(materialParams.detailTexturePresent) {
+		return texture(textureSampler, f2TexCoord);
+	} else {
+		return vec4(1);
+	}
+}
+
+vec4 SampleDiffuse2Map(sampler2D textureSampler, vec2 f2TexCoord) {
+	if(materialParams.diffuse2TexturePresent) {
+		return texture(textureSampler, f2TexCoord);
+	} else {
+		return vec4(0);
+	}
+}
+	
+vec4 SampleTintMask(sampler2D textureSampler, vec2 f2TexCoord) {
+	if(materialParams.tintMaskTexturePresent) {
+		return texture(textureSampler, f2TexCoord);
+	} else {
+		return vec4(0);
+	}
+}
+	
+vec3 GammaToLinear(vec3 f3Color) {
+	//return pow(abs(f3Color), 2.2);
+
+	//http://en.wikipedia.org/wiki/SRGB
+	vec3 f3ReturnColor = f3Color;
+	f3ReturnColor.r = (f3Color.r <= 0.04045) ? (f3Color.r / 12.92) : pow(abs(f3Color.r + 0.055) / 1.055, 2.4);
+	f3ReturnColor.g = (f3Color.g <= 0.04045) ? (f3Color.g / 12.92) : pow(abs(f3Color.g + 0.055) / 1.055, 2.4);
+	f3ReturnColor.b = (f3Color.b <= 0.04045) ? (f3Color.b / 12.92) : pow(abs(f3Color.b + 0.055) / 1.055, 2.4);
+
+	return f3ReturnColor;
+}
+
+vec3 LinearToGamma(vec3 f3Color) {
+	//return pow(abs(f3Color), 1 / 2.2);
+
+	//http://en.wikipedia.org/wiki/SRGB
+	vec3 f3ReturnColor = f3Color;
+	f3ReturnColor.r = (f3Color.r <= 0.0031308) ? (f3Color.r * 12.92) : (1.055 * pow(abs(f3Color.r), 1.0 / 2.4) - 0.055);
+	f3ReturnColor.g = (f3Color.g <= 0.0031308) ? (f3Color.g * 12.92) : (1.055 * pow(abs(f3Color.g), 1.0 / 2.4) - 0.055);
+	f3ReturnColor.b = (f3Color.b <= 0.0031308) ? (f3Color.b * 12.92) : (1.055 * pow(abs(f3Color.b), 1.0 / 2.4) - 0.055);
+
+	return f3ReturnColor;
+}
+
+void ApplyDetailBlend(inout vec4 f4DiffuseColor, inout vec4 f4SpecularColor, inout vec4 f4NormalColor, vec4 f4DetailColor, vec4 f4Diffuse2Color, vec4 f4VertColor) {
+	vec4 f4Specular2Color = vec4(GammaToLinear(vec3(f4Diffuse2Color.a)), materialParams.g_detailValues.r); //glossiness2
+            
+	f4DiffuseColor.rgb = mix(f4Diffuse2Color, f4DiffuseColor, f4DetailColor.a).rgb;
+	f4SpecularColor = mix(f4Specular2Color, f4SpecularColor, f4DetailColor.a);
+	f4NormalColor.b = mix(materialParams.g_detailValues.g, f4NormalColor.b, f4DetailColor.a); //fresnel2
+	f4NormalColor.r = mix(materialParams.g_detailValues.b, f4NormalColor.r, f4DetailColor.a); //glow2
+    
+	f4DiffuseColor.rgb *= f4DetailColor.rgb * f4VertColor.rgb;
+	f4DiffuseColor.a *= f4VertColor.a;
+	f4SpecularColor.rgb *= f4DetailColor.rgb * f4VertColor.rgb;
+}
+
+
+void ApplyTintMask(inout vec4 f4DiffuseColor, inout vec4 f4SpecularColor, inout vec4 f4NormalColor, vec4 f4TintMask) {
+	if(materialParams.tintMaskTexturePresent) {
+		f4DiffuseColor.rgb = LinearToGamma(f4DiffuseColor.rgb);
+		f4SpecularColor.rgb = LinearToGamma(f4SpecularColor.rgb);
+    
+		f4SpecularColor *= 1.0 - f4TintMask.r * materialParams.g_mtxTintPrimary[1];
+		f4SpecularColor *= 1.0 - f4TintMask.g * materialParams.g_mtxTintSecondary[1];
+		f4SpecularColor *= 1.0 - f4TintMask.b * materialParams.g_mtxTintAccent[1];
+
+		f4NormalColor *= 1.0 - f4TintMask.r * materialParams.g_mtxTintPrimary[2];
+		f4NormalColor *= 1.0 - f4TintMask.g * materialParams.g_mtxTintSecondary[2];
+		f4NormalColor *= 1.0 - f4TintMask.b * materialParams.g_mtxTintAccent[2];
+    
+		f4DiffuseColor.rgb = GammaToLinear(f4DiffuseColor.rgb);
+		f4SpecularColor.rgb = GammaToLinear(f4SpecularColor.rgb);
+	}
+}
+	
+float ExtractFresnel(vec4 f4NormalColor)
+{
+	if(materialParams.fresnel) {
+		//{r, g, b, a} => {glow, ny, fresnel, nx}
+		return f4NormalColor.b * f4NormalColor.b; //more range in the darks
+	} else {
+		return 0.0;
+	}
+}
+
+vec3 ExtractNormal(vec4 f4NormalColor, out float fGlowMask, out float fFresnelMask) {
+	//{r, g, b, a} => {glow, ny, fresnel, nx}
+	vec3 f3Normal = vec3(0, 0, 1);
+	fGlowMask = 0.0;
+	fFresnelMask = ExtractFresnel(f4NormalColor);
+
+	if(materialParams.glow) {
+		fGlowMask = f4NormalColor.r;
+	}
+
+	if(materialParams.normalTexturePresent) {
+		f3Normal.xy = f4NormalColor.wy * 2.0 - 1.0;
+		f3Normal.z = sqrt(saturate(1.0 - dot(f3Normal.xy, f3Normal.xy)));
+	}
+
+	return f3Normal;
+}
+		
+void material(inout MaterialInputs material) {
+	vec4 f4DiffuseColor = SampleDiffuseMap(materialParams_diffuseTexture, getUV0());
+	vec4 f4SpecularColor = SampleSpecularMap(materialParams_specularTexture, getUV0());
+	vec4 f4NormalColor = SampleNormalMap(materialParams_normalTexture, getUV0());
+	vec4 f4DetailColor = SampleDetailMap(materialParams_detailTexture, getUV1());
+	vec4 f4Diffuse2Color = SampleDiffuse2Map(materialParams_diffuse2Texture, getUV0());
+	vec4 f4TintMask = SampleTintMask(materialParams_tintMaskTexture, getUV0());
+
+	ApplyDetailBlend(f4DiffuseColor, f4SpecularColor, f4NormalColor, f4DetailColor, f4Diffuse2Color, getColor());
+	ApplyTintMask(f4DiffuseColor, f4SpecularColor, f4NormalColor, f4TintMask);
+
+	float fOriginalGlowMask, fFresnelMask;
+	vec3 f3Normal = ExtractNormal(f4NormalColor, fOriginalGlowMask, fFresnelMask);
+	float fGlowMask = fOriginalGlowMask * materialParams.g_glowFactor;
+			
+	/*
+		* TODO: biomes
+		*/
+
+	/*
+		* TODO: alpha clipping
+		*/
+
+	material.normal = f3Normal;
+
+	prepareMaterial(material);
+		
+	fFresnelMask *= pow(1.0 - getNdotV(), 3.0);
+	f4SpecularColor.rgb = mix(f4SpecularColor.rgb, vec3(1.0), fFresnelMask);
+
+	material.baseColor = f4DiffuseColor;
+	material.emissive = vec4(f4DiffuseColor.rgb * fGlowMask, 1.0);
+	material.specularColor = f4SpecularColor.rgb;
+	material.glossiness = f4SpecularColor.a;
+}

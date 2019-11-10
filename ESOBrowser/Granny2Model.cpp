@@ -182,6 +182,7 @@ void Granny2Model::load() {
 				break;
 
 			case GrannyUInt8Member:
+			case GrannyNormalUInt8Member:
 				normalized = true;
 				switch (GrannyGetMemberArrayWidth(type)) {
 				case 1:
@@ -242,9 +243,9 @@ void Granny2Model::load() {
 
 				if (data->VertexCount > 0) {
 					std::vector<filament::math::float3> positions(data->VertexCount);
-					unpackAttribute(positions, data, count, vertexSize, attributeType, normalized);
+					unpackAttribute(positions, static_cast<uint8_t*>(data->Vertices) + offset, data->VertexCount, vertexSize, attributeType, normalized);
 
-					filament::math::float3 min = positions[0], max = positions[1];
+					filament::math::float3 min = positions[0], max = positions[0];
 
 					for (auto& vertex : positions) {
 						min[0] = std::min(vertex[0], min[0]);
@@ -291,6 +292,13 @@ void Granny2Model::load() {
 				builder.attribute(filament::VertexAttribute::UV1, 0, attributeType, offset, vertexSize);
 				builder.normalized(filament::VertexAttribute::UV1, normalized);
 				attributesPresent |= 1 << filament::VertexAttribute::UV1;
+			}
+			else if (strcmp(type->Name, "BoneWeights") == 0) {
+				builder.attribute(filament::VertexAttribute::BONE_WEIGHTS, 0, attributeType, offset, vertexSize);
+				builder.normalized(filament::VertexAttribute::BONE_WEIGHTS, true);
+			}
+			else if (strcmp(type->Name, "BoneIndices") == 0) {
+				builder.attribute(filament::VertexAttribute::BONE_INDICES, 0, attributeType, offset, vertexSize);
 			}
 
 			offset += GrannyGetMemberTypeSize(type);
@@ -394,8 +402,6 @@ void Granny2Model::load() {
 		auto material = info->Materials[index];
 
 		if (material->Texture == nullptr) {
-			auto instance = FilamentMaterialInstance(m_engine->esoLikeMaterial()->createInstance(), e);
-			
 			ESOMaterial parameters;
 			GrannyConvertSingleObject(
 				material->ExtendedData.Type,
@@ -405,8 +411,31 @@ void Granny2Model::load() {
 				nullptr
 			);
 
+			filament::Material* baseMaterial;
+
+			// 1 - no alpha
+			// 3 - masking
+			switch (parameters.alpha) {
+			case 1:
+				baseMaterial = m_engine->esoLikeMaterialOpaque();
+				break;
+
+			case 2:
+				baseMaterial = m_engine->esoLikeMaterialTransparent();
+				break;
+
+			case 3:
+				baseMaterial = m_engine->esoLikeMaterialMasked();
+				break;
+
+			default:
+				throw std::logic_error("unsupported alpha mode " + std::to_string(parameters.alpha));
+			}
+
+			auto instance = FilamentMaterialInstance(baseMaterial->createInstance(), e);
+
 			uint64_t key;
-			bool hasDiffuse = findMap(material, "diffuse", key);
+			bool hasDiffuse = findMap(material, "diffuse", key) && key != 0;
 
 			instance->setParameter("diffuseTexturePresent", hasDiffuse);
 			if (hasDiffuse) {
@@ -415,7 +444,7 @@ void Granny2Model::load() {
 				instance->setParameter("diffuseTexture", texture->texture(), CommonESOLikeSampler);
 			}
 
-			bool hasNormal = findMap(material, "normal", key);
+			bool hasNormal = findMap(material, "normal", key) && key != 0;
 
 			instance->setParameter("normalTexturePresent", hasNormal);
 			if (hasNormal) {
@@ -424,7 +453,7 @@ void Granny2Model::load() {
 				instance->setParameter("normalTexture", texture->texture(), CommonESOLikeSampler);
 			}
 
-			bool hasDetail = findMap(material, "detail", key);
+			bool hasDetail = findMap(material, "detail", key) && key != 0;
 
 			instance->setParameter("detailTexturePresent", hasDetail);
 			if (hasDetail) {
@@ -432,7 +461,7 @@ void Granny2Model::load() {
 				m_requiredTextures.emplace(texture);
 				instance->setParameter("detailTexture", texture->texture(), CommonESOLikeSampler);
 			}
-			bool hasDiffuse2 = findMap(material, "diffuse2", key);
+			bool hasDiffuse2 = findMap(material, "diffuse2", key) && key != 0;
 
 			instance->setParameter("diffuse2TexturePresent", hasDiffuse2);
 			if (hasDiffuse2) {
@@ -441,7 +470,7 @@ void Granny2Model::load() {
 				instance->setParameter("diffuse2Texture", texture->texture(), CommonESOLikeSampler);
 			}
 
-			bool hasSpecular = findMap(material, "specular", key);
+			bool hasSpecular = findMap(material, "specular", key) && key != 0;
 
 			instance->setParameter("specularTexturePresent", hasSpecular);
 			if (hasSpecular) {
@@ -558,20 +587,22 @@ std::unique_ptr<Granny2Renderable> Granny2Model::createInstance() {
 			globalGroupIndex++;
 		}
 
-		ESOMeshExtendedData meshExtended;
-		GrannyConvertSingleObject(
-			mesh->ExtendedData.Type,
-			mesh->ExtendedData.Object,
-			ESOMeshExtendedDataType,
-			&meshExtended,
-			nullptr
-		);
-
 		auto meshBox = filament::Box();
-		meshBox.set(
-			filament::math::float3(meshExtended.BBoxMin[0], meshExtended.BBoxMin[1], meshExtended.BBoxMin[2]),
-			filament::math::float3(meshExtended.BBoxMax[0], meshExtended.BBoxMax[1], meshExtended.BBoxMax[2])
-		);
+		if (mesh->ExtendedData.Object) {
+			ESOMeshExtendedData meshExtended;
+			GrannyConvertSingleObject(
+				mesh->ExtendedData.Type,
+				mesh->ExtendedData.Object,
+				ESOMeshExtendedDataType,
+				&meshExtended,
+				nullptr
+			);
+
+			meshBox.set(
+				filament::math::float3(meshExtended.BBoxMin[0], meshExtended.BBoxMin[1], meshExtended.BBoxMin[2]),
+				filament::math::float3(meshExtended.BBoxMax[0], meshExtended.BBoxMax[1], meshExtended.BBoxMax[2])
+			);
+		}
 
 		if (meshBox.isEmpty()) {
 			meshBox = backupBox;

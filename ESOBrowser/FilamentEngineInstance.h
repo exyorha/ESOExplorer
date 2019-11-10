@@ -30,8 +30,16 @@ public:
 		return m_engine.get();
 	}
 
-	inline filament::Material* esoLikeMaterial() {
-		return m_esoLikeMaterial.get();
+	inline filament::Material* esoLikeMaterialOpaque() {
+		return m_esoLikeMaterialOpaque.get();
+	}
+
+	inline filament::Material* esoLikeMaterialTransparent() {
+		return m_esoLikeMaterialTransparent.get();
+	}
+
+	inline filament::Material* esoLikeMaterialMasked() {
+		return m_esoLikeMaterialMasked.get();
 	}
 
 	std::shared_ptr<Granny2Model> loadModel(uint64_t key);
@@ -44,7 +52,9 @@ private:
 	FilamentEngine m_engine;
 	std::unordered_map<uint64_t, std::weak_ptr<Granny2Model>> m_models;
 	std::unordered_map<uint64_t, std::weak_ptr<DDSTexture>> m_textures;
-	FilamentMaterial m_esoLikeMaterial;
+	FilamentMaterial m_esoLikeMaterialOpaque;
+	FilamentMaterial m_esoLikeMaterialTransparent;
+	FilamentMaterial m_esoLikeMaterialMasked;
 };
 
 #endif

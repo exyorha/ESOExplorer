@@ -1,0 +1,98 @@
+material {
+	name: "ESO-like Material (Masked)",
+	shadingModel: specularGlossiness,
+
+	parameters: [
+		{
+			type: sampler2d,
+			name: diffuseTexture
+		},
+		{
+			type: bool,
+			name: diffuseTexturePresent
+		},		
+		{
+			type: sampler2d,
+			name: specularTexture
+		},
+		{
+			type: bool,
+			name: specularTexturePresent
+		},		
+		{
+			type: sampler2d,
+			name: normalTexture
+		},
+		{
+			type: bool,
+			name: normalTexturePresent
+		},		
+		{
+			type: sampler2d,
+			name: detailTexture
+		},
+		{
+			type: bool,
+			name: detailTexturePresent
+		},
+		{
+			type: sampler2d,
+			name: diffuse2Texture
+		},
+		{
+			type: bool,
+			name: diffuse2TexturePresent
+		},	
+		{
+			type: sampler2d,
+			name: tintMaskTexture
+		},
+		{
+			type: bool,
+			name: tintMaskTexturePresent
+		},			
+		{
+			//
+			// r: glossiness2
+			// g: fresnel2
+			// b: glow2
+			//
+			type: float4,
+			name: g_detailValues
+		},
+		{
+			type: float,
+			name: g_glowFactor
+		},
+		{
+			type: bool,
+			name: fresnel
+		},
+		{
+			type: bool,
+			name: glow
+		},
+		{
+			type: float4x4,
+			name: g_mtxTintPrimary
+		},
+		{
+			type: float4x4,
+			name: g_mtxTintSecondary
+		},
+		{
+			type: float4x4,
+			name: g_mtxTintAccent
+		}
+	],
+	requires: [
+		uv0,
+		uv1,
+		color
+	],
+	blending: transparent
+}
+
+fragment {
+	#include "ESOLikeMaterialCommon.hmat"
+}

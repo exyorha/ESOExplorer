@@ -10,7 +10,9 @@
 #include <fstream>
 
 FilamentEngineInstance::FilamentEngineInstance(const esodata::Filesystem* fs) : m_fs(fs), m_engine(filament::Engine::create()),
-	m_esoLikeMaterial(loadMaterial(QStringLiteral("ESOLikeMaterial.matc"))) {
+	m_esoLikeMaterialOpaque(loadMaterial(QStringLiteral("ESOLikeMaterialOpaque.matc"))),
+	m_esoLikeMaterialTransparent(loadMaterial(QStringLiteral("ESOLikeMaterialTransparent.matc"))),
+	m_esoLikeMaterialMasked(loadMaterial(QStringLiteral("ESOLikeMaterialMasked.matc"))) {
 
 }
 
