@@ -10,6 +10,7 @@
 #include "SupportedVersionsDirectiveFile.h"
 #include "FilesystemDirectiveFile.h"
 #include "ESOFilesystemModel.h"
+#include "FilenameHarvestingDirectiveFile.h"
 
 #include <ESOData/Filesystem/Filesystem.h>
 
@@ -36,6 +37,10 @@ public:
 
 	inline const std::vector<std::string> & supportedVersions() const {
 		return m_supportedVersions.supportedVersions;
+	}
+
+	inline const std::vector<std::string>& prefixesForFilenameHarvesting() const {
+		return m_filenameHarvesting.prefixes;
 	}
 
 	inline const std::string& depotBuild() const {
@@ -78,6 +83,7 @@ private:
 
 	SupportedVersionsDirectiveFile m_supportedVersions;
 	FilesystemDirectiveFile m_filesystem;
+	FilenameHarvestingDirectiveFile m_filenameHarvesting;
 
 	std::filesystem::path m_depotPath;
 	std::string m_depotBuild;

@@ -2,6 +2,7 @@ set(commands)
 set(generated_materials)
 
 foreach(dir_file IN ITEMS
+	FilenameHarvesting.dir
 	Filesystem.dir
 	SupportedVersions.dir
 )

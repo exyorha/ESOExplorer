@@ -19,6 +19,6 @@ void FilesystemDirectiveFile::processLine(std::vector<std::string>& tokens) {
 		fileTables.emplace_back(std::stoull(tokens[1], nullptr, 0));
 	}
 	else {
-		parseError("SUPPORTED_VERSION expected");
+		parseError("MANIFEST or FILE_TABLE expected");
 	}
 }

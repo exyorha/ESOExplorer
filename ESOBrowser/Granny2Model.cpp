@@ -425,6 +425,7 @@ void Granny2Model::load() {
 				break;
 
 			case 3:
+			case 4:
 				baseMaterial = m_engine->esoLikeMaterialMasked();
 				break;
 

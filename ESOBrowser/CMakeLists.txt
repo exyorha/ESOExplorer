@@ -28,6 +28,12 @@ add_executable(ESOBrowser
 	FilamentTypeHelpers.h
 	FilamentViewport.cpp
 	FilamentViewport.h
+	FileNameExtractor.cpp
+	FileNameExtractor.h
+	FileNameExtractorCallbacks.cpp
+	FileNameExtractorCallbacks.h
+	FilenameHarvestingDirectiveFile.cpp
+	FilenameHarvestingDirectiveFile.h
 	FilesystemBrowserWidget.cpp
 	FilesystemBrowserWidget.h
 	FilesystemBrowserWidget.ui
@@ -52,6 +58,11 @@ add_executable(ESOBrowser
 	ModelViewerWidget.cpp
 	ModelViewerWidget.h
 	ModelViewerWidget.ui
+	NameHarvestingEngine.cpp
+	NameHarvestingEngine.h
+	NameHarvestingWidget.cpp
+	NameHarvestingWidget.h
+	NameHarvestingWidget.ui
 	PersistentTabWidget.cpp
 	PersistentTabWidget.h
 	SupportedVersionsDirectiveFile.cpp
@@ -60,7 +71,7 @@ add_executable(ESOBrowser
 	TextFileViewWidget.h
 )
 
-target_link_libraries(ESOBrowser PRIVATE Qt5::Widgets ESOData DirectXTex granny filament::filament)
+target_link_libraries(ESOBrowser PRIVATE Qt5::Widgets Qt5::Sql ESOData DirectXTex granny filament::filament)
 
 set_target_properties(ESOBrowser PROPERTIES 
 	AUTOUIC TRUE

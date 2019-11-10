@@ -12,6 +12,7 @@ DataStorage::DataStorage() : m_loadingCancelled(false), m_loadingDialog(nullptr)
 
 	m_supportedVersions.parseFile(applicationDirectory / "SupportedVersions.dir");
 	m_filesystem.parseFile(applicationDirectory / "Filesystem.dir");
+	m_filenameHarvesting.parseFile(applicationDirectory / "FilenameHarvesting.dir");
 }
 
 DataStorage::~DataStorage() {

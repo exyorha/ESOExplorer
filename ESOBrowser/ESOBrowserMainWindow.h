@@ -8,6 +8,7 @@
 
 class DataStorage;
 class DummyTabWidget;
+class NameHarvestingEngine;
 
 QT_FORWARD_DECLARE_CLASS(QLabel)
 QT_FORWARD_DECLARE_CLASS(QToolButton)
@@ -39,6 +40,10 @@ public:
 		return &m_filament;
 	}
 
+	inline NameHarvestingEngine* nameHarvesting() {
+		return m_nameHarvesting;
+	}
+
 private slots:
 	void on_actionReloadDirectives_triggered();
 	void on_actionChangeDepot_triggered();
@@ -46,6 +51,7 @@ private slots:
 	void on_tabs_tabCloseRequested(int index);
 
 	void addFilesystemBrowser();
+	void addNameHarvesting();
 	void tabWindowTitleChanged(const QString& title);
 
 private:
@@ -70,6 +76,7 @@ private:
 	DummyTabWidget* m_dummyTab;
 	bool m_populated;
 	FilamentEngineInstance m_filament;
+	NameHarvestingEngine* m_nameHarvesting;
 
 	static const std::unordered_map<std::string, QWidget *(ESOBrowserMainWindow::*)()> m_tabConstructors;
 };

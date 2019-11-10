@@ -12,6 +12,8 @@
 #include "TextFileViewWidget.h"
 #include "FilesystemBrowserWidget.h"
 #include "Granny2FileViewWidget.h"
+#include "NameHarvestingEngine.h"
+#include "NameHarvestingWidget.h"
 
 ESOBrowserMainWindow::ESOBrowserMainWindow(DataStorage* storage, QWidget* parent) :
 	QMainWindow(parent),
@@ -32,12 +34,15 @@ ESOBrowserMainWindow::ESOBrowserMainWindow(DataStorage* storage, QWidget* parent
 
 	m_addTabMenu = new QMenu(this);
 	m_addTabMenu->addAction(tr("Filesystem Browser"), this, &ESOBrowserMainWindow::addFilesystemBrowser, QKeySequence(QStringLiteral("Ctrl+T")));
+	m_addTabMenu->addAction(tr("Name Harvesting"), this, &ESOBrowserMainWindow::addNameHarvesting);
 
 	m_addTab = new QToolButton(this);
 	m_addTab->setText(tr("Add Tab"));
 	m_addTab->setMenu(m_addTabMenu);
 	m_addTab->setPopupMode(QToolButton::InstantPopup);
 	ui.tabs->setCornerWidget(m_addTab);
+
+	m_nameHarvesting = new NameHarvestingEngine(m_storage, this);
 
 	addDummyTabIfNecessary();
 }
@@ -64,6 +69,10 @@ void ESOBrowserMainWindow::on_actionQuit_triggered() {
 
 void ESOBrowserMainWindow::addFilesystemBrowser() {
 	addTab(new FilesystemBrowserWidget(this, this));
+}
+
+void ESOBrowserMainWindow::addNameHarvesting() {
+	addTab(new NameHarvestingWidget(this, this));
 }
 
 void ESOBrowserMainWindow::tabWindowTitleChanged(const QString& title) {
@@ -194,5 +203,6 @@ const std::unordered_map<std::string, QWidget* (ESOBrowserMainWindow::*)()> ESOB
 	{ "DDSFileViewWidget", &ESOBrowserMainWindow::createTab<DDSFileViewWidget> },
 	{ "TextFileViewWidget", &ESOBrowserMainWindow::createTab<TextFileViewWidget> },
 	{ "FilesystemBrowserWidget", &ESOBrowserMainWindow::createTab<FilesystemBrowserWidget> },
-	{ "Granny2FileViewWidget", &ESOBrowserMainWindow::createTab<Granny2FileViewWidget> }
+	{ "Granny2FileViewWidget", &ESOBrowserMainWindow::createTab<Granny2FileViewWidget> },
+	{ "NameHarvestingWidget", &ESOBrowserMainWindow::createTab<NameHarvestingWidget> }
 };
