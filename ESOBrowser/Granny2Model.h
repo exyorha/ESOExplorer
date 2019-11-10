@@ -18,6 +18,10 @@ struct granny_vertex_data;
 struct granny_tri_topology;
 struct granny_material;
 
+namespace filament {
+	class Box;
+}
+
 class Granny2Model final : public std::enable_shared_from_this<Granny2Model> {
 public:
 	Granny2Model(FilamentEngineInstance* engine, uint64_t key);
@@ -40,7 +44,7 @@ private:
 
 	static void releasePointerToSelf(void* buffer, size_t size, void* user);
 
-	filament::VertexBuffer* findVertexBuffer(granny_file_info* info, granny_vertex_data* vertexData);
+	filament::VertexBuffer* findVertexBuffer(granny_file_info* info, granny_vertex_data* vertexData, filament::Box &backupBoundingBox);
 	filament::IndexBuffer* findIndexBuffer(granny_file_info* info, granny_tri_topology* triangleTopology);
 	filament::MaterialInstance* findMaterial(granny_file_info* info, granny_material* material);
 
@@ -51,6 +55,7 @@ private:
 	GrannyFile m_file;
 	std::unordered_set<std::shared_ptr<DDSTexture>> m_requiredTextures;
 	std::vector<FilamentVertexBuffer> m_vertexBuffers;
+	std::vector<filament::Box> m_backupBoundingBoxes;
 	std::vector<FilamentIndexBuffer> m_indexBuffers;
 	std::vector<FilamentMaterialInstance> m_materials;
 };

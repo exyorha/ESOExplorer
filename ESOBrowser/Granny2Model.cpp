@@ -19,6 +19,11 @@
 #include "ESOGraphicsTypes.h"
 #include "DDSTexture.h"
 
+struct AuxVertex {
+	filament::math::quath orientation;
+	uint32_t dummyColor;
+};
+
 static filament::math::float3 unpackNormal(const int16_t data[2]) {
 	float v1 = (data[0] + 32768.0f) / 32768.0f;
 	float v2 = (data[1] + 32768.0f) / 32768.0f;
@@ -53,6 +58,26 @@ static float dot(const filament::math::float3& u, const filament::math::float3& 
 	return u[0] * v[0] + u[1] * v[1] + u[2] * v[2];
 }
 
+static void unpackAttribute(std::vector<filament::math::float3>& dest, const void* data, size_t count, size_t stride, filament::VertexBuffer::AttributeType type, bool normalized) {
+	for (size_t index = 0; index < count; index++) {
+		filament::math::float3 result;
+
+		if (type == filament::VertexBuffer::AttributeType::FLOAT3) {
+			auto vector = static_cast<const float*>(data);
+
+			result = filament::math::float3(vector[0], vector[1], vector[2]);
+
+		} else if (type == filament::VertexBuffer::AttributeType::SHORT2 && normalized) {
+			result = unpackNormal(static_cast<const int16_t*>(data));
+		} else {
+			throw std::logic_error("can't unpack type " + std::to_string(static_cast<int>(type)));
+		}
+
+		dest[index] = result;
+		data = reinterpret_cast<const uint8_t*>(data) + stride;
+	}
+}
+
 Granny2Model::Granny2Model(FilamentEngineInstance* engine, uint64_t key) : m_engine(engine), m_key(key) {
 
 }
@@ -82,69 +107,214 @@ void Granny2Model::load() {
 		builder.bufferCount(2);
 		builder.vertexCount(data->VertexCount);
 
-		auto vertices = std::make_unique<std::vector<ESOLikeVertex>>(data->VertexCount);
-		std::vector<ESOLikeVertexAside> verticesAside(data->VertexCount);
-
-		GrannyConvertVertexLayouts(
-			data->VertexCount,
-			data->VertexType,
-			data->Vertices,
-			ESOLikeVertexType,
-			vertices->data()
-		);
-
-		GrannyConvertVertexLayouts(
-			data->VertexCount,
-			data->VertexType,
-			data->Vertices,
-			ESOLikeVertexAsideType,
-			verticesAside.data()
-		);
-
 		std::vector<filament::math::float3> normals(data->VertexCount);
-		std::vector<filament::math::float4> tangents(data->VertexCount);
+		std::vector<filament::math::float3> tangents(data->VertexCount);
+		std::vector<filament::math::float3> binormals(data->VertexCount);
 
+		size_t vertexSize = 0;
+		for (auto type = data->VertexType; type->Type != GrannyEndMember; type++) {
+			vertexSize += GrannyGetMemberTypeSize(type);
+		}
+
+		printf("Vertex size: %zu\n", vertexSize);
+		
+		size_t offset = 0;
+		unsigned int attributesPresent = 0;
+
+		for (auto type = data->VertexType; type->Type != GrannyEndMember; type++) {
+			filament::VertexBuffer::AttributeType attributeType;
+			bool normalized = false;
+
+			switch (type->Type) {
+			case GrannyReal32Member:
+				switch (GrannyGetMemberArrayWidth(type)) {
+				case 1:
+					attributeType = filament::VertexBuffer::AttributeType::FLOAT;
+					break;
+
+				case 2:
+					attributeType = filament::VertexBuffer::AttributeType::FLOAT2;
+					break;
+
+				case 3:
+					attributeType = filament::VertexBuffer::AttributeType::FLOAT3;
+					break;
+
+				case 4:
+					attributeType = filament::VertexBuffer::AttributeType::FLOAT4;
+					break;
+
+				default:
+					throw std::logic_error("unsupported array width in vertex");
+				}
+				break;
+
+			case GrannyUInt8Member:
+				normalized = true;
+				switch (GrannyGetMemberArrayWidth(type)) {
+				case 1:
+					attributeType = filament::VertexBuffer::AttributeType::UBYTE;
+					break;
+
+				case 2:
+					attributeType = filament::VertexBuffer::AttributeType::UBYTE2;
+					break;
+
+				case 3:
+					attributeType = filament::VertexBuffer::AttributeType::UBYTE3;
+					break;
+
+				case 4:
+					attributeType = filament::VertexBuffer::AttributeType::UBYTE4;
+					break;
+
+				default:
+					throw std::logic_error("unsupported array width in vertex");
+				}
+				break;
+
+			case GrannyReal16Member:
+				normalized = true;
+				switch (GrannyGetMemberArrayWidth(type)) {
+				case 1:
+					attributeType = filament::VertexBuffer::AttributeType::SHORT;
+					break;
+
+				case 2:
+					attributeType = filament::VertexBuffer::AttributeType::SHORT2;
+					break;
+
+				case 3:
+					attributeType = filament::VertexBuffer::AttributeType::SHORT3;
+					break;
+
+				case 4:
+					attributeType = filament::VertexBuffer::AttributeType::SHORT4;
+					break;
+
+				default:
+					throw std::logic_error("unsupported array width in vertex");
+				}
+				break;
+
+			default:
+				throw std::logic_error("unsupported type " + std::to_string(static_cast<int>(type->Type)) + " in vertex");
+				break;
+			}
+
+			printf("attribute %s at offset %zu, type %d, normalized: %d\n", type->Name, offset, attributeType, normalized);
+
+			if (strcmp(type->Name, "Position") == 0) {
+				builder.attribute(filament::VertexAttribute::POSITION, 0, attributeType, offset, vertexSize);
+				builder.normalized(filament::VertexAttribute::POSITION, normalized);
+
+				if (data->VertexCount > 0) {
+					std::vector<filament::math::float3> positions(data->VertexCount);
+					unpackAttribute(positions, data, count, vertexSize, attributeType, normalized);
+
+					filament::math::float3 min = positions[0], max = positions[1];
+
+					for (auto& vertex : positions) {
+						min[0] = std::min(vertex[0], min[0]);
+						min[1] = std::min(vertex[1], min[1]);
+						min[2] = std::min(vertex[2], min[2]);
+						max[0] = std::max(vertex[0], max[0]);
+						max[1] = std::max(vertex[1], max[1]);
+						max[2] = std::max(vertex[2], max[2]);
+					}
+
+					m_backupBoundingBoxes.emplace_back(
+						filament::Box().set(min, max)
+					);
+				}
+				else {
+
+					m_backupBoundingBoxes.emplace_back();
+				}
+			}
+			else if (strcmp(type->Name, "DiffuseColor0") == 0) {
+				builder.attribute(filament::VertexAttribute::COLOR, 0, attributeType, offset, vertexSize);
+				builder.normalized(filament::VertexAttribute::COLOR, normalized);
+				attributesPresent |= 1 << filament::VertexAttribute::COLOR;
+			}
+			else if (strcmp(type->Name, "Normal") == 0) {
+				unpackAttribute(normals, static_cast<uint8_t*>(data->Vertices) + offset, data->VertexCount, vertexSize, attributeType, normalized);
+			}
+			else if (strcmp(type->Name, "Tangent") == 0) {
+				unpackAttribute(tangents, static_cast<uint8_t*>(data->Vertices) + offset, data->VertexCount, vertexSize, attributeType, normalized);
+			}
+			else if (strcmp(type->Name, "Binormal") == 0) {
+				unpackAttribute(binormals, static_cast<uint8_t*>(data->Vertices) + offset, data->VertexCount, vertexSize, attributeType, normalized);
+			}
+			else if (strcmp(type->Name, "TextureCoord0") == 0 || strcmp(type->Name, "TextureCoordinates0") == 0) {
+				builder.attribute(filament::VertexAttribute::UV0, 0, attributeType, offset, vertexSize);
+				builder.normalized(filament::VertexAttribute::UV0, normalized);
+				attributesPresent |= 1 << filament::VertexAttribute::UV0;
+			}
+			else if (strcmp(type->Name, "TextureCoord1") == 0 || strcmp(type->Name, "TextureCoordinates1") == 0) {
+				builder.attribute(filament::VertexAttribute::UV1, 0, attributeType, offset, vertexSize);
+				builder.normalized(filament::VertexAttribute::UV1, normalized);
+				attributesPresent |= 1 << filament::VertexAttribute::UV1;
+			}
+
+
+			offset += GrannyGetMemberTypeSize(type);
+		}
+
+		std::vector<filament::math::float4> packedTangents(data->VertexCount);
+		
 		for (size_t index = 0, count = data->VertexCount; index < count; index++) {
-			auto normal = unpackNormal(verticesAside[index].Normal);
-			auto tangent = unpackNormal(verticesAside[index].Tangent);
-			auto binormal = unpackNormal(verticesAside[index].Binormal);
+			const auto &normal = normals[index];
+			const auto &tangent = tangents[index];
+			const auto &binormal = binormals[index];
 
 			auto handedness = dot(binormal, cross(normal, tangent));
 
-			normals[index] = normal;
-			tangents[index] = filament::math::float4(tangent, handedness);
+			packedTangents[index] = filament::math::float4(tangent, handedness);
 		}
 
 		filament::geometry::SurfaceOrientation::Builder orientationBuilder;
 		orientationBuilder.vertexCount(data->VertexCount);
 		orientationBuilder.normals(normals.data(), sizeof(filament::math::float3));
-		orientationBuilder.tangents(tangents.data(), sizeof(filament::math::float4));
+		orientationBuilder.tangents(packedTangents.data(), sizeof(filament::math::float4));
 		auto orientation = orientationBuilder.build();
 
-		auto orientationQuats = std::make_unique<std::vector<filament::math::quath>>(data->VertexCount);
-		orientation.getQuats(orientationQuats->data(), orientationQuats->size());
+		auto orientationQuats = std::make_unique<std::vector<AuxVertex>>(data->VertexCount);
 
-		builder.attribute(filament::VertexAttribute::POSITION, 0, filament::VertexBuffer::AttributeType::FLOAT3, offsetof(ESOLikeVertex, Position), sizeof(ESOLikeVertex));
-		builder.attribute(filament::VertexAttribute::COLOR, 0, filament::VertexBuffer::AttributeType::UBYTE4, offsetof(ESOLikeVertex, DiffuseColor0), sizeof(ESOLikeVertex));
-		builder.normalized(filament::VertexAttribute::COLOR);
-		builder.attribute(filament::VertexAttribute::UV0, 0, filament::VertexBuffer::AttributeType::SHORT2, offsetof(ESOLikeVertex, TextureCoord0), sizeof(ESOLikeVertex));
-		builder.normalized(filament::VertexAttribute::UV0); 
-		builder.attribute(filament::VertexAttribute::UV1, 0, filament::VertexBuffer::AttributeType::SHORT2, offsetof(ESOLikeVertex, TextureCoord1), sizeof(ESOLikeVertex));
-		builder.normalized(filament::VertexAttribute::UV1); 
-		builder.attribute(filament::VertexAttribute::TANGENTS, 1, filament::VertexBuffer::AttributeType::HALF4);
+		for (auto& aux : *orientationQuats) {
+			aux.dummyColor = 0xFFFFFF;
+		}
+
+		orientation.getQuats(&orientationQuats->data()->orientation, orientationQuats->size(), sizeof(AuxVertex));
+
+		builder.attribute(filament::VertexAttribute::TANGENTS, 1, filament::VertexBuffer::AttributeType::HALF4, offsetof(AuxVertex, orientation), sizeof(AuxVertex));
+		
+		for (auto attributeToDummyOut : { filament::VertexAttribute::COLOR, filament::VertexAttribute::UV0, filament::VertexAttribute::UV1 }) {
+			if (!(attributesPresent & (1 << attributeToDummyOut))) {
+				builder.attribute(attributeToDummyOut, 1, filament::VertexBuffer::AttributeType::UBYTE4, offsetof(AuxVertex, dummyColor), sizeof(AuxVertex));
+				builder.normalized(attributeToDummyOut, true);
+			}
+		}
 
 		auto buffer = FilamentVertexBuffer(builder.build(*e), e);
 		buffer->setBufferAt(
 			*e,
 			0,
-			filament::VertexBuffer::BufferDescriptor(vertices->data(), vertices->size() * sizeof(decltype(vertices)::element_type::value_type), &bufferDescriptorReleaseCallback<ESOLikeVertex>, vertices.get())
+			filament::VertexBuffer::BufferDescriptor(
+				data->Vertices,
+				data->VertexCount * vertexSize,
+				&releasePointerToSelf, new std::shared_ptr<Granny2Model>(shared_from_this())
+			)
 		);
-		vertices.release();
-
+	
 		buffer->setBufferAt(
 			*e,
 			1,
-			filament::VertexBuffer::BufferDescriptor(orientationQuats->data(), orientationQuats->size() * sizeof(decltype(orientationQuats)::element_type::value_type), &bufferDescriptorReleaseCallback<filament::math::quath>, vertices.get())
+			filament::VertexBuffer::BufferDescriptor(
+				orientationQuats->data(),
+				orientationQuats->size() * sizeof(AuxVertex),
+				&bufferDescriptorReleaseCallback<AuxVertex>,
+				orientationQuats.get())
 		);
 		orientationQuats.release();
 
@@ -228,6 +398,16 @@ void Granny2Model::load() {
 				instance->setParameter("specularTexture", texture->texture(), CommonESOLikeSampler);
 			}
 
+			instance->setParameter("fresnel", parameters.bFresnel != 0);
+			instance->setParameter("glow", parameters.bGlowEnable != 0);
+			instance->setParameter("g_detailValues", filament::math::float4(
+				parameters.ZosGlossiness2,
+				parameters.ZosFresnel2,
+				parameters.ZosGlow2,
+				0.0f
+			));
+			instance->setParameter("g_glowFactor", parameters.ZosDayGlow);
+
 			m_materials.emplace_back(std::move(instance));
 
 		} else {
@@ -305,14 +485,19 @@ std::unique_ptr<Granny2Renderable> Granny2Model::createInstance() {
 	for (int binding = 0, bindings = model->MeshBindingCount; binding < bindings; binding++) {
 		auto mesh = model->MeshBindings[binding].Mesh;
 		
+		filament::Box backupBox;
+
+		auto vertexBuffer = findVertexBuffer(info, mesh->PrimaryVertexData, backupBox);
+		auto indexBuffer = findIndexBuffer(info, mesh->PrimaryTopology);
+
 		for (int groupIndex = 0, groups = mesh->PrimaryTopology->GroupCount; groupIndex < groups; groupIndex++) {
 			auto& group = mesh->PrimaryTopology->Groups[groupIndex];
-
+			
 			builder.geometry(
 				globalGroupIndex,
 				filament::RenderableManager::PrimitiveType::TRIANGLES,
-				findVertexBuffer(info, mesh->PrimaryVertexData),
-				findIndexBuffer(info, mesh->PrimaryTopology),
+				vertexBuffer,
+				indexBuffer,
 				group.TriFirst * 3,
 				group.TriCount * 3
 			);
@@ -329,10 +514,17 @@ std::unique_ptr<Granny2Renderable> Granny2Model::createInstance() {
 			nullptr
 		);
 
-		boundingBox.unionSelf(filament::Box().set(
+		auto meshBox = filament::Box();
+		meshBox.set(
 			filament::math::float3(meshExtended.BBoxMin[0], meshExtended.BBoxMin[1], meshExtended.BBoxMin[2]),
 			filament::math::float3(meshExtended.BBoxMax[0], meshExtended.BBoxMax[1], meshExtended.BBoxMax[2])
-		));
+		);
+
+		if (meshBox.isEmpty()) {
+			meshBox = backupBox;
+		}
+
+		boundingBox.unionSelf(meshBox);
 	}
 	
 	builder.boundingBox(boundingBox);
@@ -343,10 +535,12 @@ std::unique_ptr<Granny2Renderable> Granny2Model::createInstance() {
 	return renderable;
 }
 
-filament::VertexBuffer* Granny2Model::findVertexBuffer(granny_file_info* info, granny_vertex_data* vertexData) {
+filament::VertexBuffer* Granny2Model::findVertexBuffer(granny_file_info* info, granny_vertex_data* vertexData, filament::Box& backupBoundingBox) {
 	for (int index = 0, count = info->VertexDataCount; index < count; index++) {
-		if (info->VertexDatas[index] == vertexData)
+		if (info->VertexDatas[index] == vertexData) {
+			backupBoundingBox = m_backupBoundingBoxes[index];
 			return m_vertexBuffers[index].get();
+		}
 	}
 	throw std::logic_error("vertex buffer not found");
 }

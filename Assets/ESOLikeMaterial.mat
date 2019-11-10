@@ -94,7 +94,7 @@ material {
 
 fragment {
 	vec2 ScaleUV(vec2 uv) {
-		return uv * 256.0;
+		return uv * 128.0;
 	}
 
 	vec4 SampleDiffuseMap(sampler2D textureSampler, vec2 f2TexCoord) {

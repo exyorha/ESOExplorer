@@ -47,8 +47,8 @@ void FilamentViewport::initialize(FilamentEngineInstance* engine) {
 
 	m_lightEntity = utils::EntityManager::get().create();
 	filament::LightManager::Builder lightBuilder(filament::LightManager::Type::DIRECTIONAL);
-	lightBuilder.intensity(50000.0f);
-	lightBuilder.direction(filament::math::float3(0.5, -0.5f, 0.0f));
+	lightBuilder.intensity(25000.0f);
+	lightBuilder.direction(filament::math::float3(0.0, -0.5f, -0.5f));
 	lightBuilder.build(*f, m_lightEntity);
 
 	m_scene->addEntity(m_lightEntity);
@@ -84,7 +84,7 @@ void FilamentViewport::drawFrame() {
 	transformManager.openLocalTransformTransaction();
 
 	m_camera->lookAt(
-		filament::math::float3(-55.0f, 0.0f, 0.0f), filament::math::float3(0.0f, 0.0f, 0.0f)
+		filament::math::float3(0.0f, 20.0f, 55.0f), filament::math::float3(0.0f, 10.0f, 0.0f)
 	);
 
 	transformManager.commitLocalTransformTransaction();

@@ -1,7 +1,7 @@
 #include "ESOGraphicsTypes.h"
 
 #include <granny.h>
-
+/*
 const granny_data_type_definition ESOLikeVertexType[]{
 	{ GrannyReal32Member, "Position", nullptr, 3 },
 	{ GrannyUInt8Member,  "DiffuseColor0", nullptr, 4 },
@@ -16,7 +16,7 @@ const granny_data_type_definition ESOLikeVertexAsideType[]{
 	{ GrannyReal16Member, "Binormal", nullptr, 2 },
 	{ GrannyEndMember }
 };
-
+*/
 const granny_data_type_definition ESOMeshExtendedDataType[]{
 	{ GrannyReal32Member, "BBoxMin", nullptr, 3 },
 	{ GrannyReal32Member, "BBoxMax", nullptr, 3 },
