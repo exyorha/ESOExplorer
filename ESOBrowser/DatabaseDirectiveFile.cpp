@@ -1,6 +1,6 @@
 #include "DatabaseDirectiveFile.h"
 
-DatabaseDirectiveFile::DatabaseDirectiveFile() : m_state(State::Global), m_buildingStructure(nullptr) {
+DatabaseDirectiveFile::DatabaseDirectiveFile() : m_state(State::Global), m_buildingStructure(nullptr), m_buildingEnum(nullptr) {
 
 }
 
@@ -43,6 +43,16 @@ void DatabaseDirectiveFile::processLine(std::vector<std::string>& tokens) {
 				}
 			}
 		}
+		else if (tokens[0] == "ENUM") {
+			auto& enumd = m_enums.emplace_back();
+			m_buildingEnum = &enumd;
+			m_state = State::Enum;
+
+			if (tokens.size() != 2)
+				parseError("One extra token expected for ENUM");
+
+			enumd.name = std::move(tokens[1]);
+		}
 		else {
 			parseError("Ether 'STRUCT' or 'DEF' expected, got '" + tokens[0] + "'");
 		}
@@ -55,6 +65,27 @@ void DatabaseDirectiveFile::processLine(std::vector<std::string>& tokens) {
 		}
 		else {
 			parseError("Unexpected token '" + tokens[0] + "' in structure context");
+		}
+		break;
+
+	case State::Enum:
+		if (tokens[0] == "END") {
+			m_state = State::Global;
+			m_buildingEnum = nullptr;
+		}
+		else if (tokens[0] == "VALUES") {
+			if (tokens.size() != 3)
+				parseError("Exactly two extra tokens expected for VALUES");
+
+			auto firstValue = std::stoi(tokens[1]);
+			auto lastValue = std::stoi(tokens[2]);
+
+			for (auto i = firstValue; i <= lastValue; i++) {
+				m_buildingEnum->values.emplace_back(i);
+			}
+		}
+		else {
+			parseError("Unexpected token '" + tokens[0] + "' in enum context");
 		}
 		break;
 	}

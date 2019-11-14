@@ -1,3 +1,12 @@
-STRUCT BaseDef
+ENUM BaseDefEnum
+    VALUES 0 2
+END
 
+STRUCT BaseDef
+    UINT32 objectId
+    STRING name
+    UINT32
+    ENUM BaseDefEnum
+    UINT16
+    UINT64
 END
