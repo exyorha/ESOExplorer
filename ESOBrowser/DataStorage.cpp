@@ -7,12 +7,16 @@
 #include <fstream>
 #include <string>
 
-DataStorage::DataStorage() : m_loadingCancelled(false), m_loadingDialog(nullptr) {
+#include "ESODatabaseDefModel.h"
+
+DataStorage::DataStorage() : m_loadingCancelled(false), m_loadingDialog(nullptr), m_database(&m_fs), m_databaseModel(&m_database) {
 	std::filesystem::path applicationDirectory(QCoreApplication::applicationDirPath().toStdWString());
 
 	m_supportedVersions.parseFile(applicationDirectory / "SupportedVersions.dir");
 	m_filesystem.parseFile(applicationDirectory / "Filesystem.dir");
 	m_filenameHarvesting.parseFile(applicationDirectory / "FilenameHarvesting.dir");
+
+	m_database.loadDirectives(applicationDirectory / "Database");
 }
 
 DataStorage::~DataStorage() {
@@ -77,7 +81,7 @@ bool DataStorage::queryDepotVersion() {
 
 bool DataStorage::loadDepot() {
 	QProgressDialog dialog(QCoreApplication::tr("Loading depot data"), QCoreApplication::tr("Cancel"), 0,
-		static_cast<int>(m_filesystem.manifests.size() + m_filesystem.fileTables.size() + 2));
+		static_cast<int>(m_filesystem.manifests.size() + m_filesystem.fileTables.size() + 2 + m_database.defs().size()));
 
 	connect(&dialog, &QProgressDialog::canceled, this, &DataStorage::loadingCancelled);
 	dialog.setAutoReset(false);
@@ -131,6 +135,19 @@ void DataStorage::backgroundLoadingThread() {
 
 		m_fsModel.sortModel();
 		setLoadingProgress(++progress);
+
+		m_defModels.reserve(m_database.defs().size());
+
+		for (auto& def : m_database.defs()) {
+			if (isLoadingCancelled())
+				return;
+
+			def.loadDef();
+
+			m_defModels.emplace_back(std::make_unique<ESODatabaseDefModel>(&def));
+
+			setLoadingProgress(++progress);
+		}
 	}
 
 	catch (...) {

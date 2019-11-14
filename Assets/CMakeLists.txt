@@ -11,6 +11,19 @@ foreach(dir_file IN ITEMS
 	
 endforeach()
 
+file(GLOB_RECURSE database_files "${CMAKE_CURRENT_SOURCE_DIR}/Database/*.dir")
+foreach(database_file IN LISTS database_files)
+	file(RELATIVE_PATH relative "${CMAKE_CURRENT_SOURCE_DIR}" "${database_file}")
+	
+	get_filename_component(subdirectory "${relative}" DIRECTORY)
+
+	if(subdirectory)
+		list(APPEND commands COMMAND cmake -E make_directory $<TARGET_FILE_DIR:ESOBrowser>/${subdirectory})
+	endif()
+
+	list(APPEND commands COMMAND cmake -E copy_if_different ${database_file} $<TARGET_FILE_DIR:ESOBrowser>/${relative})
+endforeach()
+
 foreach(mat_file IN ITEMS
 	ESOLikeMaterialMasked
 	ESOLikeMaterialOpaque

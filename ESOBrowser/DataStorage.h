@@ -11,10 +11,14 @@
 #include "FilesystemDirectiveFile.h"
 #include "ESOFilesystemModel.h"
 #include "FilenameHarvestingDirectiveFile.h"
+#include "ESODatabase.h"
+#include "ESODatabaseModel.h"
 
 #include <ESOData/Filesystem/Filesystem.h>
 
 QT_FORWARD_DECLARE_CLASS(QProgressDialog);
+
+class ESODatabaseDefModel;
 
 enum class ValidateDepotResult {
 	Succeeded,
@@ -67,6 +71,18 @@ public:
 		return &m_fsModel;
 	}
 
+	inline const ESODatabase& database() const {
+		return m_database;
+	}
+
+	inline ESODatabaseModel* databaseModel() {
+		return &m_databaseModel;
+	}
+
+	inline ESODatabaseDefModel* defModel(size_t index) {
+		return m_defModels[index].get();
+	}
+
 private slots:
 	void loadingFinished();
 	void loadingCancelled();
@@ -97,6 +113,10 @@ private:
 	
 	esodata::Filesystem m_fs;
 	ESOFilesystemModel m_fsModel;
+
+	ESODatabase m_database;
+	ESODatabaseModel m_databaseModel;
+	std::vector<std::unique_ptr<ESODatabaseDefModel>> m_defModels;
 };
 
 #endif

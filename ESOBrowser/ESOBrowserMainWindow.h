@@ -52,6 +52,7 @@ private slots:
 
 	void addFilesystemBrowser();
 	void addNameHarvesting();
+	void addDatabaseBrowser();
 	void tabWindowTitleChanged(const QString& title);
 
 private:

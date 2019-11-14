@@ -1,6 +1,11 @@
 add_executable(ESOBrowser
 	BinaryFileViewWidget.cpp
 	BinaryFileViewWidget.h
+	DatabaseBrowserWidget.cpp
+	DatabaseBrowserWidget.h
+	DatabaseBrowserWidget.ui
+	DatabaseDirectiveFile.cpp
+	DatabaseDirectiveFile.h
 	DataStorage.cpp
 	DataStorage.h
 	DDSFileViewWidget.cpp
@@ -18,6 +23,17 @@ add_executable(ESOBrowser
 	ESOBrowserSelectDepotDialog.cpp
 	ESOBrowserSelectDepotDialog.h
 	ESOBrowserSelectDepotDialog.ui
+	ESODatabase.cpp
+	ESODatabase.h
+	ESODatabaseDef.cpp
+	ESODatabaseDef.h
+	ESODatabaseDefModel.cpp
+	ESODatabaseDefModel.h
+	ESODatabaseModel.cpp
+	ESODatabaseModel.h
+	ESODatabaseParsingContext.h
+	ESODatabaseRecord.cpp
+	ESODatabaseRecord.h
 	ESOFilesystemModel.cpp
 	ESOFilesystemModel.h
 	ESOGraphicsTypes.cpp
