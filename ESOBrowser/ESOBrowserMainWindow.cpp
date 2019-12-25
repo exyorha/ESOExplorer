@@ -15,6 +15,7 @@
 #include "NameHarvestingEngine.h"
 #include "NameHarvestingWidget.h"
 #include "DatabaseBrowserWidget.h"
+#include "DatabaseRecordViewerWidget.h"
 
 ESOBrowserMainWindow::ESOBrowserMainWindow(DataStorage* storage, QWidget* parent) :
 	QMainWindow(parent),
@@ -211,5 +212,6 @@ const std::unordered_map<std::string, QWidget* (ESOBrowserMainWindow::*)()> ESOB
 	{ "FilesystemBrowserWidget", &ESOBrowserMainWindow::createTab<FilesystemBrowserWidget> },
 	{ "Granny2FileViewWidget", &ESOBrowserMainWindow::createTab<Granny2FileViewWidget> },
 	{ "NameHarvestingWidget", &ESOBrowserMainWindow::createTab<NameHarvestingWidget> },
-	{ "DatabaseBrowserWidget", &ESOBrowserMainWindow::createTab<DatabaseBrowserWidget> }
+	{ "DatabaseBrowserWidget", &ESOBrowserMainWindow::createTab<DatabaseBrowserWidget> },
+	{ "DatabaseRecordViewerWidget", &ESOBrowserMainWindow::createTab<DatabaseRecordViewerWidget> }
 };

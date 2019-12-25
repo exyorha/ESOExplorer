@@ -26,7 +26,9 @@ public:
 	ESODatabaseRecord& operator =(ESODatabaseRecord&& other);
 
 	Value& addField(const std::string& name);
-	const Value& findField(const std::string& name);
+	const Value& findField(const std::string& name) const;
+
+	inline const std::vector<std::string>& fieldOrder() const { return m_fieldOrder; }
 
 private:
 	std::unordered_map<std::string, Value> m_fields;

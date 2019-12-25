@@ -32,6 +32,10 @@ public:
 	inline const std::vector<ESODatabaseRecord>& records() const { return m_records; }
 	inline std::vector<ESODatabaseRecord>& records() { return m_records; }
 
+	const ESODatabaseRecord& findRecordById(uint64_t id) const;
+
+	inline const DatabaseDirectiveFile::Structure* structure() const { return m_def; }
+
 private:
 	void parseStructureIntoRecord(esodata::SerializationStream& stream, const DatabaseDirectiveFile::Structure& structure, ESODatabaseRecord& record);
 
@@ -41,6 +45,7 @@ private:
 	unsigned int m_id;
 	std::string m_name;
 	std::vector<ESODatabaseRecord> m_records;
+	std::unordered_map<uint64_t, const ESODatabaseRecord *> m_recordLookup;
 };
 
 #endif

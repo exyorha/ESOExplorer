@@ -3,7 +3,7 @@ ENUM BaseDefEnum
 END
 
 STRUCT BaseDef
-    UINT32 objectId
+    UINT32 id
     STRING name
     UINT32
     ENUM BaseDefEnum

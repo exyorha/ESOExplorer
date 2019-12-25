@@ -6,6 +6,9 @@ add_executable(ESOBrowser
 	DatabaseBrowserWidget.ui
 	DatabaseDirectiveFile.cpp
 	DatabaseDirectiveFile.h
+	DatabaseRecordViewerWidget.cpp
+	DatabaseRecordViewerWidget.h
+	DatabaseRecordViewerWidget.ui
 	DataStorage.cpp
 	DataStorage.h
 	DDSFileViewWidget.cpp
@@ -39,6 +42,8 @@ add_executable(ESOBrowser
 	ESOFilesystemModel.h
 	ESOGraphicsTypes.cpp
 	ESOGraphicsTypes.h
+	DatabaseRecordViewerWidget.cpp
+	DatabaseRecordViewerWidget.h
 	FilamentEngineInstance.cpp
 	FilamentEngineInstance.h
 	FilamentTypeHelpers.cpp

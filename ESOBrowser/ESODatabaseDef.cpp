@@ -50,6 +50,7 @@ void ESODatabaseDef::loadDef() {
 	}
 
 	m_records.resize(itemCount);
+	m_recordLookup.reserve(itemCount);
 
 	const auto& baseDef = m_parsingContext->findStructureByName("BaseDef");
 
@@ -68,6 +69,9 @@ void ESODatabaseDef::loadDef() {
 
 		parseStructureIntoRecord(contentStream, baseDef, record);
 		parseStructureIntoRecord(contentStream, *m_def, record);
+
+		auto id = std::get<unsigned long long>(record.findField("id"));
+		m_recordLookup.emplace(id, &record);
 	}
 }
 
@@ -115,4 +119,13 @@ void ESODatabaseDef::parseStructureIntoRecord(esodata::SerializationStream& stre
 		}
 		}
 	}
+}
+
+const ESODatabaseRecord& ESODatabaseDef::findRecordById(uint64_t id) const {
+	auto it = m_recordLookup.find(id);
+	if (it == m_recordLookup.end()) {
+		throw std::logic_error("Record not found: " + m_name + " " + std::to_string(id));
+	}
+
+	return *it->second;
 }

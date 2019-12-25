@@ -21,10 +21,12 @@ public:
 
 private slots:
 	void on_tables_activated(const QModelIndex& index);
+	void on_data_activated(const QModelIndex& index);
 
 private:
 	ESOBrowserMainWindow* m_window;
 	Ui::DatabaseBrowserWidget ui;
+	int m_currentModel;
 };
 
 #endif

@@ -21,6 +21,8 @@ public:
 	int rowCount(const QModelIndex& parent) const override;
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
 
+	inline const ESODatabaseDef* def() const { return m_def; }
+
 private:
 	static std::string convertValueForDisplay(const std::monostate&);
 	static std::string convertValueForDisplay(unsigned long long val);

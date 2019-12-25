@@ -37,4 +37,17 @@ void ESODatabase::loadDirectives(std::filesystem::path& directoryPath) {
 	for (const auto& def : parsingContext.defs) {
 		m_defs.emplace_back(m_fs, def, parsingContext);
 	}
+
+	for (auto& def : m_defs) {
+		m_defLookupByName.emplace(def.name(), &def);
+	}
+}
+
+const ESODatabaseDef& ESODatabase::findDefByName(const std::string& name) const {
+	auto it = m_defLookupByName.find(name);
+	if (it == m_defLookupByName.end()) {
+		throw std::logic_error("Def not found: " + name);
+	}
+
+	return *it->second;
 }

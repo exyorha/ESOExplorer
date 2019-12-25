@@ -27,7 +27,7 @@ auto ESODatabaseRecord::addField(const std::string& name) -> Value & {
 	return result.first->second;
 }
 
-auto ESODatabaseRecord::findField(const std::string& name) -> const Value& {
+auto ESODatabaseRecord::findField(const std::string& name) const -> const Value& {
 	auto result = m_fields.find(name);
 	if (result == m_fields.end())
 		throw std::logic_error("Required field was not found: " + name);
