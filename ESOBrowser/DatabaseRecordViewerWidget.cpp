@@ -2,6 +2,7 @@
 #include "ESOBrowserMainWindow.h"
 #include "DataStorage.h"
 #include "DatabaseRecordViewerItemDelegate.h"
+#include "FilesystemBrowserWidget.h"
 
 #include <QStandardItemModel>
 
@@ -28,6 +29,13 @@ void DatabaseRecordViewerWidget::on_content_activated(const QModelIndex& index) 
 				auto tab = new DatabaseRecordViewerWidget(m_window, m_window);
 				tab->openRecord(defName.toStdString(), defIndex);
 				m_window->addTab(tab);
+			}
+		}
+		else {
+			auto file = index.data(Qt::UserRole + 2);
+			if (file.isValid()) {
+				FilesystemBrowserWidget browser(m_window);
+				browser.openAutodetect(file.toUInt());
 			}
 		}
 	}
@@ -71,7 +79,8 @@ void DatabaseRecordViewerWidget::openRecordInternal() {
 
 		const auto& value = record.findField(fieldName);
 
-		auto items = QList<QStandardItem*>() << fieldNameItem;
+		QList<QStandardItem*> items;
+		items << fieldNameItem;
 		
 		auto item = 
 			std::visit([this, fieldNameItem](const auto& value) {
@@ -91,6 +100,11 @@ void DatabaseRecordViewerWidget::openRecordInternal() {
 QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(unsigned long long value, QStandardItem* childReceiver) {
 	return new QStandardItem(QString::fromStdString(std::to_string(value)));
 }
+
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(double value, QStandardItem* childReceiver) {
+	return new QStandardItem(QString::fromStdString(std::to_string(value)));
+}
+
 
 QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueEnum& val, QStandardItem* childReceiver) {
 	if (std::find(val.definition->values.begin(), val.definition->values.end(), val.value) == val.definition->values.end()) {
@@ -151,4 +165,19 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const std::string&
 
 QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(bool value, QStandardItem *childReceiver) {
 	return new QStandardItem(value ? QStringLiteral("true") : QStringLiteral("false"));
+}
+
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueAssetReference& value, QStandardItem* childReceiver) {
+	if (value.id == 0) {
+		return new QStandardItem(QStringLiteral("NULL Asset"));
+	}
+	else {
+		auto name = m_window->storage()->filesystemModel()->nameForId(value.id);
+
+		auto item = new QStandardItem;
+		item->setData(name, Qt::DisplayRole);
+		item->setData(QColor(Qt::darkGreen), Qt::ForegroundRole);
+		item->setData(value.id, Qt::UserRole + 2);
+		return item;
+	}
 }

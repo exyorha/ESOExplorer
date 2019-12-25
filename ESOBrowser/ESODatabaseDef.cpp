@@ -101,6 +101,15 @@ void ESODatabaseDef::parseField(esodata::SerializationStream& stream, DatabaseDi
 		break;
 	}
 
+	case DatabaseDirectiveFile::FieldType::Float:
+	{
+		float val;
+		stream >> val;
+		value.emplace<double>(val);
+		break;
+	}
+
+
 	case DatabaseDirectiveFile::FieldType::Enum:
 	{
 		auto& evalue = value.emplace<ESODatabaseRecord::ValueEnum>();
@@ -141,6 +150,10 @@ void ESODatabaseDef::parseField(esodata::SerializationStream& stream, DatabaseDi
 
 	case DatabaseDirectiveFile::FieldType::Boolean:
 		stream >> value.emplace<bool>();
+		break;
+
+	case DatabaseDirectiveFile::FieldType::AssetReference:
+		stream >> value.emplace<ESODatabaseRecord::ValueAssetReference>().id;
 		break;
 	}
 }

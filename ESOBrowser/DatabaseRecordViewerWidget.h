@@ -36,16 +36,20 @@ private:
 
 	QStandardItem* convertValueToItem(unsigned long long value, QStandardItem *childReceiver);
 
+	QStandardItem* convertValueToItem(double value, QStandardItem* childReceiver);
+
 	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueEnum& value, QStandardItem* childReceiver);
 
 	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueArray& value, QStandardItem* childReceiver);
 
 	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueForeignKey& value, QStandardItem* childReceiver);
 
+	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueAssetReference& value, QStandardItem* childReceiver);
+
 	QStandardItem* convertValueToItem(const std::string & value, QStandardItem* childReceiver);
 
 	QStandardItem* convertValueToItem(bool value, QStandardItem* childReceiver);
-
+	
 	ESOBrowserMainWindow* m_window;
 	Ui::DatabaseRecordViewerWidget ui;
 

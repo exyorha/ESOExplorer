@@ -20,6 +20,8 @@ public:
 	void saveToStream(QDataStream& stream) const override;
 	void restoreFromStream(QDataStream& stream) override;
 
+	void openAutodetect(uint64_t id);
+
 private slots:
 	void onOpen();
 	void onOpenAsBinary();
@@ -30,8 +32,6 @@ private:
 	bool getCurrentId(uint64_t &id);
 	bool getIdForIndex(const QModelIndex& index, uint64_t &id);
 
-	void openAutodetect(uint64_t id);
-	
 	template<typename T>
 	void open(uint64_t id);
 

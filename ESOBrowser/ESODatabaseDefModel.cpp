@@ -58,6 +58,10 @@ std::string ESODatabaseDefModel::convertValueForDisplay(unsigned long long val) 
 	return std::to_string(val);
 }
 
+std::string ESODatabaseDefModel::convertValueForDisplay(double val) {
+	return std::to_string(val);
+}
+
 std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueArray& val) {
 	(void)val;
 	return "<array>";
@@ -98,4 +102,8 @@ QVariant ESODatabaseDefModel::headerData(int section, Qt::Orientation orientatio
 
 std::string ESODatabaseDefModel::convertValueForDisplay(bool val) {
 	return val ? "true" : "false";
+}
+
+std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueAssetReference& val) {
+	return "<asset>";
 }

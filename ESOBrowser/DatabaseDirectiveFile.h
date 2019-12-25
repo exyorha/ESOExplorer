@@ -12,10 +12,12 @@ public:
 		UInt16,
 		UInt32,
 		UInt64,
+		Float,
 		Enum, // Physically Int32
 		String,
 		Array,
 		ForeignKey,
+		AssetReference,
 		Boolean
 	};
 

@@ -17,18 +17,22 @@ public:
 	};
 
 	struct ValueArray;
-	struct ValueForeignKey;
-
-	using Value = std::variant<std::monostate, unsigned long long, ValueEnum, std::string, ValueArray, ValueForeignKey, bool>;
-
-	struct ValueArray {
-		std::vector<Value> values;
-	};
 
 	struct ValueForeignKey {
 		std::string def;
 		uint32_t id;
 	};
+
+	struct ValueAssetReference {
+		uint32_t id;
+	};
+
+	using Value = std::variant<std::monostate, unsigned long long, ValueEnum, std::string, ValueArray, ValueForeignKey, bool, double, ValueAssetReference>;
+
+	struct ValueArray {
+		std::vector<Value> values;
+	};
+
 
 	ESODatabaseRecord();
 	~ESODatabaseRecord();

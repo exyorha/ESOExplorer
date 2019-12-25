@@ -11,11 +11,13 @@ void DatabaseDirectiveFile::parseFieldType(std::vector<std::string>::const_itera
 		{ "UINT16", FieldType::UInt16 },
 		{ "UINT32", FieldType::UInt32 },
 		{ "UINT64", FieldType::UInt64 },
+		{ "FLOAT", FieldType::Float },
 		{ "STRING", FieldType::String },
 		{ "ENUM", FieldType::Enum },
 		{ "ARRAY", FieldType::Array },
 		{ "FOREIGN_KEY", FieldType::ForeignKey },
 		{ "BOOLEAN", FieldType::Boolean },
+		{ "ASSET_REFERENCE", FieldType::AssetReference }
 	};
 
 
