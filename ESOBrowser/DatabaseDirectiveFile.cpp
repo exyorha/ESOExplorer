@@ -6,15 +6,56 @@ DatabaseDirectiveFile::DatabaseDirectiveFile() : m_state(State::Global), m_build
 
 DatabaseDirectiveFile::~DatabaseDirectiveFile() = default;
 
-void DatabaseDirectiveFile::processLine(std::vector<std::string>& tokens) {
+void DatabaseDirectiveFile::parseFieldType(std::vector<std::string>::const_iterator& it, const std::vector<std::string>::const_iterator& endIt, DatabaseDirectiveFile::StructureField& field, bool inArray) {
 	static const std::unordered_map<std::string, FieldType> fieldTypes{
 		{ "UINT16", FieldType::UInt16 },
 		{ "UINT32", FieldType::UInt32 },
 		{ "UINT64", FieldType::UInt64 },
 		{ "STRING", FieldType::String },
-		{ "ENUM", FieldType::Enum }
+		{ "ENUM", FieldType::Enum },
+		{ "ARRAY", FieldType::Array },
+		{ "FOREIGN_KEY", FieldType::ForeignKey },
+		{ "BOOLEAN", FieldType::Boolean },
 	};
 
+
+	if (it == endIt) {
+		parseError("type token expected, got EOL");
+	}
+
+	const auto& type = *it;
+	++it;
+
+	auto typeIt = fieldTypes.find(type);
+	if (typeIt == fieldTypes.end()) {
+		parseError("Unexpected token '" + type + "' in structure context");
+	}
+
+	auto typeEnum = typeIt->second;
+
+	if (inArray) {
+		field.arrayType = typeEnum;
+	}
+	else {
+		field.type = typeEnum;
+	}
+	
+	if (typeEnum == FieldType::Enum || typeEnum == FieldType::ForeignKey) {
+		if (it == endIt)
+			parseError("Expected type name after ENUM or FOREIGN_KEY");
+
+		field.typeName = *it;
+		++it;
+	}
+	else if (field.type == FieldType::Array) {
+		if (inArray)
+			parseError("Nested arrays are not supported");
+
+		parseFieldType(it, endIt, field, true);
+	}
+}
+
+void DatabaseDirectiveFile::processLine(std::vector<std::string>& tokens) {
 	switch (m_state) {
 	case State::Global:
 		if (tokens[0] == "STRUCT") {
@@ -72,24 +113,11 @@ void DatabaseDirectiveFile::processLine(std::vector<std::string>& tokens) {
 			m_buildingStructure = nullptr;
 		}
 		else {
-			auto it = fieldTypes.find(tokens[0]);
-			if (it == fieldTypes.end()) {
-				parseError("Unexpected token '" + tokens[0] + "' in structure context");
-			}
+			auto tokenIt = tokens.begin();
 
 			auto& field = m_buildingStructure->fields.emplace_back();
-			field.type = it->second;
 
-			auto tokenIt = tokens.begin();
-			++tokenIt;
-
-			if (field.type == FieldType::Enum) {
-				if (tokenIt == tokens.end())
-					parseError("Expected type name after ENUM");
-
-				field.typeName = *tokenIt;
-				++tokenIt;
-			}
+			parseFieldType(tokenIt, tokens.end(), field, false);
 
 			if (tokenIt != tokens.end()) {
 				field.name = *tokenIt;

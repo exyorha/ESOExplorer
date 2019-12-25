@@ -6,6 +6,8 @@ add_executable(ESOBrowser
 	DatabaseBrowserWidget.ui
 	DatabaseDirectiveFile.cpp
 	DatabaseDirectiveFile.h
+	DatabaseRecordViewerItemDelegate.cpp
+	DatabaseRecordViewerItemDelegate.h
 	DatabaseRecordViewerWidget.cpp
 	DatabaseRecordViewerWidget.h
 	DatabaseRecordViewerWidget.ui

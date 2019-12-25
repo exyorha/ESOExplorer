@@ -18,10 +18,12 @@ struct ESODatabaseParsingContext {
 	void buildLookupCaches();
 
 	const DatabaseDirectiveFile::Structure& findStructureByName(const std::string& name) const;
+	const DatabaseDirectiveFile::Structure& findDefByName(const std::string& name) const;
 	const DatabaseDirectiveFile::Enum& findEnumByName(const std::string& name) const;
 
 private:
 	std::unordered_map<std::string, const DatabaseDirectiveFile::Structure*> m_structureLookup;
+	std::unordered_map<std::string, const DatabaseDirectiveFile::Structure*> m_defLookup;
 	std::unordered_map<std::string, const DatabaseDirectiveFile::Enum*> m_enumLookup;
 };
 

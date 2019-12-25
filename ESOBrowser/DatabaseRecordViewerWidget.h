@@ -24,18 +24,27 @@ public:
 
 	void openRecord(const std::string& defName, unsigned int recordId);
 
+private slots:
+	void on_content_activated(const QModelIndex& index);
+
 private:
 	void openRecordInternal();
 
-	inline QStandardItem* convertValueToItem(const std::monostate&) {
+	inline QStandardItem* convertValueToItem(const std::monostate&, QStandardItem*) {
 		return nullptr;
 	}
 
-	QStandardItem* convertValueToItem(unsigned long long value);
+	QStandardItem* convertValueToItem(unsigned long long value, QStandardItem *childReceiver);
 
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueEnum& value);
+	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueEnum& value, QStandardItem* childReceiver);
 
-	QStandardItem* convertValueToItem(const std::string & value);
+	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueArray& value, QStandardItem* childReceiver);
+
+	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueForeignKey& value, QStandardItem* childReceiver);
+
+	QStandardItem* convertValueToItem(const std::string & value, QStandardItem* childReceiver);
+
+	QStandardItem* convertValueToItem(bool value, QStandardItem* childReceiver);
 
 	ESOBrowserMainWindow* m_window;
 	Ui::DatabaseRecordViewerWidget ui;

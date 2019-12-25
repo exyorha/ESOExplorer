@@ -75,49 +75,79 @@ void ESODatabaseDef::loadDef() {
 	}
 }
 
+void ESODatabaseDef::parseField(esodata::SerializationStream& stream, DatabaseDirectiveFile::FieldType type, ESODatabaseRecord::Value& value, const DatabaseDirectiveFile::StructureField& field) {
+	switch (type) {
+	case DatabaseDirectiveFile::FieldType::UInt16:
+	{
+		uint16_t val;
+		stream >> val;
+		value.emplace<unsigned long long>(val);
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::UInt32:
+	{
+		uint32_t val;
+		stream >> val;
+		value.emplace<unsigned long long>(val);
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::UInt64:
+	{
+		uint64_t val;
+		stream >> val;
+		value.emplace<unsigned long long>(val);
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::Enum:
+	{
+		auto& evalue = value.emplace<ESODatabaseRecord::ValueEnum>();
+		evalue.definition = &m_parsingContext->findEnumByName(field.typeName);
+		stream >> evalue.value;
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::String:
+	{
+		std::string svalue;
+		stream >> svalue;
+		value.emplace<std::string>(std::move(svalue));
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::Array:
+	{
+		auto& avalue = value.emplace<ESODatabaseRecord::ValueArray>();
+		uint32_t length;
+		stream >> length;
+		avalue.values.resize(length);
+
+		for (auto& value : avalue.values) {
+			parseField(stream, field.arrayType, value, field);
+		}
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::ForeignKey:
+	{
+		auto& fvalue = value.emplace<ESODatabaseRecord::ValueForeignKey>();
+		stream >> fvalue.id;
+
+		fvalue.def = m_parsingContext->findDefByName(field.typeName).name;
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::Boolean:
+		stream >> value.emplace<bool>();
+		break;
+	}
+}
+
 void ESODatabaseDef::parseStructureIntoRecord(esodata::SerializationStream& stream, const DatabaseDirectiveFile::Structure& structure, ESODatabaseRecord& record) {
 	for (const auto& field : structure.fields) {
-		switch (field.type) {
-		case DatabaseDirectiveFile::FieldType::UInt16:
-		{
-			uint16_t val;
-			stream >> val;
-			record.addField(field.name).emplace<unsigned long long>(val);
-			break;
-		}
-
-		case DatabaseDirectiveFile::FieldType::UInt32:
-		{
-			uint32_t val;
-			stream >> val;
-			record.addField(field.name).emplace<unsigned long long>(val);
-			break;
-		}
-
-		case DatabaseDirectiveFile::FieldType::UInt64:
-		{
-			uint64_t val;
-			stream >> val;
-			record.addField(field.name).emplace<unsigned long long>(val);
-			break;
-		}
-
-		case DatabaseDirectiveFile::FieldType::Enum:
-		{
-			auto& value = record.addField(field.name).emplace<ESODatabaseRecord::ValueEnum>();
-			value.definition = &m_parsingContext->findEnumByName(field.typeName);
-			stream >> value.value;
-			break;
-		}
-
-		case DatabaseDirectiveFile::FieldType::String:
-		{
-			std::string value;
-			stream >> value;
-			record.addField(field.name).emplace<std::string>(std::move(value));
-			break;
-		}
-		}
+		parseField(stream, field.type, record.addField(field.name), field);
 	}
 }
 

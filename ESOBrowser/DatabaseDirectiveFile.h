@@ -13,12 +13,17 @@ public:
 		UInt32,
 		UInt64,
 		Enum, // Physically Int32
-		String
+		String,
+		Array,
+		ForeignKey,
+		Boolean
 	};
 
 	struct StructureField {
 		FieldType type;
+		FieldType arrayType;
 		std::string typeName;
+
 		std::string name;
 	};
 
@@ -51,6 +56,8 @@ private:
 		Structure,
 		Enum
 	};
+
+	void parseFieldType(std::vector<std::string>::const_iterator& it, const std::vector<std::string>::const_iterator& endIt, DatabaseDirectiveFile::StructureField& field, bool inArray);
 
 	State m_state;
 	std::vector<Structure> m_structures;

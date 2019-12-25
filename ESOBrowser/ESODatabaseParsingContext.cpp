@@ -3,6 +3,10 @@
 void ESODatabaseParsingContext::buildLookupCaches() {
 	for (const auto& structure : structures) {
 		m_structureLookup.emplace(structure.name, &structure);
+	}	
+	
+	for (const auto& structure : defs) {
+		m_defLookup.emplace(structure.name, &structure);
 	}
 
 	for (const auto& enumDef : enums) {
@@ -14,6 +18,15 @@ const DatabaseDirectiveFile::Structure& ESODatabaseParsingContext::findStructure
 	auto it = m_structureLookup.find(name);
 	if (it == m_structureLookup.end()) {
 		throw std::logic_error("Structure is not defined: " + name);
+	}
+
+	return *it->second;
+}
+
+const DatabaseDirectiveFile::Structure& ESODatabaseParsingContext::findDefByName(const std::string& name) const {
+	auto it = m_defLookup.find(name);
+	if (it == m_defLookup.end()) {
+		throw std::logic_error("Def is not defined: " + name);
 	}
 
 	return *it->second;

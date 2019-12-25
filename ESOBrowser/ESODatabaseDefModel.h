@@ -27,7 +27,11 @@ private:
 	static std::string convertValueForDisplay(const std::monostate&);
 	static std::string convertValueForDisplay(unsigned long long val);
 	static std::string convertValueForDisplay(const ESODatabaseRecord::ValueEnum& val);
+	static std::string convertValueForDisplay(const ESODatabaseRecord::ValueArray& val);
+	static std::string convertValueForDisplay(const ESODatabaseRecord::ValueForeignKey& val);
 	static std::string convertValueForDisplay(const std::string& val);
+	static std::string convertValueForDisplay(bool val);
+
 	
 	const ESODatabaseDef* m_def;
 	const DataStorage* m_storage;

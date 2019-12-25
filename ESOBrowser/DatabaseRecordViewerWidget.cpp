@@ -1,6 +1,7 @@
 #include "DatabaseRecordViewerWidget.h"
 #include "ESOBrowserMainWindow.h"
 #include "DataStorage.h"
+#include "DatabaseRecordViewerItemDelegate.h"
 
 #include <QStandardItemModel>
 
@@ -9,9 +10,28 @@ DatabaseRecordViewerWidget::DatabaseRecordViewerWidget(ESOBrowserMainWindow* win
 
 	m_model = new QStandardItemModel(this);
 	ui.content->setModel(m_model);
+	ui.content->setItemDelegate(new DatabaseRecordViewerItemDelegate(ui.content));
+	ui.content->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 DatabaseRecordViewerWidget::~DatabaseRecordViewerWidget() = default;
+
+void DatabaseRecordViewerWidget::on_content_activated(const QModelIndex& index) {
+	if (index.isValid()) {
+		auto def = index.data(Qt::UserRole);
+		if (def.isValid()) {
+			auto defName = def.toString();
+
+			auto defIndex = index.data(Qt::UserRole + 1).toUInt();
+
+			if (defIndex != 0) {
+				auto tab = new DatabaseRecordViewerWidget(m_window, m_window);
+				tab->openRecord(defName.toStdString(), defIndex);
+				m_window->addTab(tab);
+			}
+		}
+	}
+}
 
 void DatabaseRecordViewerWidget::saveToStream(QDataStream& stream) const {
 	stream << QString::fromStdString(m_defName) << m_recordId;
@@ -54,8 +74,8 @@ void DatabaseRecordViewerWidget::openRecordInternal() {
 		auto items = QList<QStandardItem*>() << fieldNameItem;
 		
 		auto item = 
-			std::visit([this](const auto& value) {
-				return convertValueToItem(value);
+			std::visit([this, fieldNameItem](const auto& value) {
+				return convertValueToItem(value, fieldNameItem);
 			}, value);
 
 		if (item)
@@ -68,11 +88,11 @@ void DatabaseRecordViewerWidget::openRecordInternal() {
 }
 
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(unsigned long long value) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(unsigned long long value, QStandardItem* childReceiver) {
 	return new QStandardItem(QString::fromStdString(std::to_string(value)));
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueEnum& val) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueEnum& val, QStandardItem* childReceiver) {
 	if (std::find(val.definition->values.begin(), val.definition->values.end(), val.value) == val.definition->values.end()) {
 		return new QStandardItem(QString::fromStdString(val.definition->name + "::<INVALID ENUM VALUE " + std::to_string(val.value) + ">"));
 	}
@@ -87,6 +107,48 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseR
 	}
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const std::string& value) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueArray& value, QStandardItem* childReceiver) {
+	for (const auto& subvalue : value.values) {
+		auto subitem = new QStandardItem();
+
+		auto result = std::visit([this, subitem](const auto& value) {
+			return convertValueToItem(value, subitem);
+		}, subvalue);
+
+		QList<QStandardItem *> row;
+		row << subitem;
+
+		if (result)
+			row << result;
+
+		childReceiver->appendRow(row);
+	}
+
+	return nullptr;
+}
+
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueForeignKey& value, QStandardItem* childReceiver) {
+	if (value.id == 0) {
+		return new QStandardItem(QString::fromStdString("Null " + value.def));
+	}
+	else {
+		const auto &def = m_window->storage()->database().findDefByName(value.def);
+
+		const auto& target = def.findRecordById(value.id);
+		const auto &targetName = std::get<std::string>(target.findField("name"));
+		auto item = new QStandardItem;
+		item->setData(QString::fromStdString(targetName), Qt::DisplayRole);
+		item->setData(QString::fromStdString(def.name()), Qt::UserRole);
+		item->setData(QColor(Qt::blue), Qt::ForegroundRole);
+		item->setData(value.id, Qt::UserRole + 1);
+		return item;
+	}
+}
+
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const std::string& value, QStandardItem* childReceiver) {
 	return new QStandardItem(QString::fromStdString(value));
+}
+
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(bool value, QStandardItem *childReceiver) {
+	return new QStandardItem(value ? QStringLiteral("true") : QStringLiteral("false"));
 }

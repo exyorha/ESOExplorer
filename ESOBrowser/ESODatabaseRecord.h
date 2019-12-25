@@ -7,6 +7,8 @@
 
 #include "DatabaseDirectiveFile.h"
 
+class ESODatabaseDef;
+
 class ESODatabaseRecord {
 public:
 	struct ValueEnum {
@@ -14,7 +16,19 @@ public:
 		int32_t value;
 	};
 
-	using Value = std::variant<std::monostate, unsigned long long, ValueEnum, std::string>;
+	struct ValueArray;
+	struct ValueForeignKey;
+
+	using Value = std::variant<std::monostate, unsigned long long, ValueEnum, std::string, ValueArray, ValueForeignKey, bool>;
+
+	struct ValueArray {
+		std::vector<Value> values;
+	};
+
+	struct ValueForeignKey {
+		std::string def;
+		uint32_t id;
+	};
 
 	ESODatabaseRecord();
 	~ESODatabaseRecord();

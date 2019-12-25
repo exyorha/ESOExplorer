@@ -58,6 +58,16 @@ std::string ESODatabaseDefModel::convertValueForDisplay(unsigned long long val) 
 	return std::to_string(val);
 }
 
+std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueArray& val) {
+	(void)val;
+	return "<array>";
+}
+
+std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueForeignKey& val) {
+	(void)val;
+	return "<fk>";
+}
+
 std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueEnum& val) {
 	if (std::find(val.definition->values.begin(), val.definition->values.end(), val.value) == val.definition->values.end()) {
 		return val.definition->name + "::<INVALID ENUM VALUE " + std::to_string(val.value) + ">";
@@ -84,4 +94,8 @@ QVariant ESODatabaseDefModel::headerData(int section, Qt::Orientation orientatio
 	else {
 		return QVariant();
 	}
+}
+
+std::string ESODatabaseDefModel::convertValueForDisplay(bool val) {
+	return val ? "true" : "false";
 }
