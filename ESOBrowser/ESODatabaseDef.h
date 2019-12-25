@@ -8,6 +8,7 @@
 
 namespace esodata {
 	class Filesystem;
+	class SerializationStream;
 }
 
 struct ESODatabaseParsingContext;
@@ -32,6 +33,8 @@ public:
 	inline std::vector<ESODatabaseRecord>& records() { return m_records; }
 
 private:
+	void parseStructureIntoRecord(esodata::SerializationStream& stream, const DatabaseDirectiveFile::Structure& structure, ESODatabaseRecord& record);
+
 	const esodata::Filesystem* m_fs;
 	const DatabaseDirectiveFile::Structure* m_def;
 	const ESODatabaseParsingContext* m_parsingContext;

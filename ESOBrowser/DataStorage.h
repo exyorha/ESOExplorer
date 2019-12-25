@@ -13,6 +13,7 @@
 #include "FilenameHarvestingDirectiveFile.h"
 #include "ESODatabase.h"
 #include "ESODatabaseModel.h"
+#include "UISettingsDirectiveFile.h"
 
 #include <ESOData/Filesystem/Filesystem.h>
 
@@ -45,6 +46,10 @@ public:
 
 	inline const std::vector<std::string>& prefixesForFilenameHarvesting() const {
 		return m_filenameHarvesting.prefixes;
+	}
+
+	inline const std::vector<std::string> defFieldsAsColumns() const {
+		return m_uiSettings.defFieldsAsColumns;
 	}
 
 	inline const std::string& depotBuild() const {
@@ -100,6 +105,7 @@ private:
 	SupportedVersionsDirectiveFile m_supportedVersions;
 	FilesystemDirectiveFile m_filesystem;
 	FilenameHarvestingDirectiveFile m_filenameHarvesting;
+	UISettingsDirectiveFile m_uiSettings;
 
 	std::filesystem::path m_depotPath;
 	std::string m_depotBuild;

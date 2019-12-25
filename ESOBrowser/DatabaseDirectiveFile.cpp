@@ -7,6 +7,14 @@ DatabaseDirectiveFile::DatabaseDirectiveFile() : m_state(State::Global), m_build
 DatabaseDirectiveFile::~DatabaseDirectiveFile() = default;
 
 void DatabaseDirectiveFile::processLine(std::vector<std::string>& tokens) {
+	static const std::unordered_map<std::string, FieldType> fieldTypes{
+		{ "UINT16", FieldType::UInt16 },
+		{ "UINT32", FieldType::UInt32 },
+		{ "UINT64", FieldType::UInt64 },
+		{ "STRING", FieldType::String },
+		{ "ENUM", FieldType::Enum }
+	};
+
 	switch (m_state) {
 	case State::Global:
 		if (tokens[0] == "STRUCT") {
@@ -64,7 +72,33 @@ void DatabaseDirectiveFile::processLine(std::vector<std::string>& tokens) {
 			m_buildingStructure = nullptr;
 		}
 		else {
-			parseError("Unexpected token '" + tokens[0] + "' in structure context");
+			auto it = fieldTypes.find(tokens[0]);
+			if (it == fieldTypes.end()) {
+				parseError("Unexpected token '" + tokens[0] + "' in structure context");
+			}
+
+			auto& field = m_buildingStructure->fields.emplace_back();
+			field.type = it->second;
+
+			auto tokenIt = tokens.begin();
+			++tokenIt;
+
+			if (field.type == FieldType::Enum) {
+				if (tokenIt == tokens.end())
+					parseError("Expected type name after ENUM");
+
+				field.typeName = *tokenIt;
+				++tokenIt;
+			}
+
+			if (tokenIt != tokens.end()) {
+				field.name = *tokenIt;
+				++tokenIt;
+			}
+
+			if (tokenIt != tokens.end()) {
+				parseError("Unexpected token: " + *tokenIt);
+			}
 		}
 		break;
 

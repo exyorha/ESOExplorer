@@ -31,6 +31,7 @@ add_executable(ESOBrowser
 	ESODatabaseDefModel.h
 	ESODatabaseModel.cpp
 	ESODatabaseModel.h
+	ESODatabaseParsingContext.cpp
 	ESODatabaseParsingContext.h
 	ESODatabaseRecord.cpp
 	ESODatabaseRecord.h
@@ -85,6 +86,8 @@ add_executable(ESOBrowser
 	SupportedVersionsDirectiveFile.h
 	TextFileViewWidget.cpp
 	TextFileViewWidget.h
+	UISettingsDirectiveFile.cpp
+	UISettingsDirectiveFile.h
 )
 
 target_link_libraries(ESOBrowser PRIVATE Qt5::Widgets Qt5::Sql ESOData DirectXTex granny filament::filament)
@@ -97,8 +100,9 @@ set_target_properties(ESOBrowser PROPERTIES
 	CXX_STANDARD_REQUIRED TRUE
 )
 
-add_custom_command(TARGET ESOBrowser POST_BUILD
+add_custom_target(CopyAssets
 	${AssetCopyCommands}
 	COMMAND cmake -E copy_if_different ${GRANNY2_EXECUTABLE} $<TARGET_FILE_DIR:ESOBrowser>
 )
+
 add_dependencies(ESOBrowser shaders)

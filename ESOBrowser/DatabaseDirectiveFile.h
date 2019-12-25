@@ -8,10 +8,25 @@
 
 class DatabaseDirectiveFile final : public DirectiveFile {
 public:
+	enum class FieldType {
+		UInt16,
+		UInt32,
+		UInt64,
+		Enum, // Physically Int32
+		String
+	};
+
+	struct StructureField {
+		FieldType type;
+		std::string typeName;
+		std::string name;
+	};
+
 	struct Structure {
 		unsigned int defIndex;
 		std::string name;
 		unsigned int version;
+		std::vector<StructureField> fields;
 	};
 
 	struct Enum {

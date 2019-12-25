@@ -5,6 +5,7 @@ foreach(dir_file IN ITEMS
 	FilenameHarvesting.dir
 	Filesystem.dir
 	SupportedVersions.dir
+	UISettings.dir
 )
 
 	list(APPEND commands COMMAND cmake -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/${dir_file} $<TARGET_FILE_DIR:ESOBrowser>)

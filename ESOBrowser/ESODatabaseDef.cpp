@@ -1,4 +1,5 @@
 #include "ESODatabaseDef.h"
+#include "ESODatabaseParsingContext.h"
 
 #include <ESOData/Filesystem/Filesystem.h>
 #include <ESOData/Serialization/InputSerializationStream.h>
@@ -50,6 +51,8 @@ void ESODatabaseDef::loadDef() {
 
 	m_records.resize(itemCount);
 
+	const auto& baseDef = m_parsingContext->findStructureByName("BaseDef");
+
 	for (auto& record : m_records) {
 		record.addField("flags").emplace<unsigned long long>(flags);
 		record.addField("version").emplace<unsigned long long>(version);
@@ -60,6 +63,56 @@ void ESODatabaseDef::loadDef() {
 		std::vector<unsigned char> recordData(expectedLength);
 		stream >> esodata::makeDeflatedSegment(recordData);
 
+		esodata::InputSerializationStream contentStream(recordData.data(), recordData.data() + recordData.size());
+		contentStream.setSwapEndian(stream.swapEndian());
 
+		parseStructureIntoRecord(contentStream, baseDef, record);
+		parseStructureIntoRecord(contentStream, *m_def, record);
+	}
+}
+
+void ESODatabaseDef::parseStructureIntoRecord(esodata::SerializationStream& stream, const DatabaseDirectiveFile::Structure& structure, ESODatabaseRecord& record) {
+	for (const auto& field : structure.fields) {
+		switch (field.type) {
+		case DatabaseDirectiveFile::FieldType::UInt16:
+		{
+			uint16_t val;
+			stream >> val;
+			record.addField(field.name).emplace<unsigned long long>(val);
+			break;
+		}
+
+		case DatabaseDirectiveFile::FieldType::UInt32:
+		{
+			uint32_t val;
+			stream >> val;
+			record.addField(field.name).emplace<unsigned long long>(val);
+			break;
+		}
+
+		case DatabaseDirectiveFile::FieldType::UInt64:
+		{
+			uint64_t val;
+			stream >> val;
+			record.addField(field.name).emplace<unsigned long long>(val);
+			break;
+		}
+
+		case DatabaseDirectiveFile::FieldType::Enum:
+		{
+			auto& value = record.addField(field.name).emplace<ESODatabaseRecord::ValueEnum>();
+			value.definition = &m_parsingContext->findEnumByName(field.typeName);
+			stream >> value.value;
+			break;
+		}
+
+		case DatabaseDirectiveFile::FieldType::String:
+		{
+			std::string value;
+			stream >> value;
+			record.addField(field.name).emplace<std::string>(std::move(value));
+			break;
+		}
+		}
 	}
 }

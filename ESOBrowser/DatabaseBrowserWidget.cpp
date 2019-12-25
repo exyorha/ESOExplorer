@@ -11,11 +11,13 @@ DatabaseBrowserWidget::DatabaseBrowserWidget(ESOBrowserMainWindow* window, QWidg
 DatabaseBrowserWidget::~DatabaseBrowserWidget() = default;
 
 void DatabaseBrowserWidget::saveToStream(QDataStream& stream) const {
-
+	stream << ui.splitter->saveState();
 }
 
 void DatabaseBrowserWidget::restoreFromStream(QDataStream& stream) {
-
+	QByteArray splitter;
+	stream >> splitter;
+	ui.splitter->restoreState(splitter);
 }
 
 void DatabaseBrowserWidget::on_tables_activated(const QModelIndex& index) {

@@ -5,9 +5,16 @@
 #include <unordered_map>
 #include <string>
 
+#include "DatabaseDirectiveFile.h"
+
 class ESODatabaseRecord {
 public:
-	using Value = std::variant<std::monostate, unsigned long long>;
+	struct ValueEnum {
+		const DatabaseDirectiveFile::Enum* definition;
+		int32_t value;
+	};
+
+	using Value = std::variant<std::monostate, unsigned long long, ValueEnum, std::string>;
 
 	ESODatabaseRecord();
 	~ESODatabaseRecord();
@@ -19,6 +26,7 @@ public:
 	ESODatabaseRecord& operator =(ESODatabaseRecord&& other);
 
 	Value& addField(const std::string& name);
+	const Value& findField(const std::string& name);
 
 private:
 	std::unordered_map<std::string, Value> m_fields;

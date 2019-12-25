@@ -23,14 +23,17 @@ void ESODatabase::loadDirectives(std::filesystem::path& directoryPath) {
 
 		parsingContext.structures.insert(parsingContext.structures.end(), std::make_move_iterator(directives.structures().begin()), std::make_move_iterator(directives.structures().end()));
 		parsingContext.defs.insert(parsingContext.defs.end(), std::make_move_iterator(directives.defs().begin()), std::make_move_iterator(directives.defs().end()));
+		parsingContext.enums.insert(parsingContext.enums.end(), std::make_move_iterator(directives.enums().begin()), std::make_move_iterator(directives.enums().end()));
 	}
 
 	std::sort(parsingContext.defs.begin(), parsingContext.defs.end(), [](const DatabaseDirectiveFile::Structure & a, const DatabaseDirectiveFile::Structure& b) {
 		return a.defIndex < b.defIndex;
 	});
 
-	m_defs.reserve(parsingContext.defs.size());
+	parsingContext.buildLookupCaches();
 
+	m_defs.reserve(parsingContext.defs.size());
+	
 	for (const auto& def : parsingContext.defs) {
 		m_defs.emplace_back(m_fs, def, parsingContext);
 	}

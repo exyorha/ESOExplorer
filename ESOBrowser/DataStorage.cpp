@@ -15,6 +15,7 @@ DataStorage::DataStorage() : m_loadingCancelled(false), m_loadingDialog(nullptr)
 	m_supportedVersions.parseFile(applicationDirectory / "SupportedVersions.dir");
 	m_filesystem.parseFile(applicationDirectory / "Filesystem.dir");
 	m_filenameHarvesting.parseFile(applicationDirectory / "FilenameHarvesting.dir");
+	m_uiSettings.parseFile(applicationDirectory / "UISettings.dir");
 
 	m_database.loadDirectives(applicationDirectory / "Database");
 }
@@ -144,7 +145,7 @@ void DataStorage::backgroundLoadingThread() {
 
 			def.loadDef();
 
-			m_defModels.emplace_back(std::make_unique<ESODatabaseDefModel>(&def));
+			m_defModels.emplace_back(std::make_unique<ESODatabaseDefModel>(&def, this));
 
 			setLoadingProgress(++progress);
 		}
