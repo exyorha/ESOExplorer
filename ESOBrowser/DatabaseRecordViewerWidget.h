@@ -49,7 +49,9 @@ private:
 	QStandardItem* convertValueToItem(const std::string & value, QStandardItem* childReceiver);
 
 	QStandardItem* convertValueToItem(bool value, QStandardItem* childReceiver);
-	
+
+	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueStruct & value, QStandardItem* childReceiver);
+
 	ESOBrowserMainWindow* m_window;
 	Ui::DatabaseRecordViewerWidget ui;
 

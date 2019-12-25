@@ -155,10 +155,20 @@ void ESODatabaseDef::parseField(esodata::SerializationStream& stream, DatabaseDi
 	case DatabaseDirectiveFile::FieldType::AssetReference:
 		stream >> value.emplace<ESODatabaseRecord::ValueAssetReference>().id;
 		break;
+
+	case DatabaseDirectiveFile::FieldType::Struct:
+	{
+		auto& svalue = value.emplace<ESODatabaseRecord::ValueStruct>();
+		
+		parseStructureIntoRecord(stream, m_parsingContext->findStructureByName(field.typeName), svalue);
+
+		break;
+	}
+
 	}
 }
 
-void ESODatabaseDef::parseStructureIntoRecord(esodata::SerializationStream& stream, const DatabaseDirectiveFile::Structure& structure, ESODatabaseRecord& record) {
+void ESODatabaseDef::parseStructureIntoRecord(esodata::SerializationStream& stream, const DatabaseDirectiveFile::Structure& structure, ESOFieldContainer& record) {
 	for (const auto& field : structure.fields) {
 		parseField(stream, field.type, record.addField(field.name), field);
 	}

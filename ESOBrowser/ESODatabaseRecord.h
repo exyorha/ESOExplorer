@@ -9,8 +9,9 @@
 
 class ESODatabaseDef;
 
-class ESODatabaseRecord {
-public:
+struct ESOValueStruct;
+
+struct ESOFieldContainer {
 	struct ValueEnum {
 		const DatabaseDirectiveFile::Enum* definition;
 		int32_t value;
@@ -27,11 +28,30 @@ public:
 		uint32_t id;
 	};
 
-	using Value = std::variant<std::monostate, unsigned long long, ValueEnum, std::string, ValueArray, ValueForeignKey, bool, double, ValueAssetReference>;
+	using ValueStruct = ESOValueStruct;
+
+	using Value = std::variant<std::monostate, unsigned long long, ValueEnum, std::string, ValueArray, ValueForeignKey, bool, double, ValueAssetReference, ValueStruct>;
 
 	struct ValueArray {
 		std::vector<Value> values;
 	};
+
+	Value& addField(const std::string& name);
+	const Value& findField(const std::string& name) const;
+
+	inline const std::vector<std::string>& fieldOrder() const { return m_fieldOrder; }
+
+private:
+	std::unordered_map<std::string, Value> m_fields;
+	std::vector<std::string> m_fieldOrder;
+};
+
+struct ESOValueStruct final : public ESOFieldContainer {
+
+};
+
+class ESODatabaseRecord final : public ESOFieldContainer {
+public:
 
 
 	ESODatabaseRecord();
@@ -42,15 +62,6 @@ public:
 
 	ESODatabaseRecord(ESODatabaseRecord&& other);
 	ESODatabaseRecord& operator =(ESODatabaseRecord&& other);
-
-	Value& addField(const std::string& name);
-	const Value& findField(const std::string& name) const;
-
-	inline const std::vector<std::string>& fieldOrder() const { return m_fieldOrder; }
-
-private:
-	std::unordered_map<std::string, Value> m_fields;
-	std::vector<std::string> m_fieldOrder;
 };
 
 #endif

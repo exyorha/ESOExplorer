@@ -107,3 +107,7 @@ std::string ESODatabaseDefModel::convertValueForDisplay(bool val) {
 std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueAssetReference& val) {
 	return "<asset>";
 }
+
+std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueStruct& val) {
+	return "<struct>";
+}

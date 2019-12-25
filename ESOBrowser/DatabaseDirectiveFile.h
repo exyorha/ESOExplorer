@@ -18,7 +18,8 @@ public:
 		Array,
 		ForeignKey,
 		AssetReference,
-		Boolean
+		Boolean,
+		Struct
 	};
 
 	struct StructureField {

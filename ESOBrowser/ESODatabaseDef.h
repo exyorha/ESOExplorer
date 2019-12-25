@@ -37,7 +37,7 @@ public:
 	inline const DatabaseDirectiveFile::Structure* structure() const { return m_def; }
 
 private:
-	void parseStructureIntoRecord(esodata::SerializationStream& stream, const DatabaseDirectiveFile::Structure& structure, ESODatabaseRecord& record);
+	void parseStructureIntoRecord(esodata::SerializationStream& stream, const DatabaseDirectiveFile::Structure& structure, ESOFieldContainer& record);
 
 	void parseField(esodata::SerializationStream& stream, DatabaseDirectiveFile::FieldType type, ESODatabaseRecord::Value& value, const DatabaseDirectiveFile::StructureField& field);
 

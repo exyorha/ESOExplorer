@@ -12,7 +12,7 @@ ESODatabaseRecord::ESODatabaseRecord(ESODatabaseRecord&& other) = default;
 
 ESODatabaseRecord& ESODatabaseRecord::operator =(ESODatabaseRecord&& other) = default;
 
-auto ESODatabaseRecord::addField(const std::string& name) -> Value & {
+auto ESOFieldContainer::addField(const std::string& name) -> Value & {
 	std::string realName = name;
 
 	if (name.empty()) {
@@ -27,7 +27,7 @@ auto ESODatabaseRecord::addField(const std::string& name) -> Value & {
 	return result.first->second;
 }
 
-auto ESODatabaseRecord::findField(const std::string& name) const -> const Value& {
+auto ESOFieldContainer::findField(const std::string& name) const -> const Value& {
 	auto result = m_fields.find(name);
 	if (result == m_fields.end())
 		throw std::logic_error("Required field was not found: " + name);

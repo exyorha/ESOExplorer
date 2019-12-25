@@ -17,7 +17,8 @@ void DatabaseDirectiveFile::parseFieldType(std::vector<std::string>::const_itera
 		{ "ARRAY", FieldType::Array },
 		{ "FOREIGN_KEY", FieldType::ForeignKey },
 		{ "BOOLEAN", FieldType::Boolean },
-		{ "ASSET_REFERENCE", FieldType::AssetReference }
+		{ "ASSET_REFERENCE", FieldType::AssetReference },
+		{ "STRUCT", FieldType::Struct }
 	};
 
 
@@ -42,9 +43,9 @@ void DatabaseDirectiveFile::parseFieldType(std::vector<std::string>::const_itera
 		field.type = typeEnum;
 	}
 	
-	if (typeEnum == FieldType::Enum || typeEnum == FieldType::ForeignKey) {
+	if (typeEnum == FieldType::Enum || typeEnum == FieldType::ForeignKey || typeEnum == FieldType::Struct) {
 		if (it == endIt)
-			parseError("Expected type name after ENUM or FOREIGN_KEY");
+			parseError("Expected type name after ENUM, FOREIGN_KEY or STRUCT");
 
 		field.typeName = *it;
 		++it;
@@ -146,6 +147,17 @@ void DatabaseDirectiveFile::processLine(std::vector<std::string>& tokens) {
 
 			for (auto i = firstValue; i <= lastValue; i++) {
 				m_buildingEnum->values.emplace_back(i);
+			}
+		}
+		else if (tokens[0] == "VALUE") {
+			if (tokens.size() < 2 || tokens.size() > 3)
+				parseError("Two or three extra tokens expected for VALUES");
+
+			auto value = std::stoi(tokens[1]);
+			m_buildingEnum->values.emplace_back(value);
+
+			if (tokens.size() >= 3) {
+				m_buildingEnum->valueNames.emplace(value, tokens[2]);
 			}
 		}
 		else {

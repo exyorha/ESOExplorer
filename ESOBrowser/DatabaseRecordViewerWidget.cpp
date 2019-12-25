@@ -167,6 +167,29 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(bool value, QStand
 	return new QStandardItem(value ? QStringLiteral("true") : QStringLiteral("false"));
 }
 
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueStruct& record, QStandardItem* childReceiver) {
+	for (const auto& fieldName : record.fieldOrder()) {
+		auto fieldNameItem = new QStandardItem(QString::fromStdString(fieldName));
+
+		const auto& value = record.findField(fieldName);
+
+		QList<QStandardItem*> items;
+		items << fieldNameItem;
+
+		auto item =
+			std::visit([this, fieldNameItem](const auto& value) {
+			return convertValueToItem(value, fieldNameItem);
+		}, value);
+
+		if (item)
+			items.append(item);
+
+		childReceiver->appendRow(std::move(items));
+	}
+
+	return nullptr;
+}
+
 QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueAssetReference& value, QStandardItem* childReceiver) {
 	if (value.id == 0) {
 		return new QStandardItem(QStringLiteral("NULL Asset"));
