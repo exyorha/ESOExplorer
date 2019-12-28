@@ -1,2 +1,32 @@
 DEF 414 MonsterFlightDataDef VERSION 6
+	ARRAY UINT32 FlightHoverTakeOffAnimDelayTimes
+	ARRAY UINT32 FlightHoverTakeOff180AnimDelayTimes
+	ARRAY UINT32 FlightForwardTakeOffAnimDelayTime
+	ARRAY UINT32 FlightForwardTakeOff180AnimDelayTime
+	ARRAY UINT32 QuickTurnAnimDelayTimes
+	ARRAY UINT32 QuickTurn180AnimDelayTimes
+	UINT32
+	UINT32
+	ARRAY UINT32 FlightHoverLandedAnimDelayTimes
+	ARRAY UINT32 FlightHoverLanded180AnimDelayTimes
+	ARRAY UINT32 FlightForwardLandedAnimDelayTimes
+	ARRAY UINT32 FlightForwardLanded180AnimDelayTimes
+	; since version 6
+		UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	BOOLEAN EnableFlightPathCollisionCheck
 END

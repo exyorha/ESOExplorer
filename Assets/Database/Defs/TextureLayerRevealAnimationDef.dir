@@ -1,2 +1,23 @@
+STRUCT TextureLayerRevealAnimationDef_WindowGradeGradient
+	FLOAT
+	FLOAT
+	FLOAT
+END
+
 DEF 390 TextureLayerRevealAnimationDef VERSION 1
+	ASSET_REFERENCE
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	ARRAY STRUCT TextureLayerRevealAnimationDef_WindowGradeGradient WindowFadeGradients
 END

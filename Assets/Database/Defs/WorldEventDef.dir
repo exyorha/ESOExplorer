@@ -1,2 +1,3 @@
 DEF 406 WorldEventDef VERSION 7
+	INT32
 END

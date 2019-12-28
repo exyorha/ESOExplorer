@@ -54,6 +54,10 @@ std::string ESODatabaseDefModel::convertValueForDisplay(const std::monostate&) {
 	return "<nil>";
 }
 
+std::string ESODatabaseDefModel::convertValueForDisplay(long long val) {
+	return std::to_string(val);
+}
+
 std::string ESODatabaseDefModel::convertValueForDisplay(unsigned long long val) {
 	return std::to_string(val);
 }

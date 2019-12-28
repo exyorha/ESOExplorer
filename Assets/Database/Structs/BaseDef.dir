@@ -8,5 +8,5 @@ STRUCT BaseDef
     UINT32
     ENUM BaseDefEnum
     UINT16
-    UINT64
+    UINT64 LastModified
 END

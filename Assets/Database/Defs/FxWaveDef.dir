@@ -1,2 +1,23 @@
+ENUM FxMessage
+	VALUES 0 57
+END
+
+STRUCT FxWaveDef_StopInfo
+	ENUM FxMessage
+	STRING
+	FLOAT
+	BOOLEAN Expire
+	UINT32
+	ARRAY UINT32 StopAtWaypointInfoTags
+END
+
 DEF 403 FxWaveDef VERSION 3
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY STRUCT FxWaveDef_StopInfo StopInfo
+	STRING
 END

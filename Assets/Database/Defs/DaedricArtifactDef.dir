@@ -1,2 +1,6 @@
 DEF 416 DaedricArtifactDef VERSION 3
+	UINT32
+	
+	; Since version 2
+		INT32
 END

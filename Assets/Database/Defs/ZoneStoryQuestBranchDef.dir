@@ -1,2 +1,14 @@
+STRUCT ZoneStoryQuestBranchDef_PriorityQuest
+	FOREIGN_KEY QuestDef
+	FOREIGN_KEY WorldDef
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+END
+
 DEF 407 ZoneStoryQuestBranchDef VERSION 1
+	UINT32
+	ARRAY STRUCT ZoneStoryQuestBranchDef_PriorityQuest PriorityQuests
+	ARRAY FOREIGN_KEY ZoneStoryQuestBranchDef Branches
 END

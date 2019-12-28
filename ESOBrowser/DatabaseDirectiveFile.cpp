@@ -8,6 +8,11 @@ DatabaseDirectiveFile::~DatabaseDirectiveFile() = default;
 
 void DatabaseDirectiveFile::parseFieldType(std::vector<std::string>::const_iterator& it, const std::vector<std::string>::const_iterator& endIt, DatabaseDirectiveFile::StructureField& field, bool inArray) {
 	static const std::unordered_map<std::string, FieldType> fieldTypes{
+		{ "INT8", FieldType::Int8 },
+		{ "INT16", FieldType::Int16 },
+		{ "INT32", FieldType::Int32 },
+		{ "INT64", FieldType::Int64 },
+		{ "UINT8", FieldType::UInt16 },
 		{ "UINT16", FieldType::UInt16 },
 		{ "UINT32", FieldType::UInt32 },
 		{ "UINT64", FieldType::UInt64 },
@@ -50,7 +55,7 @@ void DatabaseDirectiveFile::parseFieldType(std::vector<std::string>::const_itera
 		field.typeName = *it;
 		++it;
 	}
-	else if (field.type == FieldType::Array) {
+	else if (typeEnum == FieldType::Array) {
 		if (inArray)
 			parseError("Nested arrays are not supported");
 

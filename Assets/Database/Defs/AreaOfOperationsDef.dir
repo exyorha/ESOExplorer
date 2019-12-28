@@ -1,2 +1,4 @@
 DEF 418 AreaOfOperationsDef VERSION 1
+	UINT32
+	ARRAY FOREIGN_KEY AreaOfOperationsDef ConnectedOpsAreas
 END

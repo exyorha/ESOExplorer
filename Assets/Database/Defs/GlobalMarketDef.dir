@@ -1,2 +1,18 @@
+STRUCT GlobalMarketDef_NoteText
+
+END
+
 DEF 397 GlobalMarketDef VERSION 8
+	ASSET_REFERENCE
+	UINT32
+	; Since version 7
+	UINT32
+	; Since version 8
+	UINT32
+	UINT32
+	UINT32
+	ASSET_REFERENCE
+	UINT32
+	ARRAY STRUCT GlobalMarketDef_NoteText GiftRandomSendNoteTexts
+	ARRAY STRUCT GlobalMarketDef_NoteText GiftRandomThankYouNoteTexts	
 END

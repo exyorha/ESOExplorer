@@ -77,6 +77,46 @@ void ESODatabaseDef::loadDef() {
 
 void ESODatabaseDef::parseField(esodata::SerializationStream& stream, DatabaseDirectiveFile::FieldType type, ESODatabaseRecord::Value& value, const DatabaseDirectiveFile::StructureField& field) {
 	switch (type) {
+	case DatabaseDirectiveFile::FieldType::Int8:
+	{
+		int8_t val;
+		stream >> val;
+		value.emplace<long long>(val);
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::Int16:
+	{
+		int16_t val;
+		stream >> val;
+		value.emplace<long long>(val);
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::Int32:
+	{
+		int32_t val;
+		stream >> val;
+		value.emplace<long long>(val);
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::Int64:
+	{
+		int64_t val;
+		stream >> val;
+		value.emplace<long long>(val);
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::UInt8:
+	{
+		uint8_t val;
+		stream >> val;
+		value.emplace<unsigned long long>(val);
+		break;
+	}
+
 	case DatabaseDirectiveFile::FieldType::UInt16:
 	{
 		uint16_t val;

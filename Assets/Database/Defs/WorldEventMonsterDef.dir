@@ -1,2 +1,13 @@
+ENUM WorldEventMonsterDef_MapPinAssignment_Enum1
+	VALUES 0 3
+END
+
+STRUCT WorldEventMonsterDef_MapPinAssignment
+	ENUM WorldEventMonsterDef_MapPinAssignment_Enum1
+	BOOLEAN
+	FLOAT
+END
+
 DEF 411 WorldEventMonsterDef VERSION 2
+	ARRAY STRUCT WorldEventMonsterDef_MapPinAssignment MapPinAssignments
 END

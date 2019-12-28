@@ -34,6 +34,8 @@ private:
 		return nullptr;
 	}
 
+	QStandardItem* convertValueToItem(long long value, QStandardItem* childReceiver);
+
 	QStandardItem* convertValueToItem(unsigned long long value, QStandardItem *childReceiver);
 
 	QStandardItem* convertValueToItem(double value, QStandardItem* childReceiver);

@@ -1,2 +1,49 @@
+ENUM CharacterAimingDef_Enum1
+	VALUES 0 1
+END
+
 DEF 408 CharacterAimingDef VERSION 6
+	ENUM CharacterAimingDef_Enum1
+	STRING
+	STRING
+	STRING
+	STRING
+	STRING
+	STRING
+	STRING
+	STRING
+	STRING
+	
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	
+	FLOAT
+	FLOAT
+	FLOAT
+	
+	UINT32
+	BOOLEAN
+	BOOLEAN
+	STRING
+	FLOAT
+	FLOAT
+	FLOAT
+	
+	; Since version 5
+	FLOAT
+	FLOAT
+	
+	; Since version 6
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	
 END

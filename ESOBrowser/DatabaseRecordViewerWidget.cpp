@@ -96,6 +96,9 @@ void DatabaseRecordViewerWidget::openRecordInternal() {
 	//m_model->appendRow(convert(record));
 }
 
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(long long value, QStandardItem* childReceiver) {
+	return new QStandardItem(QString::fromStdString(std::to_string(value)));
+}
 
 QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(unsigned long long value, QStandardItem* childReceiver) {
 	return new QStandardItem(QString::fromStdString(std::to_string(value)));

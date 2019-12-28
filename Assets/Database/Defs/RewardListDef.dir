@@ -1,2 +1,8 @@
+STRUCT RewardListDef_RewardEntry
+	FOREIGN_KEY RewardDef Reward
+	UINT32 Count
+END
+
 DEF 399 RewardListDef VERSION 1
+	ARRAY STRUCT RewardListDef_RewardEntry Entries
 END

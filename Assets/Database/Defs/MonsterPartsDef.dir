@@ -1,2 +1,9 @@
+STRUCT MonsterPartsDef_MonsterPartInfo
+	UINT32
+	UINT32
+END
+
 DEF 402 MonsterPartsDef VERSION 2
+	ARRAY STRUCT MonsterPartsDef_MonsterPartInfo
+	UINT32
 END

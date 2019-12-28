@@ -1,2 +1,5 @@
 DEF 410 WorldEventLocationDef VERSION 4
+	UINT32
+	UINT32
+	ARRAY FOREIGN_KEY WorldEventLocationDef ConnectedLocations
 END

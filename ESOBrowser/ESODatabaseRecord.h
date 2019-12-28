@@ -30,7 +30,7 @@ struct ESOFieldContainer {
 
 	using ValueStruct = ESOValueStruct;
 
-	using Value = std::variant<std::monostate, unsigned long long, ValueEnum, std::string, ValueArray, ValueForeignKey, bool, double, ValueAssetReference, ValueStruct>;
+	using Value = std::variant<std::monostate, long long, unsigned long long, ValueEnum, std::string, ValueArray, ValueForeignKey, bool, double, ValueAssetReference, ValueStruct>;
 
 	struct ValueArray {
 		std::vector<Value> values;
