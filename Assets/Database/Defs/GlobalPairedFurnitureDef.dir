@@ -1,2 +1,4 @@
 DEF 354 GlobalPairedFurnitureDef VERSION 1
+	UINT32
+	UINT32
 END

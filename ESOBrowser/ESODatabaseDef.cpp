@@ -214,11 +214,11 @@ void ESODatabaseDef::parseStructureIntoRecord(esodata::SerializationStream& stre
 	}
 }
 
-const ESODatabaseRecord& ESODatabaseDef::findRecordById(uint64_t id) const {
+const ESODatabaseRecord* ESODatabaseDef::findRecordById(uint64_t id) const {
 	auto it = m_recordLookup.find(id);
 	if (it == m_recordLookup.end()) {
-		throw std::logic_error("Record not found: " + m_name + " " + std::to_string(id));
+		return nullptr;
 	}
 
-	return *it->second;
+	return it->second;
 }

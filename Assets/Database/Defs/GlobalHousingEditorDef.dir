@@ -1,2 +1,31 @@
 DEF 347 GlobalHousingEditorDef VERSION 15
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	ARRAY FLOAT HoverOverColor
+	ARRAY FLOAT SelectedColor
+	ARRAY FLOAT InvalidColor
+	ARRAY FLOAT UndoColor
+	ARRAY FLOAT TrackedColor
+	ARRAY FLOAT InvalidInteractionColor
+	ARRAY FLOAT ValidInteractionColor
+	ARRAY FLOAT ParentFurnitureColor
+	ARRAY FLOAT ChildFurnitureColor
+	ARRAY FLOAT LinkFurnitureColor
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	UINT32
+	ARRAY BOOLEAN FurnitureThemeVisibility
 END

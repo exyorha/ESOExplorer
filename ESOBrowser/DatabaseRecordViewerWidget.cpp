@@ -65,19 +65,20 @@ void DatabaseRecordViewerWidget::openRecord(const std::string& defName, unsigned
 }
 
 void DatabaseRecordViewerWidget::openRecordInternal() {
-	qDebug("DatabaseRecordViewerWidget::openRecordInternal(%s, %u)", m_defName.c_str(), m_recordId);
-
 	auto storage = m_window->storage();
 	const auto &def = storage->database().findDefByName(m_defName);
-	const auto& record = def.findRecordById(m_recordId);
+	auto record = def.findRecordById(m_recordId);
 
-	const auto& name = std::get<std::string>(record.findField("name"));
+	if (!record)
+		return;
+
+	const auto& name = std::get<std::string>(record->findField("name"));
 	setWindowTitle(QString::fromStdString(name));
 
-	for (const auto& fieldName : record.fieldOrder()) {
+	for (const auto& fieldName : record->fieldOrder()) {
 		auto fieldNameItem = new QStandardItem(QString::fromStdString(fieldName));
 
-		const auto& value = record.findField(fieldName);
+		const auto& value = record->findField(fieldName);
 
 		QList<QStandardItem*> items;
 		items << fieldNameItem;
@@ -151,14 +152,19 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseR
 	else {
 		const auto &def = m_window->storage()->database().findDefByName(value.def);
 
-		const auto& target = def.findRecordById(value.id);
-		const auto &targetName = std::get<std::string>(target.findField("name"));
-		auto item = new QStandardItem;
-		item->setData(QString::fromStdString(targetName), Qt::DisplayRole);
-		item->setData(QString::fromStdString(def.name()), Qt::UserRole);
-		item->setData(QColor(Qt::blue), Qt::ForegroundRole);
-		item->setData(value.id, Qt::UserRole + 1);
-		return item;
+		auto target = def.findRecordById(value.id);
+		if (target == nullptr) {
+			return new QStandardItem(QString::fromStdString("BROKEN " + value.def + " " + std::to_string(value.id)));
+		}
+		else {
+			const auto& targetName = std::get<std::string>(target->findField("name"));
+			auto item = new QStandardItem;
+			item->setData(QString::fromStdString(targetName), Qt::DisplayRole);
+			item->setData(QString::fromStdString(def.name()), Qt::UserRole);
+			item->setData(QColor(Qt::blue), Qt::ForegroundRole);
+			item->setData(value.id, Qt::UserRole + 1);
+			return item;
+		}
 	}
 }
 

@@ -1,2 +1,25 @@
+STRUCT CompositeMonsterDef_MonsterAttachmentMapping
+	FOREIGN_KEY MonsterDef ChildMonster
+	UINT32
+	STRING Attachment
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	BOOLEAN KillIfParentDies
+	BOOLEAN TransferDamageToParent
+	BOOLEAN MovementLockedToParent
+	BOOLEAN HorizontalRotationBound
+	BOOLEAN VerticalRotationBound
+	BOOLEAN HorizontalRotationBoundInclusive
+	BOOLEAN	VerticalRotationBoundInclusive
+	BOOLEAN SpawnWithParent
+END
+
 DEF 349 CompositeMonsterDef VERSION 9
+	FOREIGN_KEY MonsterDef BaseMonster
+	ARRAY STRUCT CompositeMonsterDef_MonsterAttachmentMapping ChildMonsterMapping
 END

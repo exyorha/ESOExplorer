@@ -1,0 +1,3 @@
+ENUM TradeskillType
+	VALUES 0 7
+END

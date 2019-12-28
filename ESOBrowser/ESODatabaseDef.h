@@ -32,7 +32,7 @@ public:
 	inline const std::vector<ESODatabaseRecord>& records() const { return m_records; }
 	inline std::vector<ESODatabaseRecord>& records() { return m_records; }
 
-	const ESODatabaseRecord& findRecordById(uint64_t id) const;
+	const ESODatabaseRecord* findRecordById(uint64_t id) const;
 
 	inline const DatabaseDirectiveFile::Structure* structure() const { return m_def; }
 
