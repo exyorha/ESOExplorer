@@ -1,2 +1,4 @@
 DEF 341 MarketProductLootCrateDef VERSION 1
+	UINT32
+	UINT8
 END

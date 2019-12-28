@@ -1,2 +1,31 @@
+STRUCT HouseTemplateDef_ItemInfo
+	UINT32
+	UINT32
+	UINT32
+	UINT8
+	UINT32
+	UINT32
+	UINT32
+	UINT16
+	UINT16
+	UINT16
+END
+
+STRUCT HouseTemplateDef_CollectibleInfo
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT16
+	UINT16
+	UINT16
+END
+
 DEF 345 HouseTemplateDef VERSION 6
+	FOREIGN_KEY HouseDef House
+	ARRAY FOREIGN_KEY MarketProductHousingDef MarketProductHousings
+	ARRAY STRUCT HouseTemplateDef_ItemInfo Items
+	ARRAY STRUCT HouseTemplateDef_CollectibleInfo Collectibles
+	UINT32
+	UINT32
 END

@@ -1,2 +1,7 @@
 DEF 334 CollectibleAppearanceDef VERSION 1
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
 END

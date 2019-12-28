@@ -12,7 +12,7 @@ void DatabaseDirectiveFile::parseFieldType(std::vector<std::string>::const_itera
 		{ "INT16", FieldType::Int16 },
 		{ "INT32", FieldType::Int32 },
 		{ "INT64", FieldType::Int64 },
-		{ "UINT8", FieldType::UInt16 },
+		{ "UINT8", FieldType::UInt8 },
 		{ "UINT16", FieldType::UInt16 },
 		{ "UINT32", FieldType::UInt32 },
 		{ "UINT64", FieldType::UInt64 },

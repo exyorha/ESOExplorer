@@ -171,6 +171,10 @@ void ESODatabaseDef::parseField(esodata::SerializationStream& stream, DatabaseDi
 		auto& avalue = value.emplace<ESODatabaseRecord::ValueArray>();
 		uint32_t length;
 		stream >> length;
+
+		if (length > 16384)
+			__debugbreak();
+
 		avalue.values.resize(length);
 
 		for (auto& value : avalue.values) {

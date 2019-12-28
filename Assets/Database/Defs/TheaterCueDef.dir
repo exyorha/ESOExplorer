@@ -1,2 +1,21 @@
+ENUM TheaterCueDefEnum1
+	VALUES 0 2
+END
+
 DEF 337 TheaterCueDef VERSION 3
+	FOREIGN_KEY TheaterSceneDef
+	ENUM TheaterCueType
+	ARRAY UINT32 Parameter
+	UINT32
+	UINT32
+	UINT32
+	ENUM TheaterCueDefEnum1
+	UINT32
+	UINT32
+	BOOLEAN OrComparePrereqs
+	BOOLEAN OrCompareAntireqs
+	ARRAY FOREIGN_KEY TheaterCueDef PrereqCues
+	ARRAY FOREIGN_KEY TheaterCueDef AntireqCues
+	UINT32
+	FLOAT
 END

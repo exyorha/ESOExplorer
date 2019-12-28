@@ -1,2 +1,6 @@
 DEF 342 LootCrateTierTemplateDef VERSION 4
+	ARRAY FLOAT QualityAccentRGB
+	ENUM CrownCrateEvent Event
+	UINT32
+	ARRAY FLOAT DisplayNameColorRGB	
 END

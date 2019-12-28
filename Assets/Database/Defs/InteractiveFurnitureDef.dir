@@ -1,2 +1,11 @@
+STRUCT InteractiveFurnitureDef_FiliteredOnUseFx
+	UINT32
+	UINT32
+END
+
 DEF 346 InteractiveFurnitureDef VERSION 2
+	UINT32
+	ARRAY STRUCT InteractiveFurnitureDef_FiliteredOnUseFx FilteredFxIds
+	UINT32
+	FLOAT
 END
