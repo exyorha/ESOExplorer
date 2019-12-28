@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DefSearchWidget</class>
+ <widget class="QWidget" name="DefSearchWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>668</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="idLabel">
+       <property name="text">
+        <string>&amp;Id:</string>
+       </property>
+       <property name="buddy">
+        <cstring>id</cstring>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="id">
+       <property name="inputMask">
+        <string>9000000000</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="search">
+       <property name="text">
+        <string>&amp;Search</string>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTreeView" name="results"/>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>id</tabstop>
+  <tabstop>search</tabstop>
+  <tabstop>results</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

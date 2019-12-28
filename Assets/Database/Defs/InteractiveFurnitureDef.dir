@@ -4,8 +4,8 @@ STRUCT InteractiveFurnitureDef_FiliteredOnUseFx
 END
 
 DEF 346 InteractiveFurnitureDef VERSION 2
-	UINT32
+	FOREIGN_KEY FxDef
 	ARRAY STRUCT InteractiveFurnitureDef_FiliteredOnUseFx FilteredFxIds
-	UINT32
+	FOREIGN_KEY ToolTipDef
 	FLOAT
 END

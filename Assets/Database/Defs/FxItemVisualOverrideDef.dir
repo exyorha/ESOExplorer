@@ -1,7 +1,7 @@
 DEF 395 FxItemVisualOverrideDef VERSION 3
 	BOOLEAN OnCaster
 	FLOAT
-	UINT32
+	FOREIGN_KEY ItemVisualTemplateDef
 	UINT32
 	UINT32
 	UINT32

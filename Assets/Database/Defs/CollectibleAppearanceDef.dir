@@ -1,7 +1,7 @@
 DEF 334 CollectibleAppearanceDef VERSION 1
-	UINT32
-	UINT32
-	UINT32
-	UINT32
+	FOREIGN_KEY ItemVisualTemplateDef
+	FOREIGN_KEY TintDef
+	FOREIGN_KEY TintDef
+	FOREIGN_KEY TintDef
 	UINT32
 END

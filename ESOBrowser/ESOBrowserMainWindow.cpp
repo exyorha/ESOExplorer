@@ -16,6 +16,7 @@
 #include "NameHarvestingWidget.h"
 #include "DatabaseBrowserWidget.h"
 #include "DatabaseRecordViewerWidget.h"
+#include "DefSearchWidget.h"
 
 ESOBrowserMainWindow::ESOBrowserMainWindow(DataStorage* storage, QWidget* parent) :
 	QMainWindow(parent),
@@ -35,9 +36,10 @@ ESOBrowserMainWindow::ESOBrowserMainWindow(DataStorage* storage, QWidget* parent
 	);
 
 	m_addTabMenu = new QMenu(this);
-	m_addTabMenu->addAction(tr("Filesystem Browser"), this, &ESOBrowserMainWindow::addFilesystemBrowser, QKeySequence(QStringLiteral("Ctrl+T")));
-	m_addTabMenu->addAction(tr("Database Browser"), this, &ESOBrowserMainWindow::addDatabaseBrowser, QKeySequence(QStringLiteral("Ctrl+Shift+T")));
-	m_addTabMenu->addAction(tr("Name Harvesting"), this, &ESOBrowserMainWindow::addNameHarvesting);
+	m_addTabMenu->addAction(tr("Filesystem Browser"), this, &ESOBrowserMainWindow::addTab<FilesystemBrowserWidget>, QKeySequence(QStringLiteral("Ctrl+T")));
+	m_addTabMenu->addAction(tr("Database Browser"), this, &ESOBrowserMainWindow::addTab<DatabaseBrowserWidget>, QKeySequence(QStringLiteral("Ctrl+Shift+T")));
+	m_addTabMenu->addAction(tr("Name Harvesting"), this, &ESOBrowserMainWindow::addTab<NameHarvestingWidget>);
+	m_addTabMenu->addAction(tr("Search defs"), this, &ESOBrowserMainWindow::addTab<DefSearchWidget>);
 
 	m_addTab = new QToolButton(this);
 	m_addTab->setText(tr("Add Tab"));
@@ -68,18 +70,6 @@ void ESOBrowserMainWindow::on_actionChangeDepot_triggered() {
 
 void ESOBrowserMainWindow::on_actionQuit_triggered() {
 	QCoreApplication::quit();
-}
-
-void ESOBrowserMainWindow::addFilesystemBrowser() {
-	addTab(new FilesystemBrowserWidget(this, this));
-}
-
-void ESOBrowserMainWindow::addNameHarvesting() {
-	addTab(new NameHarvestingWidget(this, this));
-}
-
-void ESOBrowserMainWindow::addDatabaseBrowser() {
-	addTab(new DatabaseBrowserWidget(this, this));
 }
 
 void ESOBrowserMainWindow::tabWindowTitleChanged(const QString& title) {
@@ -205,6 +195,11 @@ QWidget* ESOBrowserMainWindow::createTab() {
 	return new T(this, this);
 }
 
+template<typename T>
+void ESOBrowserMainWindow::addTab() {
+	addTab(createTab<T>());
+}
+
 const std::unordered_map<std::string, QWidget* (ESOBrowserMainWindow::*)()> ESOBrowserMainWindow::m_tabConstructors{
 	{ "BinaryFileViewWidget", &ESOBrowserMainWindow::createTab<BinaryFileViewWidget> },
 	{ "DDSFileViewWidget", &ESOBrowserMainWindow::createTab<DDSFileViewWidget> },
@@ -213,5 +208,6 @@ const std::unordered_map<std::string, QWidget* (ESOBrowserMainWindow::*)()> ESOB
 	{ "Granny2FileViewWidget", &ESOBrowserMainWindow::createTab<Granny2FileViewWidget> },
 	{ "NameHarvestingWidget", &ESOBrowserMainWindow::createTab<NameHarvestingWidget> },
 	{ "DatabaseBrowserWidget", &ESOBrowserMainWindow::createTab<DatabaseBrowserWidget> },
-	{ "DatabaseRecordViewerWidget", &ESOBrowserMainWindow::createTab<DatabaseRecordViewerWidget> }
+	{ "DatabaseRecordViewerWidget", &ESOBrowserMainWindow::createTab<DatabaseRecordViewerWidget> },
+	{ "DefSearchWidget", &ESOBrowserMainWindow::createTab<DefSearchWidget> }
 };

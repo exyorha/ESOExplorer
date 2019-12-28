@@ -4,7 +4,7 @@ STRUCT GlobalCrownCrateDef_EventReaction
 	UINT32
 	UINT32
 	UINT32
-	UINT32
+	FOREIGN_KEY RandomStringTableDef
 	STRING
 	UINT32
 	UINT32
@@ -12,8 +12,8 @@ END
 
 DEF 340 GlobalCrownCrateDef VERSION 9
 	ARRAY STRUCT GlobalCrownCrateDef_EventReaction EventReactions
-	UINT32
-	UINT32
+	FOREIGN_KEY MonsterDef
+	FOREIGN_KEY PostureDef
 	FLOAT
 	FLOAT
 	STRING

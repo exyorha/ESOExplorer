@@ -1,5 +1,5 @@
 STRUCT HouseTemplateDef_ItemInfo
-	UINT32
+	FOREIGN_KEY ItemDef
 	UINT32
 	UINT32
 	UINT8

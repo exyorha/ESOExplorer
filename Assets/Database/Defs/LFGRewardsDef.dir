@@ -1,5 +1,5 @@
 STRUCT LFGRewardsDef_Reward
-	UINT32
+	FOREIGN_KEY RequirementListDef
 	UINT32
 	FLOAT
 END

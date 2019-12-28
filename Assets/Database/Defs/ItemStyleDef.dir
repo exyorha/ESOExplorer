@@ -1,6 +1,6 @@
 DEF 374 ItemStyleDef VERSION 3
 	UINT32
-	UINT32 
+	FOREIGN_KEY ItemDef
 	BOOLEAN HideFromSmithingIfLocked
 	UINT32
 	UINT32

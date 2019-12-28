@@ -50,9 +50,6 @@ private slots:
 	void on_actionQuit_triggered();
 	void on_tabs_tabCloseRequested(int index);
 
-	void addFilesystemBrowser();
-	void addNameHarvesting();
-	void addDatabaseBrowser();
 	void tabWindowTitleChanged(const QString& title);
 
 private:
@@ -67,6 +64,9 @@ protected:
 private:
 	template<typename T>
 	QWidget* createTab();
+
+	template<typename T>
+	void addTab();
 
 	DataStorage* m_storage;
 	Ui::ESOBrowserMainWindow ui;

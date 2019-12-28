@@ -13,10 +13,10 @@ DEF 343 HouseDef VERSION 11
 	UINT32
 	FOREIGN_KEY ZoneDef Zone
 	ARRAY FOREIGN_KEY HouseTemplateDef HouseTemplates
-	UINT32
-	UINT32
+	FOREIGN_KEY HouseTemplateDef
+	FOREIGN_KEY CollectibleDef
 	ASSET_REFERENCE
-	UINT32
-	UINT32
+	FOREIGN_KEY ZoneDef
+	FOREIGN_KEY PointOfInterestDef
 	ARRAY STRUCT HouseDef_PlacementLimits PlacementLimits	
 END

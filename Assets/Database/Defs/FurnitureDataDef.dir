@@ -12,7 +12,7 @@ DEF 352 FurnitureDataDef VERSION 9
 	FLOAT
 	ENUM FurnitureDataDefEnum1
 	ENUM FurnitureDataDefEnum2
-	UINT32
+	FOREIGN_KEY ItemDef
 	FLOAT
 	FLOAT
 	FLOAT	

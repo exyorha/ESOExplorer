@@ -1,5 +1,5 @@
 DEF 359 GameStartDef VERSION 8
-	UINT32
+	FOREIGN_KEY PregameCharacterCreateSetupDef
 	; References server-side-only EntitlementDef
 	ARRAY UINT32 EntitlementNeeded
 END

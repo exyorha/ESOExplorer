@@ -17,6 +17,9 @@ add_executable(ESOBrowser
 	DDSFileViewWidget.h
 	DDSTexture.cpp
 	DDSTexture.h
+	DefSearchWidget.cpp
+	DefSearchWidget.h
+	DefSearchWidget.ui
 	DirectiveFile.cpp
 	DirectiveFile.h
 	DummyTabWidget.cpp

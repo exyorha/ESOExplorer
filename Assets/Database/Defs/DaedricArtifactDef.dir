@@ -1,5 +1,5 @@
 DEF 416 DaedricArtifactDef VERSION 3
-	UINT32
+	FOREIGN_KEY ItemDef
 	
 	; Since version 2
 		INT32
