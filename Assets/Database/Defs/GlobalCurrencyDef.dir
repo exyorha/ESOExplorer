@@ -1,2 +1,3 @@
 DEF 376 GlobalCurrencyDef VERSION 6
+	ARRAY FOREIGN_KEY CurrencyDef Currencies
 END

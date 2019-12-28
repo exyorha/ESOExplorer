@@ -1,2 +1,8 @@
 DEF 374 ItemStyleDef VERSION 3
+	UINT32
+	UINT32 
+	BOOLEAN HideFromSmithingIfLocked
+	UINT32
+	UINT32
+	ARRAY FOREIGN_KEY ItemVisualTemplateDef VisualTemplates
 END

@@ -1,2 +1,10 @@
 DEF 378 OutfitStyleDef VERSION 7
+	FOREIGN_KEY ItemVisualTemplateDef ItemVisualTemplate
+	ARRAY FOREIGN_KEY ItemMaterialDef ItemMaterials
+	FOREIGN_KEY CollectibleDef Collectible
+	ARRAY FOREIGN_KEY OutfitTemplateDef LinkedOutfitTemplates
+	UINT32
+	UINT32
+	UINT32
+	UINT32
 END

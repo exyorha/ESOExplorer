@@ -1,2 +1,11 @@
+STRUCT SkillAdvisorBuildDef_PreferredSkillEntry
+	FOREIGN_KEY AbilityDef Skill
+	FOREIGN_KEY SkillLineDef SkillLine
+END
+
 DEF 381 SkillAdvisorBuildDef VERSION 2
+	BOOLEAN IsTankRole
+	BOOLEAN IsHealerRole
+	BOOLEAN InDamageRole
+	ARRAY STRUCT SkillAdvisorBuildDef_PreferredSkillEntry SkillEntries
 END

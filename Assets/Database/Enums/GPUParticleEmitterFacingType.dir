@@ -1,0 +1,3 @@
+ENUM GPUParticleEmitterFacingType
+	VALUES 0 10
+END

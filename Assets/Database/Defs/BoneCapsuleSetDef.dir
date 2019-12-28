@@ -1,2 +1,9 @@
+STRUCT BoneCapsuleSetDef_BoneCapsuleData
+	STRING
+	STRING
+	FLOAT
+END
+
 DEF 360 BoneCapsuleSetDef VERSION 1
+	ARRAY STRUCT BoneCapsuleSetDef_BoneCapsuleData BoneCapsuleSet
 END

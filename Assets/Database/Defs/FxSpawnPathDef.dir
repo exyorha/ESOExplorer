@@ -1,2 +1,24 @@
+STRUCT FxSpawnPathDef_PathLineSegment
+	FLOAT
+	FLOAT
+	INT32
+	INT32
+	INT32
+	FLOAT
+	FLOAT
+	FLOAT
+	BOOLEAN LinearPoint
+	BOOLEAN ConformToTerrain
+	BOOLEAN EnableVelocityMovement
+	UINT32
+	ARRAY UINT32 FxToStopSegmentIndex
+	STRING
+END
+
 DEF 387 FxSpawnPathDef VERSION 11
+	FLOAT
+	BOOLEAN OrientAlongPath
+	BOOLEAN OrientAlongPathHeadingOnly
+	ARRAY STRUCT FxStopInfo StopInfo
+	ARRAY STRUCT FxSpawnPathDef_PathLineSegment PathLineSegments
 END

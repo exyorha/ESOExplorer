@@ -1,2 +1,3 @@
 DEF 392 MarketProductChapterDef VERSION 1
+	UINT32
 END

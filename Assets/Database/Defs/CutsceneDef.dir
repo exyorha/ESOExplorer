@@ -1,2 +1,3 @@
 DEF 368 CutsceneDef VERSION 4
+	ARRAY STRING LocalizedVideoFiles
 END

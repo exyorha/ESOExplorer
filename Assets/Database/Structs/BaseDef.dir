@@ -7,6 +7,6 @@ STRUCT BaseDef
     STRING name
     UINT32
     ENUM BaseDefEnum
-    UINT16
-    UINT64 LastModified
+    UINT16 addedInPatch
+    UINT64 lastModified
 END

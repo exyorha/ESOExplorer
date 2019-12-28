@@ -1,15 +1,6 @@
-STRUCT FxCameraFacingLockDef_StopInfo
-	ENUM FxMessage
-	STRING
-	FLOAT
-	BOOLEAN Expire
-	UINT32
-	ARRAY UINT32 StopAtWaypointInfoTags
-END
-
 DEF 398 FxCameraFacingLockDef VERSION 2
 	FLOAT
 	BOOLEAN OnCaster
-	ARRAY STRUCT FxCameraFacingLockDef_StopInfo StopInfo
+	ARRAY STRUCT FxStopInfo StopInfo
 	FLOAT
 END

@@ -1,0 +1,3 @@
+ENUM CurrencyType
+	VALUES 0 10
+END

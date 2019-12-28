@@ -1,0 +1,3 @@
+ENUM FxMessage
+	VALUES 0 57
+END

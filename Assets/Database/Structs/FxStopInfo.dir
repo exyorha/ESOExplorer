@@ -1,0 +1,8 @@
+STRUCT FxStopInfo
+	ENUM FxMessage
+	STRING
+	FLOAT
+	BOOLEAN Expire
+	UINT32
+	ARRAY UINT32 StopAtWaypointInfoTags
+END

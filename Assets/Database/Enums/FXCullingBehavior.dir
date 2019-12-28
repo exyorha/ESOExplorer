@@ -1,0 +1,3 @@
+ENUM FXCullingBehavior
+	VALUES 0 7
+END

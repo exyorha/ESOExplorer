@@ -1,2 +1,5 @@
 DEF 359 GameStartDef VERSION 8
+	UINT32
+	; References server-side-only EntitlementDef
+	ARRAY UINT32 EntitlementNeeded
 END

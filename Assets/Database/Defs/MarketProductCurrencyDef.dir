@@ -1,2 +1,4 @@
 DEF 386 MarketProductCurrencyDef VERSION 1
+	ENUM CurrencyType Type
+	INT32 Amount
 END

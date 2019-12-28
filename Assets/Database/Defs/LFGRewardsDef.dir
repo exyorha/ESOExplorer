@@ -1,2 +1,9 @@
+STRUCT LFGRewardsDef_Reward
+	UINT32
+	UINT32
+	FLOAT
+END
+
 DEF 384 LFGRewardsDef VERSION 1
+	ARRAY STRUCT LFGRewardsDef_Reward Rewards
 END
