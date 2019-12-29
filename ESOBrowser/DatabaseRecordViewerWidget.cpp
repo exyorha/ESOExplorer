@@ -222,7 +222,8 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseR
 }
 
 QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const std::monostate&) {
-	return new QStandardItem(QStringLiteral("NULL Polymorphic Reference"));
+	auto it = val.selector.definition->valueNames.find(val.selector.value);
+	return new QStandardItem(QString::fromStdString(it->second));
 }
 
 QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, uint32_t unknownValue) {

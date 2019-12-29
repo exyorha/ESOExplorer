@@ -216,30 +216,33 @@ void ESODatabaseDef::parseField(esodata::SerializationStream& stream, DatabaseDi
 		if (it == pvalue.selector.definition->valueNames.end()) {
 			stream >> pvalue.data.emplace<uint32_t>();
 		}
-		else if(it->second == "NULL") {
-			uint32_t id;
-			stream >> id;
-
-			if (id == 0) {
-				pvalue.data.emplace<std::monostate>();
-			}
-			else {
-				pvalue.data.emplace<std::uint32_t>(id);
-			}
-		}
 		else {
 			auto delimiter = it->second.find_first_of('$');
 			std::string defName;
 			if (delimiter == std::string::npos) {
-				defName = it->second.substr(0, delimiter);
-			}
-			else {
 				defName = it->second;
 			}
+			else {
+				defName = it->second.substr(0, delimiter);
+			}
 
-			auto& fkey = pvalue.data.emplace<ESODatabaseRecord::ValueForeignKey>();
-			fkey.def = m_parsingContext->findDefByName(defName).name;
-			stream >> fkey.id;
+			if (defName == "NULL") {
+				uint32_t id;
+				stream >> id;
+
+				if (id == 0) {
+					pvalue.data.emplace<std::monostate>();
+				}
+				else {
+					pvalue.data.emplace<std::uint32_t>(id);
+				}
+			}
+			else {
+
+				auto& fkey = pvalue.data.emplace<ESODatabaseRecord::ValueForeignKey>();
+				fkey.def = m_parsingContext->findDefByName(defName).name;
+				stream >> fkey.id;
+			}
 		}
 
 		break;
