@@ -1,2 +1,8 @@
+STRUCT GlobalDyeDef_PlayerDyeInfo 
+	FOREIGN_KEY DyeDef Dye
+	UINT32
+END
+
 DEF 262 GlobalDyeDef VERSION 4
+	ARRAY STRUCT GlobalDyeDef_PlayerDyeInfo PlayerDyes
 END

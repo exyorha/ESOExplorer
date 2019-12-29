@@ -1,2 +1,11 @@
+ENUM DeathRecapHintDefEnum1
+	VALUES 0 2
+END
+
 DEF 251 DeathRecapHintDef VERSION 4
+	ENUM DeathRecapHintType
+	STRUCT CpStr HintText
+	ENUM DeathRecapHintDefEnum1
+	FOREIGN_KEY RequirementListDef RequirementList
+	UINT32
 END

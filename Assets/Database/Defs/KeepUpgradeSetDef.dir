@@ -1,2 +1,13 @@
+ENUM KeepUpgradeSetDef_UpgradeEntryEnum1
+	VALUES 0 5
+END
+
+STRUCT KeepUpgradeSetDef_UpgradeEntry
+	FOREIGN_KEY KeepUpgradeDef
+	ENUM KeepUpgradeSetDef_UpgradeEntryEnum1
+	UINT32
+END
+
 DEF 236 KeepUpgradeSetDef VERSION 2
+	ARRAY STRUCT KeepUpgradeSetDef_UpgradeEntry Upgrades
 END

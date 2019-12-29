@@ -1,2 +1,9 @@
 DEF 259 GlobalFaceFxDef VERSION 4
+	UINT32
+	UINT32
+	STRING
+	BOOLEAN DoPositionSwapping
+	BOOLEAN DoOrientationSwapping
+	BOOLEAN SkipNeckBone
+	UINT32
 END

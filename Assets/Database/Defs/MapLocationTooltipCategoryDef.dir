@@ -1,2 +1,3 @@
 DEF 237 MapLocationTooltipCategoryDef VERSION 1
+	ASSET_REFERENCE Icon
 END

@@ -1,2 +1,13 @@
+STRUCT GlobalPlayerGuildDef_RankIcons
+	ASSET_REFERENCE Icon
+	ASSET_REFERENCE IconLarge
+	ASSET_REFERENCE IconOver
+	ASSET_REFERENCE IconUp
+	ASSET_REFERENCE IconDown
+END
+
 DEF 264 GlobalPlayerGuildDef VERSION 3
+	ARRAY STRUCT GlobalPlayerGuildDef_RankIcons RankIcons
+	UINT32
+	STRUCT GlobalPlayerGuildDef_RankIcons InviteeIcon
 END

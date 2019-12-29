@@ -1,2 +1,8 @@
+STRUCT ItemTintIndexProgressionDef_TintIndexEntry
+	ARRAY UINT8 TintIndexPerQuality
+END
+
 DEF 233 ItemTintIndexProgressionDef VERSION 3
+	ARRAY STRUCT ItemTintIndexProgressionDef_TintIndexEntry TintIndexPerLevel
+	ARRAY STRUCT ItemTintIndexProgressionDef_TintIndexEntry TintIndexPerChampionRank
 END

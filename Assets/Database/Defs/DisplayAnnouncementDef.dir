@@ -1,2 +1,4 @@
 DEF 244 DisplayAnnouncementDef VERSION 2
+	STRUCT CpStr PrimaryText
+	STRUCT CpStr SecondaryText
 END

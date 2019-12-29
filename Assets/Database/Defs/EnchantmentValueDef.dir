@@ -1,2 +1,8 @@
+STRUCT EnchantmentValueDef_EnchantmentValue
+	ARRAY UINT32 Value
+END
+
 DEF 239 EnchantmentValueDef VERSION 2
+	ARRAY STRUCT EnchantmentValueDef_EnchantmentValue EnchantmentValuesByRequiredLevel
+	ARRAY STRUCT EnchantmentValueDef_EnchantmentValue EnchantmentValuesByChampionRank
 END

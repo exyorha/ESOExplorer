@@ -1,2 +1,5 @@
 DEF 249 SpellcraftingDef VERSION 2
+	ARRAY UINT32 CraftedAbilities
+	UINT8
+	UINT32
 END

@@ -1,2 +1,12 @@
 DEF 268 ConsoleAchievementDef VERSION 6
+	BOOLEAN IsDVR
+	BOOLEAN IsHidden
+	UINT32
+	UINT32
+	UINT32
+	FOREIGN_KEY AchievementDef Achievement
+	STRING
+	STRING
+	UINT32
+	UINT32
 END

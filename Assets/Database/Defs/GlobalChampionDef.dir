@@ -1,2 +1,46 @@
+STRUCT GlobalChampionDef_Discipline
+	UINT32
+END
+
+STRUCT GlobalChampionDef_PerRankEntry
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	UINT32
+END
+
 DEF 270 GlobalChampionDef VERSION 24
+	BOOLEAN Enabled
+	UINT32
+	INT32
+	INT32
+	UINT32
+	FLOAT
+	ARRAY STRUCT GlobalChampionDef_Discipline Disciplines
+	UINT32
+	UINT32
+	ENUM DerivedStats
+	UINT32
+	ENUM DerivedStats
+	UINT32
+	ENUM DerivedStats
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT16
+	UINT32
+	ARRAY STRUCT GlobalChampionDef_PerRankEntry PerRankFields
+	UINT32
+	ARRAY FLOAT MonsterDifficultyModifier
 END

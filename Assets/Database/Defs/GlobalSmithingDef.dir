@@ -1,2 +1,47 @@
+STRUCT GlobalSmithingDef_ExtractTraitEntry
+	FOREIGN_KEY ItemDef
+	FOREIGN_KEY ItemDef
+	BOOLEAN CanBeExtracted
+END
+
 DEF 234 GlobalSmithingDef VERSION 49
+	FLOAT
+	ARRAY FOREIGN_KEY ItemQualityDef QualityDef
+	ARRAY FOREIGN_KEY ItemQualityDef ChampionRankQualityDef
+	UINT32	
+	UINT32
+	UINT32
+	UINT32
+	ARRAY STRUCT GlobalSmithingDef_ExtractTraitEntry ExtractTraitItem
+	ARRAY FOREIGN_KEY ItemDef BlackSmithingBoosterPerQuality
+	ARRAY FOREIGN_KEY ItemDef WoodWorkingBoosterPerQuality
+	ARRAY FOREIGN_KEY ItemDef ClothierBoosterPerQuality 
+	ARRAY FOREIGN_KEY ItemDef JewelryCraftingBoosterPerQuality
+	ARRAY FOREIGN_KEY ItemDef BlackSmithingExtractedBoosterPerQuality
+	ARRAY FOREIGN_KEY ItemDef WoodWorkingExtractedBoosterPerQuality
+	ARRAY FOREIGN_KEY ItemDef ClothierExtractedBoosterPerQuality 
+	ARRAY FOREIGN_KEY ItemDef JewelryCraftingExtractedBoosterPerQuality
+	ARRAY UINT16 BoosterBonusPerQuality 
+	ARRAY UINT16 BoosterJewelryBonusPerQuality
+	ARRAY FOREIGN_KEY SmithingResearchDef BlackSmithingResearch 
+	ARRAY FOREIGN_KEY SmithingResearchDef WoodWorkingResearch
+	ARRAY FOREIGN_KEY SmithingResearchDef ClothierResearch
+	ARRAY FOREIGN_KEY SmithingResearchDef JewelryCraftingResearch
+	ARRAY UINT32 MinutesToResearch
+	ARRAY UINT32 JewelryCraftingMinutesToResearch
+	ARRAY UINT8  ResearchReductionPerLevel
+	ARRAY UINT8  ActiveResearchPerLevel
+	ARRAY UINT8  ActiveJewelryResearchPerLevel
+	ARRAY UINT32 MaxResearchDurationPerLevel 
+	FOREIGN_KEY FxDef
+	FOREIGN_KEY FxDef
+	FOREIGN_KEY FxDef
+	FOREIGN_KEY FxDef
+	ARRAY FOREIGN_KEY SmithingMaterialProgressionDef WoodMaterialProgressions
+	ARRAY FOREIGN_KEY SmithingMaterialProgressionDef MetalMaterialProgressions
+	ARRAY FOREIGN_KEY SmithingMaterialProgressionDef ClothMaterialProgressions
+	ARRAY FOREIGN_KEY SmithingMaterialProgressionDef LeatherMaterialProgressions
+	ARRAY FOREIGN_KEY SmithingMaterialProgressionDef JewelryMaterialProgressions
+	UINT32
+	UINT32	
 END

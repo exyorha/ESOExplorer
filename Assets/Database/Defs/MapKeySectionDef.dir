@@ -1,2 +1,7 @@
+STRUCT MapKeySectionDef_Symbol
+	ASSET_REFERENCE Icon
+END
+
 DEF 240 MapKeySectionDef VERSION 1
+	ARRAY STRUCT MapKeySectionDef_Symbol Symbols
 END

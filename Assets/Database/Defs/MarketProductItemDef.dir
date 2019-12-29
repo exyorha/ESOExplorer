@@ -2,7 +2,7 @@ DEF 326 MarketProductItemDef VERSION 5
 	FOREIGN_KEY ItemDef Item
 	UINT32
 	UINT8
-	UINT16
+	UINT16 Count
 	UINT32
 	ARRAY FOREIGN_KEY MarketProductDef ParentMarketProducts
 END

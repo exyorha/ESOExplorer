@@ -1,2 +1,3 @@
 DEF 246 GlobalLoadingTipDef VERSION 2
+	ARRAY FOREIGN_KEY LoadingTipDef Tips
 END

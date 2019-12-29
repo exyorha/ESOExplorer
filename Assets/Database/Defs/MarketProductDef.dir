@@ -1,2 +1,47 @@
+ENUM MarketProductDef_CategoryPresentationInfoEnum1
+	VALUES 0 3
+END
+
+ENUM MarketProductDef_CategoryPresentationInfoEnum2
+	VALUES 0 2
+END
+
+STRUCT MarketProductDef_CategoryPresentationInfo
+	ENUM MarketProductDef_CategoryPresentationInfoEnum1
+	UINT32
+	ENUM MarketProductDef_CategoryPresentationInfoEnum2
+	BOOLEAN HideFromCategoryView
+END
+
+STRUCT MarketProductDef_EventReaction 
+	ENUM CrownCrateEvent
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	STRING
+	UINT32
+	UINT32
+END
+
+ENUM MarketProductDefEnum1
+	VALUES 0 5
+END
+
 DEF 275 MarketProductDef VERSION 33
+	ARRAY STRUCT MarketProductDef_CategoryPresentationInfo Presentations
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ENUM TutorialTrigger
+	POLYMORPHIC_REFERENCE MarketProductType
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ARRAY STRUCT MarketProductDef_EventReaction CrownCrateEventReactionOverrides
+	ENUM MarketProductDefEnum1
+	UINT32
+	ASSET_REFERENCE
+	BOOLEAN ShowClaimGiftNotice
+	UINT32
+	UINT32
 END
