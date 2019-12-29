@@ -1,2 +1,18 @@
+STRUCT ClientTriggeredTrapDef_TrapStateInfo 
+	UINT32
+	UINT32
+	FOREIGN_KEY FxDef Fx
+END
+
 DEF 307 ClientTriggeredTrapDef VERSION 3
+	UINT32
+	INT16
+	UINT16
+	UINT32
+	UINT32
+	BOOLEAN RespawnOnReset
+	BOOLEAN Disarmable
+	ARRAY STRUCT ClientTriggeredTrapDef_TrapStateInfo TrippedTrapStateInfo
+	ARRAY STRUCT ClientTriggeredTrapDef_TrapStateInfo DisarmedTrapStateInfo
+	ARRAY STRUCT ClientTriggeredTrapDef_TrapStateInfo ResetTrapStateInfo
 END

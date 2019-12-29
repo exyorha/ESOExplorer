@@ -1,2 +1,76 @@
+STRUCT FxAnimPairedDef_ScaleCategory 
+	FLOAT
+	FLOAT
+	INT32
+	INT32
+	INT32
+END
+
+STRUCT FxAnimPairedDef_ScaleTargetingInfo
+	UINT32
+	UINT32
+	FOREIGN_KEY PostureDef
+	STRING
+	STRING
+	STRING
+	ENUM FurnitureSlot
+	INT32
+	INT32
+	INT32
+	FLOAT
+	FLOAT
+	FLOAT
+	BOOLEAN AnySourceScaleCategoryAllowed
+	BOOLEAN AnyTargetScaleCategoryAllowed
+	UINT32
+	UINT32
+	UINT32
+END
+
 DEF 310 FxAnimPairedDef VERSION 15
+	FLOAT
+	FLOAT
+	BOOLEAN OnCaster
+	BOOLEAN OverrideSourceBlendTimes
+	BOOLEAN OverrideTargetBlendTimes
+	BOOLEAN AttackAnim
+	BOOLEAN InterruptCombatAnims
+	BOOLEAN InterruptEffectAnims
+	BOOLEAN InterruptStanceAnims
+	BOOLEAN PlayUnderwater
+	BOOLEAN AlsoPlayOnMount
+	BOOLEAN ForcePlay
+	BOOLEAN SourceOffsetRelativeToTargetFacing
+	BOOLEAN SourceOffsetRelativeToRotationToTarget
+	BOOLEAN SourceFacingSameAsTargetFacing
+	BOOLEAN SourceFacingAtTarget
+	BOOLEAN ScaleCharacterToMiddleOfScaleCategory
+	BOOLEAN HidePropsOnTarget
+	STRING
+	STRING
+	STRING
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	INT32
+	INT32
+	INT32
+	INT32
+	INT32
+	INT32
+	ENUM FurnitureSlot
+	FOREIGN_KEY PostureDef
+	FLOAT
+	FLOAT
+	ARRAY STRUCT FxAnimPairedDef_ScaleCategory ScaleCategories
+	FLOAT
+	ARRAY STRUCT FxAnimPairedDef_ScaleTargetingInfo ScaleTargeting
+	UINT32
+	FLOAT
+	FLOAT
+	UINT32
+	ARRAY STRUCT FxStopInfo StopInfo
+	
 END

@@ -1,2 +1,51 @@
+ENUM GlobalCharacterPoseListDefEnum1
+	VALUES 0 1
+END
+
+ENUM GlobalCharacterPoseListDefEnum2
+	VALUES 0 2
+END
+
+ENUM GlobalCharacterPoseListDefEnum3
+	VALUES 0 5
+END
+
+STRUCT GlobalCharacterPoseListDef_PhysiquePoseInfo
+	ENUM GlobalCharacterPoseListDefEnum1
+	ENUM GlobalCharacterPoseListDefEnum1
+	ENUM GlobalCharacterPoseListDefEnum2
+	ENUM DeformationCharacter
+	ENUM GlobalCharacterPoseListDefEnum3
+	FOREIGN_KEY PoseDef
+END
+ 
+STRUCT GlobalCharacterPoseListDef_FacePoseInfo
+	ENUM GlobalCharacterPoseListDefEnum1
+	ENUM GlobalCharacterPoseListDefEnum1
+	ENUM GlobalCharacterPoseListDefEnum2
+	ENUM DeformationCharacter
+	ENUM GlobalCharacterPoseListDefEnum3
+	FOREIGN_KEY PoseDef
+END
+
+STRUCT GlobalCharacterPoseListDef_UniversalPoseInfo
+	ENUM GlobalCharacterPoseListDefEnum1
+	ENUM GlobalCharacterPoseListDefEnum1
+	ENUM GlobalCharacterPoseListDefEnum2
+	ENUM UniversalPoseType
+	FOREIGN_KEY PoseDef
+END
+
+STRUCT GlobalCharacterPoseListDef_RestPoseInfo
+	ENUM GlobalCharacterPoseListDefEnum1
+	ENUM GlobalCharacterPoseListDefEnum1
+	ENUM GlobalCharacterPoseListDefEnum2
+	FOREIGN_KEY PoseDef	
+END
+
 DEF 306 GlobalCharacterPoseListDef VERSION 1
+	ARRAY STRUCT GlobalCharacterPoseListDef_PhysiquePoseInfo PhysiquePoses
+	ARRAY STRUCT GlobalCharacterPoseListDef_FacePoseInfo FacePoses
+	ARRAY STRUCT GlobalCharacterPoseListDef_UniversalPoseInfo UniversalPoses
+	ARRAY STRUCT GlobalCharacterPoseListDef_RestPoseInfo RestPoses
 END

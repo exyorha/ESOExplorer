@@ -1,2 +1,11 @@
+STRUCT PersonalityDef_EmoteOverride 
+	FOREIGN_KEY PlayerEmoteDef From
+	FOREIGN_KEY PlayerEmoteDef To
+END
+
 DEF 296 PersonalityDef VERSION 4
+	FOREIGN_KEY PostureDef Posture
+	FOREIGN_KEY PostureDef
+	FOREIGN_KEY AnimSetDef AnimSet
+	ARRAY STRUCT PersonalityDef_EmoteOverride EmoteOverrides
 END

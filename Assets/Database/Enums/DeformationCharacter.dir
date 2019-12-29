@@ -1,0 +1,4 @@
+ENUM DeformationCharacter
+	VALUES 0 13
+END
+

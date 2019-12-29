@@ -1,2 +1,16 @@
+STRUCT GlobalCharacterPartsListDef_PartInfo 
+	ENUM ItemPart
+	UINT32
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+END
+
 DEF 299 GlobalCharacterPartsListDef VERSION 8
+	ARRAY STRUCT GlobalCharacterPartsListDef_PartInfo Parts
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	UINT32
+	FOREIGN_KEY ItemVisualTemplateDef
 END

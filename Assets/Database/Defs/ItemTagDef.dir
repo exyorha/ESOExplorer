@@ -1,2 +1,9 @@
+ENUM ItemTagDefEnum1
+	VALUES 0 3
+END
+
 DEF 302 ItemTagDef VERSION 3
+	; string context 0x2759EC5, id, 0
+	ENUM ItemTagDefEnum1
+	BOOLEAN HideInUI
 END

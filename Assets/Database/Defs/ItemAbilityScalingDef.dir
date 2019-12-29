@@ -1,2 +1,9 @@
+STRUCT ItemAbilityScaling_ScalingValues
+	UINT32
+	UINT32
+END
+
 DEF 294 ItemAbilityScalingDef VERSION 2
+	ARRAY STRUCT ItemAbilityScaling_ScalingValues AbilityScalingByRequiredLevel
+	ARRAY STRUCT ItemAbilityScaling_ScalingValues AbilityScalingByRequiredChampionRank
 END

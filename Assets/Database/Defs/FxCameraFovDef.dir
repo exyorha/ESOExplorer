@@ -1,2 +1,10 @@
 DEF 286 FxCameraFovDef VERSION 5
+	FLOAT
+	BOOLEAN OnCaster
+	BOOLEAN ApplyToFirstPerson
+	BOOLEAN ApplyToThirdPerson
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY STRUCT FxStopInfo StopInfo
 END

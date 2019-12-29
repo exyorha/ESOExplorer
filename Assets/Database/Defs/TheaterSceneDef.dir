@@ -1,2 +1,19 @@
+ENUM TheaterSceneDef_Enum1
+	VALUES 0 2
+END
+
 DEF 304 TheaterSceneDef VERSION 20
+	INT32
+	INT32
+	INT32
+	FLOAT
+	ENUM TheaterSceneDef_Enum1
+	BOOLEAN
+	BOOLEAN
+	BOOLEAN
+	UINT32
+	ARRAY FOREIGN_KEY TheaterActorDef ActorIds
+	ARRAY FOREIGN_KEY TheaterCueDef CueIds
+	ARRAY FOREIGN_KEY TheaterDirectionDef DirectionIds
+	ARRAY FOREIGN_KEY TheaterBlockingMarkerDef BlockingMarkerIds
 END

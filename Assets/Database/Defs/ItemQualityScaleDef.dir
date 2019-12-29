@@ -1,2 +1,3 @@
 DEF 280 ItemQualityScaleDef VERSION 3
+	ARRAY FOREIGN_KEY ItemQualityDef Quality
 END

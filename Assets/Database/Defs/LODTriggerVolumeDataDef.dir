@@ -1,2 +1,7 @@
 DEF 290 LODTriggerVolumeDataDef VERSION 1
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ARRAY FLOAT TriggerVolumePaintColor
 END

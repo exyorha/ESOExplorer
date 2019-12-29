@@ -1,2 +1,17 @@
+STRUCT GlobalMarketSubscriptionInfoDef_BenefitLine
+	ASSET_REFERENCE Icon
+END
+
 DEF 311 GlobalMarketSubscriptionInfoDef VERSION 10
+	ARRAY STRUCT GlobalMarketSubscriptionInfoDef_BenefitLine NonSubPlusBenefitLinesKb
+	ARRAY STRUCT GlobalMarketSubscriptionInfoDef_BenefitLine NonSubPlusBenefitLinesGp
+	FOREIGN_KEY FxDef
+	ARRAY STRUCT GlobalMarketSubscriptionInfoDef_BenefitLine SubPlusBenefitLinesKb
+	ARRAY STRUCT GlobalMarketSubscriptionInfoDef_BenefitLine SubPlusBenefitLinesGp
+	ARRAY STRUCT GlobalMarketSubscriptionInfoDef_BenefitLine TrialPlusBenefitLinesKb
+	ARRAY STRUCT GlobalMarketSubscriptionInfoDef_BenefitLine TrialPlusBenefitLinesGp
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	FOREIGN_KEY HelpDef
+	FOREIGN_KEY HelpDef
 END
