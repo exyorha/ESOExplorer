@@ -115,3 +115,7 @@ std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord:
 std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueStruct& val) {
 	return "<struct>";
 }
+
+std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValuePolymorphicReference& val) {
+	return "<polyref>";
+}

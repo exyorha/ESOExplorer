@@ -35,6 +35,7 @@ private:
 	static std::string convertValueForDisplay(double val);
 	static std::string convertValueForDisplay(const ESODatabaseRecord::ValueAssetReference& val);
 	static std::string convertValueForDisplay(const ESODatabaseRecord::ValueStruct & val);
+	static std::string convertValueForDisplay(const ESODatabaseRecord::ValuePolymorphicReference& val);
 	
 	const ESODatabaseDef* m_def;
 	const DataStorage* m_storage;

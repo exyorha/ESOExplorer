@@ -24,7 +24,8 @@ public:
 		ForeignKey,
 		AssetReference,
 		Boolean,
-		Struct
+		Struct,
+		PolymorphicReference
 	};
 
 	struct StructureField {

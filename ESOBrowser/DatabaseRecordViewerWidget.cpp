@@ -213,3 +213,30 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseR
 		return item;
 	}
 }
+
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver) {
+	return std::visit(
+		[this, &val, childReceiver](const auto& value) {
+			return convertValueToItem(val, childReceiver, value);
+		}, val.data);
+}
+
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const std::monostate&) {
+	return new QStandardItem(QStringLiteral("NULL Polymorphic Reference"));
+}
+
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, uint32_t unknownValue) {
+	return new QStandardItem(QStringLiteral("Unresolved polymorphic reference: type %1::%2, ID %3")
+		.arg(QString::fromStdString(val.selector.definition->name)).arg(val.selector.value).arg(unknownValue));
+}
+
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const ESODatabaseRecord::ValueForeignKey& fkey) {
+	auto item = convertValueToItem(fkey, childReceiver);
+
+	auto it = val.selector.definition->valueNames.find(val.selector.value);
+	auto displayText = item->data(Qt::DisplayRole).toString();
+	displayText.prepend(tr("%1: ").arg(QString::fromStdString(it->second)));
+	item->setData(displayText, Qt::DisplayRole);
+
+	return item;
+}

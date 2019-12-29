@@ -30,7 +30,12 @@ struct ESOFieldContainer {
 
 	using ValueStruct = ESOValueStruct;
 
-	using Value = std::variant<std::monostate, long long, unsigned long long, ValueEnum, std::string, ValueArray, ValueForeignKey, bool, double, ValueAssetReference, ValueStruct>;
+	struct ValuePolymorphicReference {
+		ValueEnum selector;
+		std::variant<std::monostate, uint32_t, ValueForeignKey> data;
+	};
+
+	using Value = std::variant<std::monostate, long long, unsigned long long, ValueEnum, std::string, ValueArray, ValueForeignKey, bool, double, ValueAssetReference, ValueStruct, ValuePolymorphicReference>;
 
 	struct ValueArray {
 		std::vector<Value> values;

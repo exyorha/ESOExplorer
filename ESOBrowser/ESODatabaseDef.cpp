@@ -172,9 +172,6 @@ void ESODatabaseDef::parseField(esodata::SerializationStream& stream, DatabaseDi
 		uint32_t length;
 		stream >> length;
 
-		if (length > 16384)
-			__debugbreak();
-
 		avalue.values.resize(length);
 
 		for (auto& value : avalue.values) {
@@ -205,6 +202,45 @@ void ESODatabaseDef::parseField(esodata::SerializationStream& stream, DatabaseDi
 		auto& svalue = value.emplace<ESODatabaseRecord::ValueStruct>();
 		
 		parseStructureIntoRecord(stream, m_parsingContext->findStructureByName(field.typeName), svalue);
+
+		break;
+	}
+
+	case DatabaseDirectiveFile::FieldType::PolymorphicReference:
+	{
+		auto &pvalue = value.emplace<ESODatabaseRecord::ValuePolymorphicReference>();
+		pvalue.selector.definition = &m_parsingContext->findEnumByName(field.typeName);
+		stream >> pvalue.selector.value;
+
+		auto it = pvalue.selector.definition->valueNames.find(pvalue.selector.value);
+		if (it == pvalue.selector.definition->valueNames.end()) {
+			stream >> pvalue.data.emplace<uint32_t>();
+		}
+		else if(it->second == "NULL") {
+			uint32_t id;
+			stream >> id;
+
+			if (id == 0) {
+				pvalue.data.emplace<std::monostate>();
+			}
+			else {
+				pvalue.data.emplace<std::uint32_t>(id);
+			}
+		}
+		else {
+			auto delimiter = it->second.find_first_of('$');
+			std::string defName;
+			if (delimiter == std::string::npos) {
+				defName = it->second.substr(0, delimiter);
+			}
+			else {
+				defName = it->second;
+			}
+
+			auto& fkey = pvalue.data.emplace<ESODatabaseRecord::ValueForeignKey>();
+			fkey.def = m_parsingContext->findDefByName(defName).name;
+			stream >> fkey.id;
+		}
 
 		break;
 	}

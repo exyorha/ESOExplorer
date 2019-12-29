@@ -54,6 +54,11 @@ private:
 
 	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueStruct & value, QStandardItem* childReceiver);
 
+	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver);
+	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const std::monostate &);
+	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, uint32_t unknownValue);
+	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const ESODatabaseRecord::ValueForeignKey &fkey);
+
 	ESOBrowserMainWindow* m_window;
 	Ui::DatabaseRecordViewerWidget ui;
 

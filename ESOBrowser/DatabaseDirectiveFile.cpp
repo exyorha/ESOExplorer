@@ -23,7 +23,8 @@ void DatabaseDirectiveFile::parseFieldType(std::vector<std::string>::const_itera
 		{ "FOREIGN_KEY", FieldType::ForeignKey },
 		{ "BOOLEAN", FieldType::Boolean },
 		{ "ASSET_REFERENCE", FieldType::AssetReference },
-		{ "STRUCT", FieldType::Struct }
+		{ "STRUCT", FieldType::Struct },
+		{ "POLYMORPHIC_REFERENCE", FieldType::PolymorphicReference }
 	};
 
 
@@ -48,7 +49,7 @@ void DatabaseDirectiveFile::parseFieldType(std::vector<std::string>::const_itera
 		field.type = typeEnum;
 	}
 	
-	if (typeEnum == FieldType::Enum || typeEnum == FieldType::ForeignKey || typeEnum == FieldType::Struct) {
+	if (typeEnum == FieldType::Enum || typeEnum == FieldType::ForeignKey || typeEnum == FieldType::Struct || typeEnum == FieldType::PolymorphicReference) {
 		if (it == endIt)
 			parseError("Expected type name after ENUM, FOREIGN_KEY or STRUCT");
 
