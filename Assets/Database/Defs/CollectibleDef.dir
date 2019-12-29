@@ -1,2 +1,78 @@
+ENUM CollectibleDefEnum1
+	VALUES 0 1
+END
+
+STRUCT CollectibleDef_PrioritizedReferenceDataEntry 
+	UINT32 Override
+	FOREIGN_KEY RequirementListDef Requirements
+END
+
+ENUM CollectibleDefEnum2
+	VALUES 0 3
+END
+
+ENUM CollectibleDefEnum3
+	VALUES 0 2
+END
+
+ENUM CollectibleDefEnum4
+	VALUES 0 3
+END
+
+ENUM CollectibleDefEnum5
+	VALUES 0 3
+END
+
 DEF 278 CollectibleDef VERSION 45
+	ASSET_REFERENCE icon
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	FOREIGN_KEY CollectibleCategoryDef
+	UINT8
+	POLYMORPHIC_REFERENCE CollectibleCategoryType ReferenceData
+	ENUM CollectibleDefEnum1
+	BOOLEAN	AvailableInCrownStore
+	BOOLEAN UnlockedViaSubscription
+	BOOLEAN AddedToGlobalCollectionDef
+	BOOLEAN IsDyeable
+	BOOLEAN UnlockedForAll
+	BOOLEAN RequiresEntitlementToUnlock
+	BOOLEAN UseFurnitureCameraPreviewOffset
+	BOOLEAN CanUnlockAccountMinorBagUpgrade
+	ENUM ItemUISoundCategory
+	UINT32
+	ARRAY STRUCT CollectibleDef_PrioritizedReferenceDataEntry PrioritizedReferenceDataOverrides
+	ARRAY STRUCT CollectibleDef_PrioritizedReferenceDataEntry PreviewReferenceDataOverrides
+	ARRAY FOREIGN_KEY PointOfInterestDef PointsOfInterest
+	FOREIGN_KEY ErrorStringDef
+	UINT32
+	FOREIGN_KEY AbilityDef
+	BOOLEAN UnavailableToMales
+	BOOLEAN UnavailableToFemales
+	BOOLEAN UnavailableToAldmeri
+	BOOLEAN UnavailableToEbonheart
+	BOOLEAN UnavailableToDaggerfall
+	BOOLEAN HasRaceRestrictions
+	BOOLEAN HasClassRestrictions
+	ARRAY UINT32 AllowedRaces
+	ENUM CollectibleDefEnum2
+	ENUM CollectibleDefEnum3
+	ENUM CollectibleDefEnum4
+	ARRAY UINT32 AllowedClasses
+	FOREIGN_KEY FurnitureDataDef
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	BOOLEAN IgnoreHidePolymorphHelmOption
+	BOOLEAN CanRotateDuringPreview
+	ENUM CollectibleDefEnum5
+	UINT32
 END

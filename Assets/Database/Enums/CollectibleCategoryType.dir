@@ -1,0 +1,29 @@
+ENUM CollectibleCategoryType
+	VALUE 0 NULL
+	VALUE 1 QuestBestowalDef$DLC
+	VALUE 2 MountSkinDef
+	VALUE 3 MonsterDef$VanityPet
+	VALUE 4 CollectibleCostumeDef$Costume
+	VALUE 5 AbilityDef
+	VALUE 6 NULL$Upgrade
+	VALUE 7
+	VALUE 8 MonsterDef$Assistant
+	VALUE 9 CollectiblePersonalityDef
+	VALUE 10 CollectibleHatDef
+	VALUE 11 CollectibleSkinDef
+	VALUE 12 CollectibleCostumeDef$Polymorph
+	VALUE 13 CollectibleHairDef
+	VALUE 14 CollectibleAppearanceDef$FacialHair
+	VALUE 15 CollectibleAppearanceDef$MajorAdornment
+	VALUE 16 CollectibleAppearanceDef$MinorAdornment
+	VALUE 17 CollectibleAppearanceDef$FacialMarking
+	VALUE 18 CollectibleAppearanceDef$BodyMarking
+	VALUE 19 HouseDef
+	VALUE 20 PlaceableFurnitureDef
+	VALUE 21 PlayerEmoteDef
+	VALUE 22 QuestBestowalDef$Chapter
+	VALUE 23 PetAbilitySkinDef
+	VALUE 24 OutfitStyleDef
+	VALUE 25 InteractableObjectDef
+	VALUE 26 CombinationDef
+END
