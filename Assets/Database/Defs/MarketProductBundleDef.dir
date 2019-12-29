@@ -1,2 +1,6 @@
 DEF 323 MarketProductBundleDef VERSION 4
+	ASSET_REFERENCE Icon
+	BOOLEAN HideChildProducts
+	ARRAY FOREIGN_KEY MarketProductDef MarketProducts
+	ARRAY FOREIGN_KEY MarketProductDef DisplayOverrideMarketProducts
 END

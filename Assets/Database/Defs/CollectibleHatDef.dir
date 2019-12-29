@@ -1,2 +1,7 @@
 DEF 313 CollectibleHatDef VERSION 1
+	FOREIGN_KEY ItemVisualTemplateDef
+	FOREIGN_KEY TintDef
+	FOREIGN_KEY TintDef
+	FOREIGN_KEY TintDef
+	FOREIGN_KEY FxDef
 END

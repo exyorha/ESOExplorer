@@ -1,2 +1,8 @@
+STRUCT AnimNameOverrideListDef_AnimNameOverride 
+	STRING From
+	STRING To
+END
+
 DEF 327 AnimNameOverrideListDef VERSION 1
+	ARRAY STRUCT AnimNameOverrideListDef_AnimNameOverride Overrides
 END

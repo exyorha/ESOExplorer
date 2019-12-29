@@ -1,2 +1,31 @@
+STRUCT MotifPreviewDef_LookPart
+	FOREIGN_KEY ItemVisualTemplateDef
+	UINT32
+	UINT32
+	UINT32
+END
+
+STRUCT MotifPreviewDef_Look
+	STRING Name
+	
+	STRUCT MotifPreviewDef_LookPart Head
+	STRUCT MotifPreviewDef_LookPart Robe
+	STRUCT MotifPreviewDef_LookPart Shoulders
+	STRUCT MotifPreviewDef_LookPart Waist
+	STRUCT MotifPreviewDef_LookPart Legs
+	STRUCT MotifPreviewDef_LookPart Feet
+	STRUCT MotifPreviewDef_LookPart
+	STRUCT MotifPreviewDef_LookPart Hand
+	STRUCT MotifPreviewDef_LookPart
+	STRUCT MotifPreviewDef_LookPart
+	STRUCT MotifPreviewDef_LookPart
+	STRUCT MotifPreviewDef_LookPart
+	STRUCT MotifPreviewDef_LookPart
+	STRUCT MotifPreviewDef_LookPart
+	STRUCT MotifPreviewDef_LookPart Staff
+	STRUCT MotifPreviewDef_LookPart
+END
+
 DEF 319 MotifPreviewDef VERSION 2
+	ARRAY STRUCT MotifPreviewDef_Look Looks
 END

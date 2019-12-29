@@ -1,2 +1,5 @@
 DEF 315 CollectibleCostumeDef VERSION 1
+	FOREIGN_KEY AppearanceDef
+	FOREIGN_KEY FxDef
+	UINT32
 END

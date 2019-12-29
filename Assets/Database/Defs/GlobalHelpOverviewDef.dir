@@ -1,2 +1,10 @@
+STRUCT GlobalHelpOverviewDef_QuestionAnswerPair 
+
+END
+
 DEF 312 GlobalHelpOverviewDef VERSION 4
+	ARRAY STRUCT GlobalHelpOverviewDef_QuestionAnswerPair QuestionAnswerPairs
+	UINT32
+	UINT32
+	UINT32
 END
