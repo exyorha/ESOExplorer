@@ -1,2 +1,9 @@
+STRUCT SmithingMaterialProgressionDef_MaterialEntry
+	FOREIGN_KEY ItemDef
+	UINT8 Amount
+END
+
 DEF 230 SmithingMaterialProgressionDef VERSION 2
+	ARRAY STRUCT SmithingMaterialProgressionDef_MaterialEntry RequiredLevel
+	ARRAY STRUCT SmithingMaterialProgressionDef_MaterialEntry ChampionRank	
 END
