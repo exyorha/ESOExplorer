@@ -1,0 +1,3 @@
+ENUM LFGActivity
+	VALUES 0 8
+END

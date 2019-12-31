@@ -1,2 +1,13 @@
 DEF 210 FxStatusEffectDef VERSION 7
+	FLOAT
+	FLOAT
+	BOOLEAN EmitTop
+	BOOLEAN EmitBottom
+	BOOLEAN EmitRight
+	BOOLEAN EmitLeft
+	BOOLEAN MultiFire
+	BOOLEAN UseOwnFov
+	ASSET_REFERENCE
+	FLOAT
+	ARRAY STRUCT FxStopInfo StopInfo
 END

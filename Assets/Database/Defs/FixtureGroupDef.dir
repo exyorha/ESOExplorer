@@ -1,2 +1,4 @@
 DEF 218 FixtureGroupDef VERSION 4
+	ARRAY UINT64 FixtureIdsInGroup
+	ARRAY FOREIGN_KEY KeepDef KeepIdsInGroup
 END

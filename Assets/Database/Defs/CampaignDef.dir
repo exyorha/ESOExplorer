@@ -1,2 +1,5 @@
 DEF 196 CampaignDef VERSION 6
+	FOREIGN_KEY CampaignRulesetDef Ruleset
+	BOOLEAN AllianceLocked
+	BOOLEAN ImperialCityCampaign
 END

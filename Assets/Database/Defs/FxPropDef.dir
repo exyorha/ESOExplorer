@@ -1,2 +1,18 @@
+STRUCT FxPropDef_ItemVisualData
+	FOREIGN_KEY ItemVisualTemplateDef
+	UINT8
+	FOREIGN_KEY FxDef
+	BOOLEAN StopFxOnSheathe
+END
+
 DEF 192 FxPropDef VERSION 10
+	BOOLEAN OnCaster
+	BOOLEAN ChangeToThisLeftItem
+	BOOLEAN ChangeToThisRightItem
+	BOOLEAN DelayStopIfFxAnimPairedCameraActive
+	FLOAT
+	FLOAT
+	ARRAY STRUCT FxPropDef_ItemVisualData LeftHandPropItemVisualData
+	ARRAY STRUCT FxPropDef_ItemVisualData RightHandPropItemVisualData
+	ARRAY STRUCT FxStopInfo StopInfo
 END

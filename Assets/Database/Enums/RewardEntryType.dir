@@ -1,0 +1,14 @@
+ENUM RewardEntryType
+	VALUE 0 SystemMailDef
+	VALUE 1
+	VALUE 2 TitleDef$AddTitle
+	VALUE 3 TitleDef$RemoveTitle
+	VALUE 4
+	VALUE 5 SkillLineDef
+	VALUES 6 8
+	VALUE 9 CollectibleDef
+	VALUES 10 11
+	VALUE 12 ItemDef
+	VALUES 13 14
+	VALUE 15 RewardListDef
+END

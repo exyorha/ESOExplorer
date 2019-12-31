@@ -1,0 +1,3 @@
+ENUM ItemType
+	VALUES 0 70
+END

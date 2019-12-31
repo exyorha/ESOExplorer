@@ -1,2 +1,14 @@
+STRUCT EnchantmentDef_StatBonus
+	ENUM DerivedStats
+	UINT32
+	FOREIGN_KEY RequirementListDef
+END
+
 DEF 203 EnchantmentDef VERSION 4
+	UINT32
+	FOREIGN_KEY AbilityDef
+	UINT32
+	ARRAY STRUCT EnchantmentDef_StatBonus StatBonuses
+	FLOAT
+	ENUM EnchantmentSearchCategoryType
 END

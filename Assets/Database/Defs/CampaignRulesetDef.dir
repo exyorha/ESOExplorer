@@ -1,2 +1,33 @@
+ENUM CampaignRulesetDefEnum1
+	VALUES 0 2
+END
+
+ENUM CampaignRulesetDefEnum2
+	VALUES 0 4
+END
+
 DEF 195 CampaignRulesetDef VERSION 34
+	UINT64
+	UINT64
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FOREIGN_KEY RequirementListDef
+	ENUM CampaignRulesetDefEnum1
+	UINT32
+	UINT32
+	UINT32
+	ENUM CampaignRulesetDefEnum2
+	BOOLEAN AllowCrossAllianceChat
+	ARRAY FOREIGN_KEY RequirementListDef CoronateEmperorRequirements
+	ARRAY FOREIGN_KEY AbilityDef EmperorAllianceWideBuff
+	ARRAY UINT32 RewardTierCutoffs
+	UINT32
+	FOREIGN_KEY MonsterModifierDef
+	UINT32
 END

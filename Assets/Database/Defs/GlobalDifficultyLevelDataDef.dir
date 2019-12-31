@@ -1,2 +1,25 @@
+STRUCT GlobalDifficultyLevelDataDef_DifficultyLevel
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+END
+
+STRUCT GlobalDifficultyLevelDataDef_DifficultyAlliances
+	ARRAY ENUM Alliance
+END
+
 DEF 208 GlobalDifficultyLevelDataDef VERSION 12
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ARRAY STRUCT GlobalDifficultyLevelDataDef_DifficultyLevel ScaledChampDifficultyRanks 
+	ARRAY STRUCT GlobalDifficultyLevelDataDef_DifficultyLevel ScaledHeroicChampDifficultyRanks 
+	ARRAY STRUCT GlobalDifficultyLevelDataDef_DifficultyLevel ScaledSoloChampDifficultyRanks 
+	UINT32
+	UINT32
+	ARRAY STRUCT GlobalDifficultyLevelDataDef_DifficultyAlliances AllianceDifficultyMapping
+	ARRAY STRUCT GlobalDifficultyLevelDataDef_DifficultyAlliances CadwellProgressionMapping
+	
 END

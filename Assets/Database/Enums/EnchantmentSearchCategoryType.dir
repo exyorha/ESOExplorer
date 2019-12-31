@@ -1,0 +1,4 @@
+ENUM EnchantmentSearchCategoryType
+	VALUES 0 36
+	VALUE 1000
+END

@@ -1,2 +1,58 @@
 DEF 197 GlobalAbilityDataDef VERSION 50
+	FOREIGN_KEY AbilityDef Recall
+	FOREIGN_KEY AbilityDef IntimidateAbility
+	FOREIGN_KEY AbilityDef PersuadeAbility
+	FOREIGN_KEY AbilityDef MoveAbility
+	ARRAY FOREIGN_KEY AbilityDef VampireStagesAbility
+	UINT32
+	UINT32
+	UINT32
+	
+	FOREIGN_KEY AbilityDef Resurrect
+	ASSET_REFERENCE RecapFireMelee
+	ASSET_REFERENCE RecapFireRanged	
+	ASSET_REFERENCE RecapFireAoe
+	ASSET_REFERENCE RecapColdMelee
+	ASSET_REFERENCE RecapColdRanged	
+	ASSET_REFERENCE RecapColdAoe
+	ASSET_REFERENCE RecapShockMelee
+	ASSET_REFERENCE RecapShockRanged	
+	ASSET_REFERENCE RecapShockAoe
+	ASSET_REFERENCE RecapPoisonMelee
+	ASSET_REFERENCE RecapPoisonRanged	
+	ASSET_REFERENCE RecapPoisonAoe
+	ASSET_REFERENCE RecapMagicMelee
+	ASSET_REFERENCE RecapMagicRanged	
+	ASSET_REFERENCE RecapMagicAoe
+	ASSET_REFERENCE RecapDiseaseMelee
+	ASSET_REFERENCE RecapDiseaseRanged	
+	ASSET_REFERENCE RecapDiseaseAoe
+	ASSET_REFERENCE RecapOblivionMelee
+	ASSET_REFERENCE RecapOblivionRanged
+	ASSET_REFERENCE RecapOblivionAoe	
+	ASSET_REFERENCE RecapMeleeBasic
+	ASSET_REFERENCE RecapRangedBasic
+	ASSET_REFERENCE RecapMeleeHeavy
+	ASSET_REFERENCE RecapRangedHeavy
+	UINT32
+	UINT32
+	INT32
+	UINT32
+	FOREIGN_KEY AbilityDef SwapToWeaponSet1
+	FOREIGN_KEY AbilityDef SwapToWeaponSet2
+	UINT32
+	FOREIGN_KEY AbilityDef Lycanthropy
+	FOREIGN_KEY AbilityDef WerewolfTransformation
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ARRAY ASSET_REFERENCE DefaultAbilityTypeIcon
+	ARRAY STRUCT CpStr DefaultAbilityTypeEffectText
+	UINT32
+	UINT32
+	UINT32
 END

@@ -1,2 +1,9 @@
+STRUCT GlobalFishingDataDef_NibbleVibration
+	FOREIGN_KEY VibrationDef Vibration
+	FLOAT
+END
+
 DEF 200 GlobalFishingDataDef VERSION 4
+	ARRAY FOREIGN_KEY ItemDef LureItemIds
+	ARRAY STRUCT GlobalFishingDataDef_NibbleVibration NibbleVibrations
 END

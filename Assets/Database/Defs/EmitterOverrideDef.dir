@@ -1,2 +1,45 @@
+STRUCT EmitterOverrideDef_ModelDefaultFxToFxEmitter
+	UINT32
+	FOREIGN_KEY FxEmitterDef
+	FOREIGN_KEY FxEmitterDef
+	UINT32
+END
+
+STRUCT EmitterOverrideDef_ChestMaterialAndModelTemplateToFxEmitter
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+END
+
+STRUCT EmitterOverrideDef_ModelTemplateToFxEmitter
+	FOREIGN_KEY ModelTemplateDef
+	FOREIGN_KEY FxEmitterDef
+	UINT32
+	UINT32
+END
+
+STRUCT EmitterOverrideDef_MaterialComboToFxEmitter
+	UINT32
+	UINT32
+	FOREIGN_KEY FxEmitterDef
+	FOREIGN_KEY FxEmitterDef
+	UINT32
+END
+
+STRUCT EmitterOverrideDef_MaterialToFxEmitter
+	UINT32
+	FOREIGN_KEY FxEmitterDef
+	FOREIGN_KEY FxEmitterDef
+	UINT32
+END
+
 DEF 205 EmitterOverrideDef VERSION 8
+	ARRAY STRUCT EmitterOverrideDef_ModelDefaultFxToFxEmitter ModelDefaultFxOverride
+	ARRAY STRUCT EmitterOverrideDef_ChestMaterialAndModelTemplateToFxEmitter ChestMaterialAndModelTemplateOverride
+	ARRAY STRUCT EmitterOverrideDef_ModelTemplateToFxEmitter ModelTemplateOverride
+	ARRAY STRUCT EmitterOverrideDef_MaterialComboToFxEmitter MaterialComboOverride
+	ARRAY STRUCT EmitterOverrideDef_MaterialToFxEmitter MaterialOverride
+	UINT32
 END

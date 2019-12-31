@@ -1,2 +1,19 @@
+ENUM WorldPositionNodeDef_LinkInfoEnum1
+	VALUES 0 2
+END
+
+STRUCT WorldPositionNodeDef_LinkInfo
+	ENUM WorldPositionNodeDef_LinkInfoEnum1
+	FOREIGN_KEY WorldPositionNodeDef
+	UINT32
+	BOOLEAN Teleport
+END
+
 DEF 207 WorldPositionNodeDef VERSION 5
+	FOREIGN_KEY WorldDef
+	INT32 PositionX
+	INT32 PositionY
+	INT32 PositionZ
+	ARRAY STRUCT WorldPositionNodeDef_LinkInfo LinkedPositions
+	ARRAY FLOAT TriggerVolumePaintColor	
 END
