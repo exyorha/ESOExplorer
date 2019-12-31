@@ -1,2 +1,13 @@
+STRUCT GlobalProvisioningDef_RecipeInfo 
+	FOREIGN_KEY RecipeDef Recipe
+	UINT32 Order
+END
+
 DEF 227 GlobalProvisioningDef VERSION 11
+	ENUM TradeskillType
+	ARRAY FOREIGN_KEY RecipeListDef Recipes
+	FLOAT
+	UINT32
+	ARRAY STRUCT GlobalProvisioningDef_RecipeInfo RecipeData
+	UINT32
 END
