@@ -1,2 +1,16 @@
+STRUCT GlobalSoulGemDataDef_SoulGem
+	FOREIGN_KEY ItemDef Empty
+	FOREIGN_KEY ItemDef Full
+	UINT32
+	UINT32
+END
+
 DEF 188 GlobalSoulGemDataDef VERSION 4
+	ARRAY STRUCT GlobalSoulGemDataDef_SoulGem SoulGemTiers
+	ARRAY STRUCT GlobalSoulGemDataDef_SoulGem CashShopSoulGemTiers
+	FOREIGN_KEY AbilityDef ResurrectAbility
+	UINT32
+	UINT32
+	FOREIGN_KEY AbilityDef FreeReviveCooldown
+	ARRAY FOREIGN_KEY AbilityDef FreeRevivePassiveAbilityIds
 END

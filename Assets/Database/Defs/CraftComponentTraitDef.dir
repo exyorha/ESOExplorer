@@ -1,2 +1,13 @@
 DEF 183 CraftComponentTraitDef VERSION 8
+	ASSET_REFERENCE icon
+	ASSET_REFERENCE iconMatch
+	UINT32
+	FOREIGN_KEY AbilityDef
+	FOREIGN_KEY AbilityDef
+	FOREIGN_KEY ItemDef
+	FOREIGN_KEY AbilityDef
+	FOREIGN_KEY AbilityDef
+	FOREIGN_KEY ItemDef
+	UINT8
+	ASSET_REFERENCE iconConflict
 END

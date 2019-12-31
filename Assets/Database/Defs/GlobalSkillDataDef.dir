@@ -1,2 +1,12 @@
 DEF 190 GlobalSkillDataDef VERSION 8
+	ARRAY FOREIGN_KEY SkillLineDef ArmorSkills
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	ARRAY FOREIGN_KEY SkillLineDef TradeskillSkillLines
 END

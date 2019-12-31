@@ -1,2 +1,234 @@
+STRUCT GlobalCameraDef_CameraHeightPoint 
+	FLOAT
+	FLOAT
+END
+
+STRUCT GlobalCameraDef_CameraHorizontalPoint
+	FLOAT
+	FLOAT
+END
+
+STRUCT GlobalCameraDef_InventoryFramingLight 
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+END
+
+ENUM GlobalCameraDef_FirstPersonHeadBobEnum1
+	VALUES 0 5
+END
+
+STRUCT GlobalCameraDef_FirstPersonHeadBob
+	ENUM GlobalCameraDef_FirstPersonHeadBobEnum1
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	
+	FLOAT
+	FLOAT
+	FLOAT	
+	FLOAT
+	
+	FLOAT
+	FLOAT
+	FLOAT	
+	FLOAT
+	
+	FLOAT
+	FLOAT	
+	FLOAT	
+	FLOAT
+	
+	FLOAT
+	FLOAT	
+	FLOAT	
+	FLOAT	
+END
+
+STRUCT GlobalCameraDef_CameraSprintFieldOfViewDeltaPoint
+	FLOAT
+	FLOAT
+END
+
+STRUCT GlobalCameraDef_GamepadSiegeCameraInfo
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+END
+
 DEF 174 GlobalCameraDef VERSION 58
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY STRUCT GlobalCameraDef_CameraHeightPoint CameraHeightCurve
+	ARRAY STRUCT GlobalCameraDef_CameraHorizontalPoint CameraMovementHorizontalCurve
+	ARRAY STRUCT GlobalCameraDef_CameraHorizontalPoint CameraCombatHorizontalCurve
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY STRUCT GlobalCameraDef_InventoryFramingLight InventoryLights
+	ARRAY STRUCT GlobalCameraDef_InventoryFramingLight InteractionLights
+	ARRAY STRUCT GlobalCameraDef_FirstPersonHeadBob FirstPersonHeadBob
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	BOOLEAN FirstPersonModelVisible
+	FLOAT
+	ARRAY STRUCT GlobalCameraDef_CameraSprintFieldOfViewDeltaPoint CameraSprintFieldOfViewDeltaCurve
+	ARRAY STRUCT GlobalCameraDef_CameraSprintFieldOfViewDeltaPoint FirstPersonSprintFieldOfViewDeltaCurve
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY UINT32 FramingEmoteIds
+	ARRAY UINT32 SubscriberOverrideFramingEmoteIds
+	FLOAT
+	UINT32
+	UINT32
+	FLOAT
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY STRUCT GlobalCameraDef_GamepadSiegeCameraInfo SiegeGamepadCameraInfo
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
 END

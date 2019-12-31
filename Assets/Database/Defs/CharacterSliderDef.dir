@@ -1,2 +1,18 @@
+ENUM CharacterSliderDefEnum1
+	VALUES 0 2
+END
+
+ENUM CharacterSliderDefEnum2
+	VALUES 0 2
+END
+
+
 DEF 175 CharacterSliderDef VERSION 5
+	ENUM CharacterSliderDefEnum1
+	ENUM CharacterSliderDefEnum2
+	ENUM DeformationCharacter
+	ENUM CharacterSliderName
+	STRING
+	STRING
+	FLOAT
 END

@@ -1,0 +1,3 @@
+ENUM EmoteCategory
+	VALUES 0 14
+END

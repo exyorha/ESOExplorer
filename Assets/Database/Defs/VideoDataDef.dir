@@ -1,2 +1,10 @@
+STRUCT VideoDataDef_Subtitle
+	FLOAT
+	FLOAT
+END
+
 DEF 181 VideoDataDef VERSION 2
+	STRING
+	STRING
+	ARRAY STRUCT VideoDataDef_Subtitle Subtitles
 END

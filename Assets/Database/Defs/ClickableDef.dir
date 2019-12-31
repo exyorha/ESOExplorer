@@ -1,2 +1,17 @@
+ENUM ClickableDefEnum1
+	VALUES 0 2
+END
+
 DEF 176 ClickableDef VERSION 14
+	ARRAY FOREIGN_KEY BookDef BookShelf
+	BOOLEAN Owned 
+	BOOLEAN Takeable
+	BOOLEAN Empty
+	FOREIGN_KEY FxDef EmptyFx
+	FOREIGN_KEY FxDef FullFx
+	FOREIGN_KEY FxDef OpenFx
+	FOREIGN_KEY FxDef CloseFx
+	ENUM ClickableDefEnum1
+	ENUM ClickableFlavorType
+	ENUM BookMedium
 END

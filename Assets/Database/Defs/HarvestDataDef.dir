@@ -1,2 +1,8 @@
+STRUCT HarvestDataDef_LootTableEntry
+	UINT32
+	FOREIGN_KEY LootTableDef LootTable
+END
+
 DEF 173 HarvestDataDef VERSION 8
+	ARRAY STRUCT HarvestDataDef_LootTableEntry LootTables
 END
