@@ -1,2 +1,8 @@
 DEF 152 BookCollectionDef VERSION 8
+	STRUCT CpStr Description
+	ASSET_REFERENCE CollectionIcon
+	ARRAY FOREIGN_KEY BookDef Book
+	BOOLEAN HideFromLoreLibrary
+	BOOLEAN HideFromEideticMemory
+	FOREIGN_KEY BookCollectionCategoryDef Category
 END

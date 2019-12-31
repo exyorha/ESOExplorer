@@ -1,2 +1,25 @@
+STRUCT LensFlareDef_Sprite
+	INT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY FLOAT Color
+	INT32
+END
+
 DEF 158 LensFlareDef VERSION 6
+	UINT32
+	INT32
+	INT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY FLOAT
+	ARRAY STRUCT LensFlareDef_Sprite Sprites
+	BOOLEAN DepthAffectsSize
+	BOOLEAN LightAffectsColor
+	BOOLEAN AnimationAffectsBrightness
 END

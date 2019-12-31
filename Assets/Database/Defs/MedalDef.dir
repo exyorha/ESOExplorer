@@ -1,2 +1,6 @@
 DEF 157 MedalDef VERSION 11
+	ASSET_REFERENCE
+	ENUM ScoreTrackerEntryType
+	UINT32
+	STRUCT CpStr Condition
 END

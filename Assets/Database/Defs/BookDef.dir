@@ -1,2 +1,8 @@
 DEF 151 BookDef VERSION 12
+	STRUCT CpStr Body
+	ENUM BookMedium Medium
+	FOREIGN_KEY BookCollectionDef Collection
+	ASSET_REFERENCE Icon
+	UINT32
+	BOOLEAN NoTitleInReader
 END

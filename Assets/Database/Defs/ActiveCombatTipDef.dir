@@ -1,2 +1,47 @@
+ENUM ActiveCombatTipDefEnum1
+	VALUES 0 1
+END
+
+ENUM ActiveCombatTipDefEnum2
+	VALUES 0 2
+END
+
+ENUM ActiveCombatTipText_TriggerInfoEnum1
+	VALUES 0 2
+END
+
+STRUCT ActiveCombatTipText_TriggerInfo
+	ENUM ActiveCombatTipText_TriggerInfoEnum1
+	UINT32
+END
+
+ENUM ActiveCombatTipText_ConditionEnum1
+	VALUES 0 2
+END
+
+STRUCT ActiveCombatTipText_Condition
+	ENUM ActiveCombatTipCondition
+	ENUM ActiveCombatTipText_ConditionEnum1
+	ENUM ActiveCombatTipText_ConditionEnum1
+	ENUM ActiveCombatTipText_ConditionEnum1
+	UINT32
+	UINT32
+END
+
 DEF 164 ActiveCombatTipDef VERSION 11
+	ENUM ActiveCombatTipDefEnum1
+	FOREIGN_KEY RequirementListDef
+	STRUCT CpStr TipText
+	STRUCT CpStr GamepadOverrideTipText
+	UINT32
+	UINT32
+	ARRAY STRUCT ActiveCombatTipText_TriggerInfo TriggerInfo
+	ENUM ActiveCombatTipTarget
+	UINT32
+	UINT32
+	ENUM ActiveCombatTipDefEnum2
+	UINT8
+	ARRAY STRUCT ActiveCombatTipText_Condition Conditions
+	BOOLEAN
+	ENUM ActiveCombatTipText_ConditionEnum1
 END

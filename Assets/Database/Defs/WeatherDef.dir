@@ -1,2 +1,12 @@
+STRUCT WeatherDef_Condition
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+END
+
 DEF 148 WeatherDef VERSION 4
+	ARRAY STRUCT WeatherDef_Condition Conditions
+	FLOAT
+	UINT32
 END

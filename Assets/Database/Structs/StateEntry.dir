@@ -1,0 +1,8 @@
+STRUCT StateEntry
+	UINT32
+	ARRAY ENUM ClientObjectStateChangeEvents Requirement
+	ARRAY UINT32 RequirementValue
+	ARRAY UINT32 RequirementValue2
+	ARRAY UINT32 RequirementValue3
+	BOOLEAN SetOrCompare
+END

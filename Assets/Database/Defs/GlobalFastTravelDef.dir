@@ -1,2 +1,12 @@
+STRUCT GlobalFastTravelDef_PerLevelEntry
+	UINT32
+	UINT32
+END
+
 DEF 153 GlobalFastTravelDef VERSION 10
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ARRAY STRUCT GlobalFastTravelDef_PerLevelEntry PerLevelFields
 END

@@ -1,2 +1,21 @@
+STRUCT FastTravelKeepDef_NodeData
+	FOREIGN_KEY KeepDef Keep
+	FOREIGN_KEY WaypointDef Waypoint
+END
+
+ENUM FastTravelKeepDef_LinkDataEnum1
+	VALUES 0 3
+END
+
+STRUCT FastTravelKeepDef_LinkData
+	UINT32
+	UINT32
+	ENUM FastTravelKeepDef_LinkDataEnum1
+END
+
 DEF 149 FastTravelKeepDef VERSION 4
+	ARRAY STRUCT FastTravelKeepDef_NodeData NodeData
+	ARRAY STRUCT FastTravelKeepDef_LinkData LinkData
+	UINT32
+	UINT32
 END
