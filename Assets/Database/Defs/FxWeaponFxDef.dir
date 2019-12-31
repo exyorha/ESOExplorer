@@ -1,2 +1,17 @@
 DEF 142 FxWeaponFxDef VERSION 14
+	FLOAT
+	FLOAT
+	FOREIGN_KEY WeaponFxSetDef FxSet
+	BOOLEAN OnCaster
+	BOOLEAN ApplyToMainHand
+	BOOLEAN ApplyToOffHand
+	BOOLEAN HideEquippedWeapons
+	BOOLEAN IsHideWeaponsForMounting
+	BOOLEAN ExpireFXOnWeaponSwap
+	BOOLEAN KeepFXOnWeaponSwap
+	BOOLEAN DelayStopIfFxAnimPairedCameraActive
+	BOOLEAN HideProps
+	BOOLEAN IgnoreWeaponSwap
+	BOOLEAN HasMatureContent
+	ARRAY STRUCT FxStopInfo StopInfo
 END

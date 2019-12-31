@@ -1,2 +1,15 @@
 DEF 144 FxGroundProjectionDef VERSION 6
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	BOOLEAN OriginateOnCaster
+	ASSET_REFERENCE
+	UINT32
+	INT32
+	INT32
+	ARRAY FLOAT Color
+	FLOAT
+	ENUM FxVisibleToType
+	ARRAY STRUCT FxStopInfo StopInfo
 END

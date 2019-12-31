@@ -1,2 +1,3 @@
 DEF 143 WeaponFxSetDef VERSION 2
+	ARRAY FOREIGN_KEY FxDef Substitutions
 END
