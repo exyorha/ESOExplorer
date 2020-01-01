@@ -1,2 +1,99 @@
+ENUM FxBeamDefEnum1
+	VALUES 0 8
+END
+
+ENUM FxBeamDefEnum2
+	VALUES 0 2
+END
+
+ENUM FxBeamDefEnum3
+	VALUES 0 2
+END
+
+ENUM FxBeamDefEnum4
+	VALUES 0 2
+END
+
 DEF 138 FxBeamDef VERSION 22
+	FLOAT
+	FLOAT
+	BOOLEAN CasterIsOrigin
+	BOOLEAN CasterIsDest
+	BOOLEAN ConstantDeform
+	BOOLEAN UseSourcePositionOffset
+	BOOLEAN UseDestinationPositionOffset
+	BOOLEAN AttemptRestartIfEitherEndPointGoesAway
+	BOOLEAN OverrideSourcePosition
+	BOOLEAN OverrideDestinationPosition
+	BOOLEAN BboxImpactOffset
+	BOOLEAN MultiFire
+	BOOLEAN ForceHighResolution
+	BOOLEAN UniformSpacing
+	BOOLEAN UniformEffectSelection
+	BOOLEAN RestartCompletedEffects
+	BOOLEAN SpawnAtSpecificPoint
+	BOOLEAN ApplyBeamDirection
+	BOOLEAN UseRandomPlacementTimer
+	BOOLEAN UseSourceObjectVisibility
+	BOOLEAN UseDestinationObjectVisibility
+	BOOLEAN UseGPUParticleEffects
+	BOOLEAN HasMatureContent
+	STRING
+	STRING
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY FLOAT ColorInside
+	ARRAY FLOAT ColorOutside
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	ENUM FxBeamDefEnum1
+	ASSET_REFERENCE
+	FLOAT
+	FLOAT
+	ASSET_REFERENCE
+	FLOAT
+	FLOAT
+	ENUM FxBeamDefEnum2
+	ENUM FxAttachType
+	ENUM FxAttachType
+	INT32
+	INT32
+	INT32
+	INT32
+	INT32
+	INT32
+	FLOAT
+	FLOAT	
+	INT32
+	INT32
+	INT32
+	INT32
+	INT32
+	INT32
+	ENUM FxBeamDefEnum3
+	ENUM FxBeamDefEnum4
+	STRING
+	ENUM FxAttachType
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY ASSET_REFERENCE EmitterFileIndex
+	ARRAY FOREIGN_KEY GPUParticleEffectDef GpuParticleEffectDefId
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	ARRAY STRUCT FxStopInfo StopInfo
+	FLOAT
+	FLOAT
+	FLOAT
 END

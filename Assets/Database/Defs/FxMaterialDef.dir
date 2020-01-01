@@ -1,2 +1,94 @@
+ENUM FxMaterailDefEnum1
+	VALUES 0 1
+END
+
 DEF 139 FxMaterialDef VERSION 36
+	FLOAT
+	FLOAT
+	FLOAT
+	ENUM FxVisibleToType
+	FLOAT
+	FLOAT
+	BOOLEAN OnCaster
+	BOOLEAN Transparency
+	BOOLEAN PlayRegularImpact
+	BOOLEAN StopAudioEffectWhenDead
+	BOOLEAN ApplyDSPToOnlyVO
+	BOOLEAN IsIceMaterial
+	BOOLEAN StopAudioOnTransitionOut
+	BOOLEAN NoEnvironmentLight
+	BOOLEAN GenerateUVs
+	BOOLEAN RimLightingEnabled
+	BOOLEAN DontApplyToHeldItems
+	BOOLEAN NoEnvironmentLightInfluence
+	BOOLEAN ApplyDisintegration
+	BOOLEAN ReverseDisintegration
+	BOOLEAN FadeRimWithAlpha
+	BOOLEAN DisintegrationIsClip
+	BOOLEAN UseDisintegrationStopValue
+	BOOLEAN MultiFire
+	BOOLEAN EnvironmentOverrideEnabled
+	BOOLEAN UseDisintegrationStartValue
+	BOOLEAN UseFlipBookAnimation
+	BOOLEAN OnlyForDesignatedRenderables
+	BOOLEAN ApplyObjectAlpha
+	BOOLEAN HideTargetUntilMaterialLoaded
+	BOOLEAN HasMatureContent
+	ARRAY FLOAT TintColor
+	FLOAT
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ARRAY UINT32 AudioMaterialDSP
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY FLOAT RimColor
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY FLOAT DisintegrationColor
+	FLOAT
+	ARRAY STRUCT FxStopInfo StopInfo
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	ARRAY FLOAT EnvironmentSkyColor
+	ARRAY FLOAT EnvironmentGroundColor
+	ARRAY FLOAT EnvironmentSunColor
+	ARRAY FLOAT EnvironmentSunDirection
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ENUM FxMaterailDefEnum1
+	STRING
+	STRING
 END

@@ -1,0 +1,3 @@
+ENUM ModelScale
+	VALUES 0 9
+END

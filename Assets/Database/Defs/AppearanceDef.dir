@@ -1,2 +1,64 @@
+ENUM AppearanceDefEnum1
+	VALUES 0 3
+END
+
+STRUCT AppearanceDef_GearBucketSlotInfo
+	ENUM ItemVisualSlot
+	ENUM AppearanceDefEnum1
+	UINT32
+END
+
+ENUM AppearanceDefEnum2
+	VALUES 0 2
+END
+
+ENUM AppearanceDefEnum3
+	VALUES 0 3
+END
+
+ENUM AppearanceDefEnum4
+	VALUES 0 2
+END
+
+STRUCT AppearanceDef_BucketIndexInfo
+	ENUM AppearanceDefEnum2
+	ARRAY INT32
+END
+
+STRUCT AppearanceDef_WeaponBucketSlotInfo
+	ENUM AppearanceDefEnum3
+	UINT32
+END
+
 DEF 136 AppearanceDef VERSION 14
+	BOOLEAN ; 0
+	BOOLEAN ; 1
+	BOOLEAN ; 2
+	BOOLEAN ; 3
+	BOOLEAN ; 4
+	BOOLEAN ; 5
+	BOOLEAN ; 6
+	UINT32
+	ENUM ModelScale
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	FOREIGN_KEY GearBucketDef GearBucket
+	ARRAY STRUCT AppearanceDef_GearBucketSlotInfo GearBucketSlots
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo PhysiqueBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo FaceBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo HairBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo AdornmentBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo HairTintsBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo SkinTintsBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo EyeColorBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo AgeBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo HeadMarkingBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo BodyMarkingBucket
+	ARRAY STRUCT AppearanceDef_BucketIndexInfo EyebrowBucket
+	ARRAY STRUCT AppearanceDef_WeaponBucketSlotInfo WeaponBucket
+	STRING
+	ENUM AppearanceDefEnum4
 END

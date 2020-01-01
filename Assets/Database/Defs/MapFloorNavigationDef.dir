@@ -1,2 +1,3 @@
 DEF 133 MapFloorNavigationDef VERSION 2
+	ARRAY FOREIGN_KEY MapDef MapFloors
 END
