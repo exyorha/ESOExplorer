@@ -1,2 +1,56 @@
+STRUCT AchievementDef_Component
+	UINT32
+	ENUM SystemAchievementType
+	UINT32
+	UINT32
+	BOOLEAN SendConsoleEventOnUpdate
+END
+
+ENUM AchievementDefEnum1
+	VALUES 0 7
+END
+
+ENUM AchievementDefEnum2
+	VALUES 0 2
+END
+
+ENUM AchievementDefEnum3
+	VALUE 0
+	VALUE 5
+	VALUE 10
+	VALUE 15
+	VALUE 50
+END
+
 DEF 125 AchievementDef VERSION 38
+	ARRAY STRUCT AchievementDef_Component Components
+	UINT32
+	UINT32
+	UINT32
+	ENUM AchievementDefEnum1
+	UINT32
+	ENUM AchievementDefEnum2
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT8
+	UINT32
+	UINT8
+	ENUM AchievementDefEnum3
+	UINT32
+	UINT8
+	UINT32
+	UINT32
+	ARRAY UINT32 LinkedToPOI
+	UINT32
+	UINT32
+	ENUM ConsoleEventType
+	BOOLEAN ; 0
+	BOOLEAN ; 1
+	BOOLEAN ; 2
+	BOOLEAN ; 3
+	UINT32
+	UINT32
 END

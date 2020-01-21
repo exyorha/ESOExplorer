@@ -1,2 +1,9 @@
 DEF 126 AchievementCategoryDef VERSION 6
+	UINT32
+	UINT8
+	BOOLEAN HideUnearned
+	UINT32
+	UINT32
+	UINT32
+	UINT32
 END

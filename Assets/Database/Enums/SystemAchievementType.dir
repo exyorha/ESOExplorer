@@ -1,0 +1,3 @@
+ENUM SystemAchievementType
+	VALUES 0 136
+END

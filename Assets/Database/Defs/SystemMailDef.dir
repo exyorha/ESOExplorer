@@ -1,2 +1,11 @@
+STRUCT SystemMailDef_Item
+	FOREIGN_KEY ItemDef Item
+	UINT8 Count
+END
+
 DEF 128 SystemMailDef VERSION 4
+	STRUCT CpStr SenderName
+	STRUCT CpStr Subject
+	STRUCT CpStr Body
+	ARRAY STRUCT SystemMailDef_Item Items
 END
