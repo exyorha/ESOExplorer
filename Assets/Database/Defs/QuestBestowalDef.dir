@@ -1,2 +1,28 @@
+ENUM QuestBestowalDefEnum1
+	VALUES 0 2
+END
+
+ENUM QuestBestowalDefEnum2
+	VALUES 0 1
+END
+
 DEF 113 QuestBestowalDef VERSION 15
+	STRUCT CpStr TOCText
+	ARRAY STRUCT VoCpStr BestowalDialogue
+	ARRAY STRUCT CpStr PlayerResponse
+	FOREIGN_KEY QuestDef Quest
+	STRUCT CpStr BackgroundJournalTextOverride
+	STRUCT VoCpStr QuestProximityGreeting
+	ENUM QuestBestowalDefEnum1
+	BOOLEAN OverrideQuestRequirements
+	BOOLEAN FirstTimeOnlyBestowal
+	BOOLEAN RepeatOnlyBestowal
+	ARRAY UINT32 QuestPrereqs
+	ARRAY UINT32 EndingPrereqs
+	ARRAY UINT32 AntiQuestPrereqs
+	ARRAY UINT32 AntiCurrentQuestPrereqs
+	ARRAY UINT32 AntiEndingPrereqs
+	ENUM QuestBestowalDefEnum2
+	UINT32
+	UINT32
 END
