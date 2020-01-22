@@ -1,2 +1,3 @@
 DEF 102 QuestTableDef VERSION 20
+	ARRAY FOREIGN_KEY QuestBestowalDef QuestList
 END

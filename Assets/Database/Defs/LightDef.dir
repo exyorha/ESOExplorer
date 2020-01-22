@@ -1,2 +1,42 @@
+ENUM LightDefEnum1
+	VALUES 0 2
+END
+
+ENUM LightDefEnum2
+	VALUES 0 2
+END
+
+ENUM LightDefEnum3
+	VALUES 0 2
+END
+
 DEF 103 LightDef VERSION 15
+	ENUM LightType
+	ARRAY FLOAT Color
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY FLOAT Scale
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	UINT32
+	ENUM LightDefEnum1
+	UINT32
+	FLOAT
+	FLOAT
+	UINT32
+	ENUM LightDefEnum2	
+	ARRAY FLOAT SunProjectionOffsetVector
+	ARRAY FLOAT TriMidColor
+	ARRAY FLOAT TriBackColor
+	ARRAY FLOAT TimeOfDayBrightness
+	BOOLEAN SunProjectionIgnoreSun
+	ARRAY FLOAT TimeOfDayLightDayColor
+	ARRAY FLOAT TimeOfDayLightDuskColor
+	ARRAY FLOAT TimeOfDayLightNightColor
+	ENUM LightDefEnum3
 END

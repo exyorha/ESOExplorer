@@ -1,2 +1,44 @@
+STRUCT SkillLineDef_AbilityEntry
+	FOREIGN_KEY AbilityDef Ability
+	FOREIGN_KEY AbilityDef SlotPassive
+	UINT8
+	FOREIGN_KEY AbilityDef
+	FOREIGN_KEY AbilityDef
+	UINT32 RequiredLevel
+	FOREIGN_KEY AbilityProgressionLineDef AbilityProgressionLine
+	FLOAT
+	FLOAT
+	BOOLEAN ; 0
+	BOOLEAN ; 1
+END
+
+ENUM SkillLineDefEnum1
+	VALUES 0 7
+END
+
+ENUM SkillLineDefEnum2
+	VALUES 0 5
+END
+
+ENUM SkillLineDefEnum3
+	VALUES 0 3
+END
+
 DEF 98 SkillLineDef VERSION 34
+	BOOLEAN ; 0
+	BOOLEAN ; 1
+	BOOLEAN ; 2
+	BOOLEAN ; 4
+	ARRAY STRUCT SkillLineDef_AbilityEntry Entry
+	STRUCT CpStr TooltipText
+	ARRAY UINT32 RankUpExp
+	FOREIGN_KEY GuildReputationDef
+	ENUM SkillLineDefEnum1
+	ENUM SkillType
+	ENUM SkillLineDefEnum2
+	ARRAY UINT32 SkillPassives
+	FLOAT
+	ENUM SkillLineDefEnum3
+	UINT32
+	ASSET_REFERENCE
 END
