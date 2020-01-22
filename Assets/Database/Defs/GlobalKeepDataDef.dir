@@ -1,2 +1,26 @@
+STRUCT GlobalKeepDataDef_KeepResourceLevel
+	UINT32
+	UINT32
+END
+
+STRUCT GlobalKeepDataDef_ResourceBattleTokenLevel
+	UINT32
+	UINT32
+END
+
 DEF 116 GlobalKeepDataDef VERSION 26
+	ARRAY STRUCT GlobalKeepDataDef_KeepResourceLevel ResourceLevel
+	ARRAY STRUCT GlobalKeepDataDef_ResourceBattleTokenLevel ProductionLevel
+	ARRAY STRUCT GlobalKeepDataDef_ResourceBattleTokenLevel DefensiveLevel
+	UINT32
+	ARRAY FOREIGN_KEY RequirementListDef KeepControlRequirements
+	ARRAY FOREIGN_KEY AbilityDef KeepControlAbilities
+	UINT32
+	UINT32
+	UINT32
+	UINT8
+	UINT8
+	ARRAY ASSET_REFERENCE CannotBuildSiegeOnFixtureFileIndex
+	ARRAY UINT32 MaxUpgradeTier
+	ARRAY FOREIGN_KEY AbilityDef EdgeKeepUIAbilities
 END

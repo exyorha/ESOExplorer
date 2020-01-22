@@ -1,2 +1,14 @@
+STRUCT MapLocationDef_TooltipLineInfo
+	UINT32
+	UINT32
+END
+
 DEF 119 MapLocationDef VERSION 10
+	ASSET_REFERENCE Icon
+	INT32
+	INT32
+	INT32
+	FOREIGN_KEY RequirementListDef Requirements
+	ARRAY STRUCT MapLocationDef_TooltipLineInfo TooltipLineInfo
+	ARRAY STRUCT CpStr TooltipLineNames
 END

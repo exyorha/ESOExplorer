@@ -1,2 +1,7 @@
+STRUCT GuildReputationDef_GuildReputationRank
+	UINT16
+END
+
 DEF 118 GuildReputationDef VERSION 11
+	ARRAY STRUCT GuildReputationDef_GuildReputationRank Rank
 END
