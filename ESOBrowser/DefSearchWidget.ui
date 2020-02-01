@@ -27,11 +27,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="id">
-       <property name="inputMask">
-        <string>9000000000</string>
-       </property>
-      </widget>
+      <widget class="QLineEdit" name="id"/>
      </item>
      <item>
       <widget class="QPushButton" name="search">

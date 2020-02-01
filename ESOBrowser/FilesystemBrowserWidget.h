@@ -27,6 +27,7 @@ private slots:
 	void onOpenAsBinary();
 	void treeDoubleClicked(const QModelIndex& index);
 	void customTreeContextMenuRequested(const QPoint& pos);
+	void on_byIdButton_clicked();
 
 private:
 	bool getCurrentId(uint64_t &id);

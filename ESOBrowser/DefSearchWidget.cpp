@@ -11,6 +11,8 @@ DefSearchWidget::DefSearchWidget(ESOBrowserMainWindow* window, QWidget* parent) 
 	ui.results->setModel(m_model);
 	ui.results->setEditTriggers(QAbstractItemView::NoEditTriggers);
 	setWindowTitle(tr("Search defs"));
+
+	ui.id->setValidator(new QIntValidator);
 }
 
 DefSearchWidget::~DefSearchWidget() = default;
@@ -24,18 +26,21 @@ void DefSearchWidget::restoreFromStream(QDataStream& stream) {
 }
 
 void DefSearchWidget::on_search_clicked() {
-	auto id = ui.id->text().toUInt();
+	bool ok;
+	auto id = ui.id->text().toUInt(&ok);
 
-	m_model->clear();
+	if (ok) {
+		m_model->clear();
 
-	for (const auto& def : m_window->storage()->database().defs()) {
-		auto result = def.findRecordById(id);
-		if (result) {
-			QList<QStandardItem*> items;
-			items.append(new QStandardItem(QString::fromStdString(def.name())));
-			items.append(new QStandardItem(QString::fromStdString(std::to_string(id))));
-			items.append(new QStandardItem(QString::fromStdString(std::get<std::string>(result->findField("name")))));
-			m_model->appendRow(items);
+		for (const auto& def : m_window->storage()->database().defs()) {
+			auto result = def.findRecordById(id);
+			if (result) {
+				QList<QStandardItem*> items;
+				items.append(new QStandardItem(QString::fromStdString(def.name())));
+				items.append(new QStandardItem(QString::fromStdString(std::to_string(id))));
+				items.append(new QStandardItem(QString::fromStdString(std::get<std::string>(result->findField("name")))));
+				m_model->appendRow(items);
+			}
 		}
 	}
 }

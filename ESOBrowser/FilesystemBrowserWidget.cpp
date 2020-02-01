@@ -19,6 +19,8 @@ FilesystemBrowserWidget::FilesystemBrowserWidget(ESOBrowserMainWindow* window, Q
 	m_contextMenu = new QMenu(this);
 	m_contextMenu->setDefaultAction(m_contextMenu->addAction(tr("Open"), this, &FilesystemBrowserWidget::onOpen));
 	m_contextMenu->addAction(tr("Open as binary"), this, &FilesystemBrowserWidget::onOpenAsBinary);
+
+	ui.byId->setValidator(new QIntValidator);
 }
 
 FilesystemBrowserWidget::~FilesystemBrowserWidget() = default;
@@ -113,4 +115,15 @@ void FilesystemBrowserWidget::saveToStream(QDataStream& stream) const {
 
 void FilesystemBrowserWidget::restoreFromStream(QDataStream& stream) {
 	(void)stream;
+}
+
+void FilesystemBrowserWidget::on_byIdButton_clicked() {
+	bool ok;
+	auto fileId = ui.byId->text().toULongLong(&ok);
+	if (ok) {
+		std::vector<unsigned char> unusedData;
+		if (m_window->storage()->filesystem()->tryReadFileByKey(fileId, unusedData)) {
+			openAutodetect(fileId);
+		}
+	}
 }
