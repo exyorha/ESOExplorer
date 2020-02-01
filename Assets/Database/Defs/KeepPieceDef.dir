@@ -1,2 +1,34 @@
+STRUCT KeepPieceDef_HookpointEntry
+	UINT32
+	FLOAT
+	FLOAT
+END
+
+STRUCT KeepPieceDef_ChildKeepPiece
+
+END 
+ 
 DEF 91 KeepPieceDef VERSION 29
+	INT32
+	INT32
+	INT32
+	ARRAY UINT32 AllianceFx
+	ARRAY STRUCT KeepPieceDef_HookpointEntry HookpointData
+	ASSET_REFERENCE
+	ARRAY STRUCT KeepPieceDef_ChildKeepPiece ChildKeepPieces
+	BOOLEAN IsDoor
+	BOOLEAN IsAttackableByRam
+	BOOLEAN IgnoresUnderAttack
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	INT32
+	INT32
+	INT32
+	INT32
+	INT32
+	INT32
 END

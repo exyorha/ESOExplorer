@@ -1,2 +1,13 @@
+ENUM GreetingTableDefEnum1
+	VALUES 0 1
+END
+
 DEF 95 GreetingTableDef VERSION 5
+	ARRAY ENUM GreetingTableDefEnum1 Type
+	ARRAY STRUCT VoCpStr Text
+	ARRAY FOREIGN_KEY RandomStringTableDef Table
+	ARRAY FOREIGN_KEY RequirementListDef Requirement
+	ARRAY ENUM QuestRequirementType QuestRequirementType ; Selector
+	ARRAY UINT32 QuestRequirementValue ; Value1
+	ARRAY UINT32 QuestRequirementValue2 ; Value2
 END

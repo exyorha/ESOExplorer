@@ -1,2 +1,60 @@
+STRUCT PostureDef_AudioFidgetSetting
+	UINT32
+	ARRAY FOREIGN_KEY GenericVOTableDef FidgetVOTableIds
+	BOOLEAN AnimTagVOAllowed
+END
+
+ENUM PostureDefEnum1
+	VALUES 0 1
+END
+
+ENUM PostureDefEnum2
+	VALUES 0 2
+END
+
+ENUM PostureDefEnum3
+	VALUES 0 6
+END
+
 DEF 97 PostureDef VERSION 34
+	FOREIGN_KEY PostureVisualsDef
+	UINT32
+	BOOLEAN GreetingsAllowed
+	BOOLEAN HeadlookAllowed
+	BOOLEAN TurnToFaceAllowed
+	BOOLEAN SharedPostureState
+	BOOLEAN AlwaysProxyGreets
+	BOOLEAN SuspiciousGreetingIsAppropriate
+	BOOLEAN NeverCrouch
+	BOOLEAN ChildPosture
+	BOOLEAN PlayCharacterFxOnEnterAnimComplete
+	BOOLEAN ClearCharacterFxOnExitAnimComplete
+	BOOLEAN AimingAllowed
+	BOOLEAN NoWitnessCrimes
+	BOOLEAN DisableLesserReaction
+	BOOLEAN DisableGreaterReaction
+	BOOLEAN DisableDestructiveReaction
+	BOOLEAN DisableCombatReaction
+	BOOLEAN IgnoreSocialAggro
+	ARRAY STRUCT PostureDef_AudioFidgetSetting AudioSettings
+	UINT32
+	FOREIGN_KEY RandomStringTableDef
+	UINT32
+	UINT32
+	ARRAY FOREIGN_KEY GenericVOTableDef GreetingVOTableId
+	ARRAY FOREIGN_KEY GenericVOTableDef RegreetingShortVOTableId
+	ARRAY FOREIGN_KEY GenericVOTableDef RegreetingMediumVOTableId
+	ARRAY FOREIGN_KEY GenericVOTableDef RegreetingLongVOTableId
+	ARRAY FOREIGN_KEY GenericVOTableDef AmbienceVOTableId
+	FLOAT
+	ENUM PostureDefEnum1
+	ENUM PostureDefEnum2
+	INT32
+	INT32
+	ENUM PostureDefEnum3
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
 END

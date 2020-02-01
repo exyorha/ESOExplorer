@@ -1,2 +1,6 @@
 DEF 92 RoomDef VERSION 6
+	STRING
+	BOOLEAN Visibility
+	ARRAY FOREIGN_KEY RoomDef CanSeeRooms
+	ARRAY FLOAT DisplayColors
 END

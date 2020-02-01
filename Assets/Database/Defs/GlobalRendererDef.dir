@@ -1,2 +1,82 @@
+ENUM GlobalRendererDef_ShadowPresetsEnum1
+	VALUES 0 4
+END
+
+STRUCT GlobalRendererDef_ShadowPresets
+	INT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	INT32
+	ENUM ShadowFiltering
+	ENUM GlobalRendererDef_ShadowPresetsEnum1
+END
+
+STRUCT GlobalRendererDef_ReflectionPresets
+	BOOLEAN RLREnabled
+	BOOLEAN RenderCharacters
+	BOOLEAN TwoSidedRendering
+	FLOAT
+	FLOAT
+	ENUM ReflectionResolution
+END
+	
+STRUCT GlobalRendererDef_NewUVSetTabardMaterialSwapInfo
+	INT32
+	INT32
+	INT32
+	FOREIGN_KEY ItemPartMaterialDef
+	FOREIGN_KEY ItemPartMaterialDef
+END
+
 DEF 96 GlobalRendererDef VERSION 56
+	FLOAT
+	FLOAT
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	UINT32
+	ARRAY STRUCT GlobalRendererDef_ShadowPresets ShadowPresets
+	ARRAY STRUCT GlobalRendererDef_ReflectionPresets ReflectionPresets
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	FOREIGN_KEY MaterialDef
+	FOREIGN_KEY MaterialDef
+	UINT32
+	UINT32
+	UINT32
+	STRUCT GlobalRendererDef_NewUVSetTabardMaterialSwapInfo NewUVSetTabardMaterialSwapInfo
+	UINT32
 END
