@@ -1,2 +1,16 @@
+ENUM PSBToAudioMappingDefEnum1
+	VALUES 0 3
+END
+
 DEF 85 PSBToAudioMappingDef VERSION 12
+	UINT32
+	UINT32
+	STRING
+	UINT32
+	ARRAY UINT32 AudioLocalPlayerPersonalDSP
+	ARRAY UINT32 AudioRemotePlayerDSP
+	UINT32
+	FLOAT
+	BOOLEAN PlayRegularImpact
+	ENUM PSBToAudioMappingDefEnum1
 END

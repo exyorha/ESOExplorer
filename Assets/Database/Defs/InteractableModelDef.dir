@@ -1,2 +1,14 @@
+ENUM InteractableModelDefEnum1
+	VALUES 0 2
+END
+
 DEF 84 InteractableModelDef VERSION 10
+	ASSET_REFERENCE
+	UINT32
+	UINT32
+	FOREIGN_KEY FxDef
+	BOOLEAN OverrideLocalSpaceBounds
+	ARRAY FLOAT OverrideLocalSpaceBoundsMin
+	ARRAY FLOAT OverrideLocalSpaceBoundsMax
+	ENUM InteractableModelDefEnum1
 END

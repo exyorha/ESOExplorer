@@ -1,2 +1,117 @@
+ENUM ItemVisualTemplateDef_PartEnum1
+	VALUES 0 4
+END
+
+STRUCT ItemVisualTemplateDef_Part
+	ENUM ItemPart
+	ENUM BodyLocation
+	INT32
+	INT32
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	FOREIGN_KEY ItemPartMaterialDef
+	FOREIGN_KEY ItemPartMaterialDef
+	ENUM ItemVisualTemplateDef_PartEnum1
+	BOOLEAN IsFixture
+	BOOLEAN ShouldRemoveExistingGeometry
+	BOOLEAN ShouldRemoveExistingTexture
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+END
+
+ENUM ItemVisualTemplateDefEnum1
+	VALUES 0 2
+END
+
+ENUM ItemVisualTemplateDefEnum2
+	VALUES 0 6
+END
+
+ENUM ItemVisualTemplateDefEnum3
+	VALUES 0 4
+END
+
+STRUCT ItemVisualTemplateDef_PrecisionDockingOffset
+	ENUM WeaponAttachBone
+	FLOAT
+	BOOLEAN InvertDirection
+END
+
+STRUCT ItemVisualTemplateDef_Transform
+	ARRAY FLOAT OffsetXYZ
+	ARRAY FLOAT RotationXYZ
+	FLOAT
+END
+
 DEF 88 ItemVisualTemplateDef VERSION 70
+	ARRAY STRUCT ItemVisualTemplateDef_Part Parts
+	ARRAY STRUCT ItemVisualTemplateDef_Part PartsKhajiit
+	ARRAY STRUCT ItemVisualTemplateDef_Part PartsArgonian
+	ENUM ItemVisualSlot
+	ENUM WeaponType
+	ENUM ItemVisualTemplateDefEnum1
+	FOREIGN_KEY ItemVisualTintDef
+	ASSET_REFERENCE
+	ENUM ItemVisualTemplateDefEnum2
+	UINT32
+	STRUCT ItemVisualTemplateDef_Transform
+	BOOLEAN ShrinkHead
+	BOOLEAN ShrinkEars
+	BOOLEAN ShrinkBackOfHead
+	BOOLEAN ShrinkTopOfHead
+	BOOLEAN ShrinkFace
+	BOOLEAN ShrinkKhajiitEars
+	BOOLEAN ShrinkArgonianJaw
+	BOOLEAN ShrinkArgonianChin
+	BOOLEAN RemoveToeClaws
+	BOOLEAN RemoveFingerClaws
+	BOOLEAN OpenFaceHelmet
+	BOOLEAN RemoveHairAlpha
+	BOOLEAN IsRobe
+	BOOLEAN HideHead
+	BOOLEAN RemoveHairTexture
+	BOOLEAN OverridableLegsLower
+	BOOLEAN OverridableLegsUpper
+	BOOLEAN ShouldUsePlayerDataForTints
+	BOOLEAN UseAlternateHair
+	BOOLEAN RetainLowerFaceAdornments
+	BOOLEAN RetainUpperFaceAdornments
+	BOOLEAN RetainFaceSideAdornments
+	BOOLEAN RetainType1SharedSpaceAdornmentTexture
+	BOOLEAN RetainType1HeadSpaceAdornmentTexture
+	BOOLEAN RetainType2AdornmentTexture
+	BOOLEAN RetainType3AdornmentTexture
+	BOOLEAN RetainCenterFaceAdornments
+	BOOLEAN RetainLipAdornments
+	BOOLEAN RetainEarAdornments
+	BOOLEAN RetainEyeAdornments
+	BOOLEAN RetainTopOfHeadAdornments
+	BOOLEAN RetainWhiskers
+	BOOLEAN RetainTailAdornments
+	BOOLEAN RemoveHair
+	BOOLEAN UseWeaponPreciseDockingOffset
+	BOOLEAN HideDockedShield
+	UINT32
+	UINT32
+	ENUM ItemVisualTemplateDefEnum3
+	ENUM MaterialCategory
+	ENUM MaterialCategory
+	ENUM MaterialCategory
+	ENUM MaterialCategory
+	ENUM MaterialCategory
+	ENUM MaterialCategory
+	UINT32
+	FOREIGN_KEY OutfitStyleDef
+	ENUM ItemStyleChapter
+	ARRAY STRUCT ItemVisualTemplateDef_PrecisionDockingOffset PrecisionDockingOffsets
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
 END
