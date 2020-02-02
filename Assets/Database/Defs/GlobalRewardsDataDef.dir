@@ -1,2 +1,34 @@
+STRUCT GlobalRewardsDataDef_FinesseRewardStruct
+    UINT32
+    UINT32
+    FOREIGN_KEY LootTableDef
+    UINT32
+END
+
+STRUCT GlobalRewardsDataDef_PerLevelEntry
+    UINT32
+    UINT32
+END
+
+STRUCT GlobalRewardsDataDef_TelvarMultiplierStruct
+    INT32 CurrentAmount
+    FLOAT Multiplier
+END
+
 DEF 83 GlobalRewardsDataDef VERSION 82
+    UINT32
+    ARRAY STRUCT GlobalRewardsDataDef_FinesseRewardStruct FinesseRewards
+    ARRAY STRUCT GlobalRewardsDataDef_PerLevelEntry PerLevelFields
+    UINT8
+    UINT8
+    UINT8
+    ARRAY FOREIGN_KEY AchievementDef AchievementsRequiredForCompletion
+    ARRAY STRUCT GlobalRewardsDataDef_TelvarMultiplierStruct TelvarStoneMultipliers
+    FLOAT
+    FLOAT
+    UINT32
+    UINT32
+    UINT32
+    ARRAY UINT32 EsoPlusLoyaltyRewards
+    ARRAY FOREIGN_KEY LevelUpDef LevelUpDefs
 END

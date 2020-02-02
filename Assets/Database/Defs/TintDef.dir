@@ -1,2 +1,19 @@
+ENUM TintDefEnum1
+    VALUES 0 2
+END
+
+ENUM TintDefEnum2
+    VALUES 0 3
+END
+
 DEF 81 TintDef VERSION 6
+    ARRAY FLOAT DiffuseColor
+    ARRAY FLOAT SpecularColor
+    FLOAT
+    FLOAT
+    FLOAT
+    ENUM TintMaterial
+    ENUM TintDefEnum1
+    STRING
+    ENUM TintDefEnum2
 END

@@ -1,2 +1,9 @@
 DEF 77 FxAnimOverrideDef VERSION 8
+    BOOLEAN OnCaster
+    BOOLEAN StopForwardMovement
+    BOOLEAN StopChannel
+    ENUM MixerChannel
+    STRING ReplaceFrom
+    STRING ReplaceTo
+    ARRAY STRUCT FxStopInfo StopInfo
 END
