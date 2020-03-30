@@ -1,2 +1,26 @@
+ENUM FxVisibilityDef_Enum1
+	VALUES 0 3
+END
+
 DEF 67 FxVisibilityDef VERSION 16
+	FLOAT
+	BOOLEAN OnCaster
+	BOOLEAN CameraDistanceFade
+	BOOLEAN MustBeSiegeControlledByPlayerToUseCameraFade
+	BOOLEAN ApplyToAllMeshes
+	BOOLEAN PersistsAfterKeyDestroyed
+	BOOLEAN TargetableWhenInvisible
+	BOOLEAN DiscardMeshWhenInvisible
+	BOOLEAN MultiFire
+	STRING
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	ENUM FxVisibilityDef_Enum1
+	FLOAT
+	ENUM FxVisibleToType
+	ARRAY STRUCT FxStopInfo StopInfo
 END

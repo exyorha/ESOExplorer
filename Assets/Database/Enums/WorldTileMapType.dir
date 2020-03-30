@@ -1,0 +1,4 @@
+ENUM WorldTileMapType
+	VALUES 0 8
+END
+

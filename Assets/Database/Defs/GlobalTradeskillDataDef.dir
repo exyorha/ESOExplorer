@@ -1,2 +1,4 @@
 DEF 70 GlobalTradeskillDataDef VERSION 53
+	ARRAY UINT32 HarverstingDataPerMonsterType
+	ARRAY FOREIGN_KEY SkillLineDef TradeskillSkillLines
 END

@@ -1,2 +1,72 @@
+STRUCT GlobalItemDataDef_PerLevelFields
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+END
+
+STRUCT GlobalItemData_RepairKit
+	FOREIGN_KEY ItemDef Item
+	UINT32 MinimumLevel
+	UINT32 MaximumLevel
+END
+
+STRUCT GlobalItemData_ItemRewardModifierEntry
+	ARRAY FLOAT
+END
+
 DEF 73 GlobalItemDataDef VERSION 72
+	ARRAY STRUCT GlobalItemDataDef_PerLevelFields PerLevelFields
+	ARRAY FLOAT WeaponDamageMultiplier
+	ARRAY FLOAT ArmorEquipTypeModifier
+	ARRAY FLOAT ValueEquipTypeModifier
+	FLOAT
+	ARRAY UINT32 BagUpgradeCost
+	ARRAY UINT32 BankUpgradeCost
+	UINT32
+	FLOAT
+	ARRAY UINT32 DefaultAbilityLists
+	ARRAY FOREIGN_KEY RequirementListDef HotBarSlotRequirements
+	ARRAY FLOAT EnchantmentChargeMultiplierPerRank
+	UINT8
+	UINT16
+	ARRAY FOREIGN_KEY WeaponSetDef WeaponSets
+	ARRAY UINT32 EquipTypeBonusSlot
+	UINT32
+	FLOAT
+	FLOAT
+	UINT8
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ARRAY FLOAT RepairPointCostPerLevel
+	FLOAT
+	FLOAT
+	ARRAY STRUCT GlobalItemData_RepairKit RepairTiers
+	UINT32
+	ARRAY FOREIGN_KEY ItemDef MasonryKitDefs
+	ARRAY FOREIGN_KEY ItemDef WoodworkingKitDefs
+	ARRAY UINT32 EnchantTiersByMinimumRequiredLevel
+	ARRAY UINT32 EnchantTiersByMinimumChampionRank
+	FLOAT
+	UINT32
+	FLOAT
+	ARRAY FLOAT ItemRewardModifiers
+	ARRAY UINT32 ChampScalingLevelsForBattleLeveling
+	UINT64
+	ARRAY UINT32 ChargesPerVisualQualityLookupTable
+	ARRAY STRUCT GlobalItemData_ItemRewardModifierEntry EquipmentBonusThresholdsByLevel
+	ARRAY STRUCT GlobalItemData_ItemRewardModifierEntry EquipmentBonusThresholdsByChampionRank
+	ARRAY FLOAT EquipmentBonusItemQualityValues
+	FLOAT
+	FLOAT
+	FLOAT
+	ARRAY FOREIGN_KEY ItemTemplateDef PrioritySellItemTypes
 END

@@ -1,2 +1,22 @@
 DEF 74 PointOfInterestDef VERSION 34
+	ENUM PointOfInterestType
+	UINT32
+	UINT32
+	INT32
+	INT32
+	ARRAY UINT32 RequiredQuests
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	FOREIGN_KEY ZoneDef Zone
+	FOREIGN_KEY SubzoneDef Subzone
+	UINT32
+	UINT32
+	STRUCT CpStr Opening
+	STRUCT CpStr Closing
+	UINT32
+	UINT32
+	UINT32
+	BOOLEAN AccountShared
+	ENUM ZoneCompletionType
 END

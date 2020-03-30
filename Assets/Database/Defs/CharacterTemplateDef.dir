@@ -1,2 +1,40 @@
+ENUM CharacterTemplateDef_Enum1
+	VALUES 0 2
+END
+
+ENUM CharacterTemplateDef_Enum2
+	VALUES 0 3
+END
+
+STRUCT CharacterTemplateDef_CurrencyReward
+
+END
+
 DEF 64 CharacterTemplateDef VERSION 79
+	UINT32
+	UINT32
+	ENUM CharacterTemplateDef_Enum1
+	ENUM CharacterTemplateDef_Enum2
+	BOOLEAN ClearDevFlag
+	BOOLEAN ClearQuestHistory
+	BOOLEAN ClearInventory
+	BOOLEAN ClearRankPoints
+	BOOLEAN ClearGuildReputation
+	BOOLEAN RandomValidRace
+	BOOLEAN RandomGender
+	BOOLEAN RandomAppearance
+	BOOLEAN RandomValidClass
+	BOOLEAN ClearHotbar
+	BOOLEAN ClearWeaponSets
+	BOOLEAN OverrideAppearance
+	BOOLEAN ClearGraveyards
+	BOOLEAN Heroic
+	BOOLEAN KnowsAllSmithingTraits
+	BOOLEAN KnowsAllZoneCapitalGraveyards
+	BOOLEAN KnowsAllDyes
+	ARRAY STRUCT CharacterTemplateDef_CurrencyReward CurrencyReward
+	ARRAY UINT8 SliderAppearanceValues
+	UINT64
+	UINT64
+	ARRAY UINT32 CreatePermissionsEntitlements
 END
