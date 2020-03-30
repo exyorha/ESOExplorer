@@ -1,2 +1,21 @@
 DEF 57 GlobalSettingsDef VERSION 25
+	FLOAT
+	UINT8 ; 44
+	UINT8 ; 45
+	UINT8 ; 46
+	UINT8 ; 47
+	UINT8 ; 48
+	FOREIGN_KEY ModelDef ; Pure speculation
+	ARRAY FOREIGN_KEY MonsterDef PreloadMonster
+	BOOLEAN CityNoCombatLogoutAllowed
+	BOOLEAN CityInCombatLogoutAllowed
+	BOOLEAN NonCityNoCombatLogoutAllowed
+	BOOLEAN NonCityInCombatLogoutAllowed
+	UINT16
+	UINT16
+	UINT16
+	UINT16
+	UINT32
+	UINT32
+	UINT32
 END

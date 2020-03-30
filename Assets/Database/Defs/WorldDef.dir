@@ -1,2 +1,19 @@
+ENUM WorldDef_Enum1
+	VALUES 0 3
+END
+
 DEF 60 WorldDef VERSION 62
+	UINT32 Width
+	UINT32 Height
+	STRING WorldId
+	UINT8 ; Actually ENUM InstanceType!
+	BOOLEAN AllowHiddenPlayers
+	BOOLEAN SupportsKeeps
+	BOOLEAN AllowSiege
+	BOOLEAN IgnoreHeroicFlag
+	ENUM WorldDef_Enum1
+	UINT32
+	UINT32
+	UINT16
+	FOREIGN_KEY ZoneDef Zone
 END

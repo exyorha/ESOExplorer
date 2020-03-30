@@ -1,2 +1,48 @@
+STRUCT SubzoneDef_PrioritizedEnvironmentOverrideEntry
+	UINT32
+	UINT32
+	UINT32
+END
+
 DEF 63 SubzoneDef VERSION 63
+	ARRAY FLOAT Color
+	BOOLEAN Announce
+	BOOLEAN ReplacesGeneralChat
+	BOOLEAN TradeChatEnabled
+	BOOLEAN Killzone
+	BOOLEAN City
+	BOOLEAN PersonalLayer
+	BOOLEAN RefireEnterActionsOnQuestGrant
+	BOOLEAN RefireEnterActionsOnResurrection
+	BOOLEAN ForceDismount
+	BOOLEAN IgnoreLayerWhenCheckingIsPlayerInside
+	BOOLEAN NoLeaveViaTeleport
+	BOOLEAN ReviveControllerStagingArea
+	BOOLEAN GroupThreatContainmentArea
+	BOOLEAN ProhibitTelvarStoneGain
+	BOOLEAN IsTrespassSubzone
+	BOOLEAN OverrideMapDisplayName
+	BOOLEAN EnableDueling
+	BOOLEAN BattlegroundSpawnArea
+	BOOLEAN SpawnProphet
+	BOOLEAN SunShadowsEnabled
+	BOOLEAN IgnoreKeepWallMovementMitigation
+	UINT32
+	UINT32
+	UINT8
+	UINT32
+	FOREIGN_KEY PointOfInterestDef PointOfInterest
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	INT32
+	INT32
+	ARRAY UINT32 AmbiencesToShutOffInSubzone
+	UINT32
+	ARRAY STRUCT SubzoneDef_PrioritizedEnvironmentOverrideEntry PrioritizedEnvironmentOverrides
+	UINT32
+	UINT8
+	ARRAY ENUM CollectibleCategoryType DisallowedCollectibleCategories
 END

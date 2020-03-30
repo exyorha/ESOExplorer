@@ -1,2 +1,11 @@
+STRUCT ObjectStateDef_ObjectState
+	UINT32
+	BOOLEAN CanInteract
+	BOOLEAN InteractableFixtureVisible
+	BOOLEAN Previewable
+	UINT32
+END
+
 DEF 59 ObjectStateDef VERSION 10
+	ARRAY STRUCT ObjectStateDef_ObjectState States
 END
