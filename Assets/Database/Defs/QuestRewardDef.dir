@@ -1,2 +1,33 @@
+ENUM QuestRewardDefEnum1
+	VALUES 0 1
+END
+
+STRUCT QuestRewardDef_RewardItem 
+	ENUM QuestRewardDefEnum1
+	FOREIGN_KEY ItemDef
+	UINT8
+	UINT32
+END
+
+STRUCT QuestRewardDef_CurrencyReward
+	ENUM CurrencyType
+	UINT32
+END
+
+ENUM QuestRewardDefEnum2
+	VALUES 0 7
+END
+
 DEF 48 QuestRewardDef VERSION 35
+	ARRAY STRUCT QuestRewardDef_RewardItem AutoItem
+	ARRAY STRUCT QuestRewardDef_CurrencyReward CurrencyRewards
+	ENUM QuestRewardDefEnum2
+	UINT32
+	UINT32
+	BOOLEAN AllowScaleByLevel
+	BOOLEAN AwardsWritVouchers
+	UINT32
+	UINT32
+	ENUM LootTableCooldown
+	UINT32
 END

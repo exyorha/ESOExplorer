@@ -1,2 +1,73 @@
+STRUCT AnimListDef_Anim
+	STRING
+	STRING
+	STRING
+	FLOAT
+	FLOAT
+	INT16
+	ENUM MixerChannel
+	STRING
+	STRING
+	UINT32
+	BOOLEAN DisallowHeadLook
+	BOOLEAN AllowCombatStrafeTwist
+	BOOLEAN AdditiveImpact
+	BOOLEAN Interaction
+	BOOLEAN AllowTwistedLocomotion
+	BOOLEAN DisallowLOD
+	BOOLEAN IsNotStanding
+	BOOLEAN DisallowTurnToFaceCameraInUI
+	BOOLEAN DisallowFootIK
+	BOOLEAN DiallowTurnChannel
+	BOOLEAN InterruptibleByMovement
+	FLOAT
+	FLOAT
+	FLOAT
+	STRING
+END
+
+ENUM AnimListDef_Enum1
+	VALUES 0 3
+END
+
+ENUM AnimListDef_Enum2
+	VALUES 0 3
+END
+
+STRUCT AnimListDef_ChoreoAttack
+	STRING
+	FLOAT
+	STRING
+	FLOAT
+	STRING
+	FLOAT
+	STRING
+	FLOAT
+	STRING
+	FLOAT
+	STRING
+	FLOAT
+	STRING
+	STRING
+	STRING
+	FLOAT
+	STRING
+	STRING
+	FLOAT
+	STRING
+	STRING
+	STRING
+	STRING
+	STRING
+	STRING
+	ENUM AnimListDef_Enum1
+	ENUM AnimListDef_Enum2
+	BOOLEAN LocalPlayerUsesLightBuild
+END
+
 DEF 39 AnimListDef VERSION 53
+	ARRAY STRUCT AnimListDef_Anim Anim
+	ARRAY STRUCT AnimListDef_ChoreoAttack ChoreoAttacks
+	BOOLEAN ImpactAnimationsAdditive
+	BOOLEAN PlayChoreosInSequence
 END

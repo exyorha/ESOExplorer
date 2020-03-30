@@ -1,2 +1,12 @@
+ENUM MonsterModifierDef_Enum1
+	VALUES 0 4
+END
+
 DEF 42 MonsterModifierDef VERSION 20
+	ENUM MonsterDifficulty
+	ENUM MonsterModifierDef_Enum1
+	UINT16
+	BOOLEAN IgnoreMonsterTypeGoldModifier
+	BOOLEAN UncapModifierExp
+	BOOLEAN UseBossUIElements
 END

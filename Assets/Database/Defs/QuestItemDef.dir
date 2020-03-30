@@ -1,2 +1,15 @@
 DEF 45 QuestItemDef VERSION 24
+	UINT32
+	UINT32
+	ARRAY FOREIGN_KEY InteractableObjectDef DroppedBy
+	BOOLEAN Consumable
+	BOOLEAN IsUsable
+	BOOLEAN CanUseWhileSwimming
+	UINT32
+	FLOAT
+	UINT32
+	ASSET_REFERENCE
+	UINT32
+	UINT32
+	ENUM ItemUISoundCategory
 END

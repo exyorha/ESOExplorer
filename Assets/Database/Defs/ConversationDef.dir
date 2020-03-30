@@ -1,2 +1,34 @@
+ENUM ConversationDef_Enum1
+	VALUES 0 3
+END
+
+ENUM ConversationDef_Enum2
+	VALUES 0 3
+END
+
+ENUM ConvesationDef_Enum3
+	VALUES 0 3
+END
+
 DEF 44 ConversationDef VERSION 23
+	STRUCT CpStr TOCText
+	STRUCT VoCpStr Dialogue
+	UINT32
+	BOOLEAN ; 0
+	BOOLEAN ; 1
+	BOOLEAN ; 2
+	BOOLEAN ; 3
+	STRUCT CpStr BackToToTOCTextOverride
+	UINT32
+	UINT32
+	UINT32
+	FOREIGN_KEY ConversationDef
+	ARRAY FOREIGN_KEY ConversationDef NextConversation
+	ARRAY STRUCT CpStr OptionText
+	ARRAY ENUM ConversationDef_Enum1 SpeechCraft
+	ARRAY ENUM ConversationDef_Enum2 Bribe
+	UINT32
+	UINT32
+	ENUM ConvesationDef_Enum3
+	
 END

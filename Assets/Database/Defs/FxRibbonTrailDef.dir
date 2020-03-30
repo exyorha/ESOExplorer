@@ -1,2 +1,75 @@
+ENUM FxRibbonTrailDef_Enum1
+	VALUES 0 8
+END
+
+ENUM FxRibbonTrailDef_Enum2
+	VALUES 0 7
+END
+
 DEF 35 FxRibbonTrailDef VERSION 22
+	FLOAT
+	FLOAT
+	FLOAT
+	STRING
+	STRING
+	ARRAY FLOAT TopNodeOffset1
+	ARRAY FLOAT BottomNodeOffset1
+	STRING
+	STRING
+	ARRAY FLOAT TopNodeOffset2
+	ARRAY FLOAT BottomNodeOffset2
+	STRING
+	STRING
+	ARRAY FLOAT TopNodeOffset3
+	ARRAY FLOAT BottomNodeOffset3
+	STRING
+	STRING
+	ARRAY FLOAT TopNodeOffset4
+	ARRAY FLOAT BottomNodeOffset4
+	STRING
+	STRING
+	ARRAY FLOAT TopNodeOffset5
+	ARRAY FLOAT BottomNodeOffset5
+	BOOLEAN MainHand1
+	BOOLEAN OffHand1
+	BOOLEAN MainHand2
+	BOOLEAN OffHand2
+	BOOLEAN MainHand3
+	BOOLEAN OffHand3
+	BOOLEAN MainHand4
+	BOOLEAN OffHand4
+	BOOLEAN MainHand5
+	BOOLEAN OffHand5
+	ARRAY FLOAT Color
+	STRING
+	UINT32
+	FLOAT
+	ENUM FxRibbonTrailDef_Enum1
+	BOOLEAN OnCaster
+	BOOLEAN SmoothCurve
+	BOOLEAN FirstPersonVisibility
+	BOOLEAN IsWorldSpaceOffset1
+	BOOLEAN IsWorldSpaceOffset2
+	BOOLEAN IsWorldSpaceOffset3
+	BOOLEAN IsWorldSpaceOffset4
+	BOOLEAN IsWorldSpaceOffset5
+	BOOLEAN UseParentObjectFadeAlpha
+	BOOLEAN MultiFire
+	BOOLEAN UseParentObjectVisibility
+	FLOAT
+	FLOAT
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ENUM FxRibbonTrailDef_Enum2
+	ARRAY STRUCT FxStopInfo StopInfo
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
 END

@@ -1,2 +1,24 @@
+STRUCT GlobalQuestDataDef_MainQuest 
+	UINT32
+	FOREIGN_KEY QuestDef Quest
+END
+
+STRUCT GlobalQuestDataDef_PoiList 
+	ARRAY FOREIGN_KEY PointOfInterestDef ImportantPointsOfInterest
+END
+
 DEF 47 GlobalQuestDataDef VERSION 22
+	ARRAY UINT32 MoneyPerLevel
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT8
+	ARRAY UINT32 BribeLowLevel
+	ARRAY UINT32 BribeMidLevel
+	ARRAY UINT32 BribeHighLevel
+	ARRAY STRUCT GlobalQuestDataDef_MainQuest MainQuests
+	ARRAY STRUCT GlobalQuestDataDef_PoiList AlliancePois
+	ARRAY UINT32 DifficultyLevelCompleteActions
 END

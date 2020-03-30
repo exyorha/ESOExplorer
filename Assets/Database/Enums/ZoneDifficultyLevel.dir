@@ -1,0 +1,3 @@
+ENUM ZoneDifficultyLevel
+	VALUES 0 11
+END
