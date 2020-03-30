@@ -1,2 +1,37 @@
+ENUM FxAnimDef_Enum1
+	VALUES 0 2
+END
+
+ENUM FxAnimDef_Enum2
+	VALUES 0 1
+END
+	
 DEF 31 FxAnimDef VERSION 38
+	FLOAT
+	BOOLEAN OnCaster
+	BOOLEAN OverrideBlendTimes
+	BOOLEAN AttackAnim
+	BOOLEAN InterruptCombatAnims
+	BOOLEAN InterruptEffectAnims
+	BOOLEAN InterruptStanceAnims
+	BOOLEAN WaitForCooldownExpiry
+	BOOLEAN PlayUnderwater
+	BOOLEAN AlsoPlayOnMount
+	BOOLEAN ForcePlay
+	BOOLEAN DoNotPlayIfPostureAnimStateNotStanding
+	BOOLEAN MultiFire
+	BOOLEAN PlayIfDyingOrDead
+	BOOLEAN PlayScaleOnStart
+	BOOLEAN NormalizeScaleOnStart
+	STRING
+	FLOAT
+	FLOAT
+	ENUM FxAnimDef_Enum1
+	ENUM FxAnimDef_Enum2
+	FLOAT
+	UINT32
+	ENUM FxLinkActivation
+	FLOAT
+	FLOAT
+	ARRAY STRUCT FxStopInfo StopInfo
 END

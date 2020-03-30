@@ -1,2 +1,76 @@
+STRUCT FxDef_KeyData
+	POLYMORPHIC_REFERENCE FxType
+	ENUM FxMessage
+	STRING
+	FOREIGN_KEY RequirementListDef
+	ENUM FxDef_Enum3
+	BOOLEAN NegateRequirement
+	BOOLEAN ForceNoWaitForBegin
+	BOOLEAN CheckReqOnActivation
+	BOOLEAN CheckReqContinuosly
+	BOOLEAN IsPersistent
+	BOOLEAN SelfAbilityOnly
+	BOOLEAN PauseFxOnReqContinusolyFailure
+	BOOLEAN PlaysOnRefreshSelf
+	BOOLEAN PlaysAudioOnRefreshSelf
+	BOOLEAN PlaysWithEachProjectile
+	BOOLEAN Active
+	ENUM FxDef_Enum4
+	ENUM FxDef_Enum5
+END
+
+STRUCT FxDef_ImpactData
+	UINT32
+	UINT32
+	BOOLEAN SelfAbility
+	BOOLEAN OnLaunchNote
+	BOOLEAN OnProjectileImpact
+END
+
+ENUM FxDef_Enum1
+	VALUES 0 7
+END
+
+ENUM FxDef_Enum2
+	VALUES -1 1
+END
+
+ENUM FxDef_Enum3
+	VALUES 0 3
+END
+
+ENUM FxDef_Enum4
+	VALUES 0 2
+END
+
+ENUM FxDef_Enum5
+	VALUES 0 2
+END
+
 DEF 27 FxDef VERSION 57
+	BOOLEAN StayAlive
+	BOOLEAN RepeatingTimer
+	BOOLEAN EachImpactAffectsAllTargets
+	BOOLEAN IsArrowAbility
+	BOOLEAN IsMusicBox
+	BOOLEAN AllowFxReuseForPathing
+	BOOLEAN ParentsProccedFxs
+	ARRAY STRUCT FxDef_KeyData KeyData
+	ARRAY STRUCT FxDef_ImpactData ImpactData
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	ARRAY UINT32 ChainingAbilities
+	ENUM FxDef_Enum1
+	UINT32
+	FLOAT
+	ENUM FxDef_Enum2
+	FLOAT
+	UINT32
 END

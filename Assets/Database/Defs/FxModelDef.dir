@@ -1,2 +1,114 @@
+ENUM FxModelDef_Enum1
+	VALUES 0 2
+END
+
+ENUM FxModelDef_Enum2
+	VALUES 0 4
+END
+
+ENUM FxModelDef_Enum3
+	VALUES 0 2
+END
+
+ENUM FxModelDef_Enum4
+	VALUES 0 2
+END
+
+ENUM FxModelDef_Enum5
+	VALUES 0 5
+END
+
+ENUM FxModelDef_Enum6
+	VALUES 0 2
+END
+
 DEF 28 FxModelDef VERSION 66
+	FLOAT
+	BOOLEAN OnCaster
+	BOOLEAN ForTargeting
+	BOOLEAN DistanceScale
+	BOOLEAN YawRotationFixed
+	BOOLEAN PitchRotationFixed
+	BOOLEAN RollRotationFixed
+	BOOLEAN ConformToTerrain
+	BOOLEAN UseLODImpactLevel
+	BOOLEAN UseParentObjectVisibility
+	BOOLEAN VisibleInThirdPersonCameraOrFirstPersonNotOnLocalPlayer
+	BOOLEAN VisibleInFirstPersonCameraOnLocalPlayer
+	BOOLEAN ReceivesCharacterHighlight
+	BOOLEAN OverrideParentObjectLocalBounds
+	BOOLEAN SiegeAim
+	BOOLEAN StopAudioOnFadeOut
+	BOOLEAN StopAudioOnAnimTwoPlay
+	BOOLEAN MultiFire
+	BOOLEAN CanBeReflected
+	BOOLEAN Decay
+	BOOLEAN NoPositionOrLocationUpdate
+	BOOLEAN OverrideItemPartMaterialFromCurrentOpenCrownCrate
+	BOOLEAN HideShadows
+	BOOLEAN SoftenedDepthWrite
+	BOOLEAN TelegraphsCanNotDrawOver
+	BOOLEAN ApplyFogToAlpha
+	BOOLEAN ApplyCharacterModelScale
+	BOOLEAN UseFxRotationBone
+	BOOLEAN KeepOnFlyingTargets
+	BOOLEAN HasMatureContent
+	STRING
+	STRING
+	FLOAT
+	FLOAT
+	FLOAT
+	ASSET_REFERENCE
+	UINT32
+	ENUM FxMessage
+	STRING
+	ENUM FxModelDef_Enum1
+	ENUM FxVisibleToType
+	ENUM FxAttachType
+	ENUM FxModelDef_Enum2
+	ENUM FxAttachType
+	UINT32
+	FOREIGN_KEY FxProjectileDef
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	STRING
+	ENUM FxMessage
+	ENUM FxModelDef_Enum3
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ENUM FxModelDef_Enum4
+	ARRAY FLOAT ; +496
+	ARRAY STRUCT FxStopInfo StopInfo
+	UINT32
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	FLOAT
+	ENUM FxMessage
+	ENUM FxMessage
+	FLOAT
+	FLOAT
+	STRING
+	ENUM FxModelDef_Enum5
+	ENUM FxModelDef_Enum6
+	FLOAT
 END
