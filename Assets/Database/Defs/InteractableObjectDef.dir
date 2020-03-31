@@ -1,2 +1,3 @@
 DEF 23 InteractableObjectDef VERSION 352
+	; Same as MonsterDef
 END

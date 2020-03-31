@@ -1,0 +1,3 @@
+ENUM Bag
+	VALUES 0 17
+END

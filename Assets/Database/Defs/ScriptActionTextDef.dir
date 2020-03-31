@@ -1,2 +1,8 @@
 DEF 26 ScriptActionTextDef VERSION 24
+	STRUCT VoCpStr Text
+	BOOLEAN SuppressSATChatText
+	UINT32
+	UINT32
+	UINT32
+	UINT32
 END
