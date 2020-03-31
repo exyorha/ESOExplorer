@@ -101,6 +101,15 @@ void DatabaseDirectiveFile::processLine(std::vector<std::string>& tokens) {
 				}
 			}
 		}
+		else if (tokens[0] == "DEF_ALIAS") {
+			if (tokens.size() < 4)
+				parseError("At least three extra tokens expected for DEF");
+
+			auto& alias = m_defAliases.emplace_back();
+			alias.defIndex = std::stoul(tokens[1]);
+			alias.name = std::move(tokens[2]);
+			alias.targetName = std::move(tokens[3]);
+		}
 		else if (tokens[0] == "ENUM") {
 			auto& enumd = m_enums.emplace_back();
 			m_buildingEnum = &enumd;

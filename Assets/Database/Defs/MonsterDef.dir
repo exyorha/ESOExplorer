@@ -89,7 +89,6 @@ STRUCT MonsterDef_CombatSpacingData
 END
 
 DEF 8 MonsterDef VERSION 352
-	; Same as InteractableObjectDef
 	UINT32
 	UINT8 Level
 	ARRAY UINT32 OfferedQuests
@@ -231,7 +230,7 @@ DEF 8 MonsterDef VERSION 352
 	UINT32 ; Audio ref
 	UINT32
 	UINT32
-	UINT32
+	FOREIGN_KEY FxSetStateInfoDef
 	ENUM MonsterDef_Enum4
 	UINT16
 	UINT16
@@ -251,7 +250,7 @@ DEF 8 MonsterDef VERSION 352
 	UINT32
 	FOREIGN_KEY AppearanceDef
 	ARRAY UINT32 InteractionCameraDefIds
-	UINT32
+	FOREIGN_KEY BookDef
 	UINT32
 	UINT32
 	ENUM MonsterDef_Enum6	

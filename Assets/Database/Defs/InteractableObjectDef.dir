@@ -1,3 +1,1 @@
-DEF 23 InteractableObjectDef VERSION 352
-	; Same as MonsterDef
-END
+DEF_ALIAS 23 InteractableObjectDef MonsterDef

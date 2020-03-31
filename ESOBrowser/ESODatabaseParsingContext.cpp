@@ -1,6 +1,10 @@
 #include "ESODatabaseParsingContext.h"
 
 void ESODatabaseParsingContext::buildLookupCaches() {
+	m_structureLookup.clear();
+	m_defLookup.clear();
+	m_enumLookup.clear();
+
 	for (const auto& structure : structures) {
 		m_structureLookup.emplace(structure.name, &structure);
 	}	

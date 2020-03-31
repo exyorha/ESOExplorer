@@ -14,6 +14,7 @@ struct ESODatabaseParsingContext {
 	std::vector<DatabaseDirectiveFile::Structure> defs;
 	std::vector<DatabaseDirectiveFile::Structure> structures;
 	std::vector<DatabaseDirectiveFile::Enum> enums;
+	std::vector<DatabaseDirectiveFile::DefAlias> defAliases;
 
 	void buildLookupCaches();
 
@@ -25,6 +26,7 @@ private:
 	std::unordered_map<std::string, const DatabaseDirectiveFile::Structure*> m_structureLookup;
 	std::unordered_map<std::string, const DatabaseDirectiveFile::Structure*> m_defLookup;
 	std::unordered_map<std::string, const DatabaseDirectiveFile::Enum*> m_enumLookup;
+	std::unordered_map<std::string, const DatabaseDirectiveFile::DefAlias*> m_defAliasLookup;
 };
 
 #endif

@@ -43,6 +43,12 @@ public:
 		std::vector<StructureField> fields;
 	};
 
+	struct DefAlias {
+		unsigned int defIndex;
+		std::string name;
+		std::string targetName;
+	};
+
 	struct Enum {
 		std::string name;
 		std::vector<int32_t> values;
@@ -55,6 +61,7 @@ public:
 	inline std::vector<Structure>& structures() { return m_structures; }
 	inline std::vector<Enum>& enums() { return m_enums; }
 	inline std::vector<Structure>& defs() { return m_defs; }
+	inline std::vector<DefAlias>& defAliases() { return m_defAliases; }
 
 protected:
 	void processLine(std::vector<std::string>& tokens) override;
@@ -71,6 +78,7 @@ private:
 	State m_state;
 	std::vector<Structure> m_structures;
 	std::vector<Structure> m_defs;
+	std::vector<DefAlias> m_defAliases;
 	std::vector<Enum> m_enums;
 	Structure* m_buildingStructure;
 	Enum* m_buildingEnum;
