@@ -16,7 +16,7 @@
 #include <geometry/SurfaceOrientation.h>
 
 #include "Granny2Renderable.h"
-#include "ESOGraphicsTypes.h"
+#include <ESOData/Granny2/ESOGraphicsTypes.h>
 #include "DDSTexture.h"
 
 struct AuxVertex {
@@ -402,11 +402,11 @@ void Granny2Model::load() {
 		auto material = info->Materials[index];
 
 		if (material->Texture == nullptr) {
-			ESOMaterial parameters;
+			esodata::ESOMaterial parameters;
 			GrannyConvertSingleObject(
 				material->ExtendedData.Type,
 				material->ExtendedData.Object,
-				ESOMaterialType,
+				esodata::ESOMaterialType,
 				&parameters,
 				nullptr
 			);
@@ -508,11 +508,11 @@ bool Granny2Model::findMap(granny_material* material, const char* map, uint64_t&
 		if (strcmp(mapDef.Usage, map) == 0) {
 			auto &texture = mapDef.Material->Texture->ExtendedData;
 
-			ESOTexture info;
+			esodata::ESOTexture info;
 			GrannyConvertSingleObject(
 				texture.Type,
 				texture.Object,
-				ESOTextureType,
+				esodata::ESOTextureType,
 				&info,
 				nullptr
 			);
@@ -590,11 +590,11 @@ std::unique_ptr<Granny2Renderable> Granny2Model::createInstance() {
 
 		auto meshBox = filament::Box();
 		if (mesh->ExtendedData.Object) {
-			ESOMeshExtendedData meshExtended;
+			esodata::ESOMeshExtendedData meshExtended;
 			GrannyConvertSingleObject(
 				mesh->ExtendedData.Type,
 				mesh->ExtendedData.Object,
-				ESOMeshExtendedDataType,
+				esodata::ESOMeshExtendedDataType,
 				&meshExtended,
 				nullptr
 			);

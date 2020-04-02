@@ -33,8 +33,6 @@ add_executable(ESOBrowser
 	ESODatabaseModel.h
 	ESOFilesystemModel.cpp
 	ESOFilesystemModel.h
-	ESOGraphicsTypes.cpp
-	ESOGraphicsTypes.h
 	DatabaseRecordViewerWidget.cpp
 	DatabaseRecordViewerWidget.h
 	FilamentEngineInstance.cpp

@@ -1,7 +1,7 @@
 #include "FileNameExtractor.h"
 #include "FileTypeDetector.h"
-#include <ESOdata/Granny2/Granny2TypeHelpers.h>
-#include "ESOGraphicsTypes.h"
+#include <ESOData/Granny2/Granny2TypeHelpers.h>
+#include <ESOData/Granny2/ESOGraphicsTypes.h>
 #include "FileNameExtractorCallbacks.h"
 
 #include <ESOData/Filesystem/Filesystem.h>
@@ -61,11 +61,11 @@ void FileNameExtractor::extractNamesFromGranny(std::vector<unsigned char>& fileD
 			if (!materialData.Object)
 				continue;
 
-			ESOTexture texture;
+			esodata::ESOTexture texture;
 			GrannyConvertSingleObject(
 				materialData.Type,
 				materialData.Object,
-				ESOTextureType,
+				esodata::ESOTextureType,
 				&texture,
 				nullptr
 			);
