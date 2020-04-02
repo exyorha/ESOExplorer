@@ -110,7 +110,7 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(double value, QSta
 }
 
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueEnum& val, QStandardItem* childReceiver) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const esodata::ESODatabaseRecord::ValueEnum& val, QStandardItem* childReceiver) {
 	if (std::find(val.definition->values.begin(), val.definition->values.end(), val.value) == val.definition->values.end()) {
 		return new QStandardItem(QString::fromStdString(val.definition->name + "::<INVALID ENUM VALUE " + std::to_string(val.value) + ">"));
 	}
@@ -125,7 +125,7 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseR
 	}
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueArray& value, QStandardItem* childReceiver) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const esodata::ESODatabaseRecord::ValueArray& value, QStandardItem* childReceiver) {
 	for (const auto& subvalue : value.values) {
 		auto subitem = new QStandardItem();
 
@@ -145,7 +145,7 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseR
 	return nullptr;
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueForeignKey& value, QStandardItem* childReceiver) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const esodata::ESODatabaseRecord::ValueForeignKey& value, QStandardItem* childReceiver) {
 	if (value.id == 0) {
 		return new QStandardItem(QString::fromStdString("Null " + value.def));
 	}
@@ -176,7 +176,7 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(bool value, QStand
 	return new QStandardItem(value ? QStringLiteral("true") : QStringLiteral("false"));
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueStruct& record, QStandardItem* childReceiver) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const esodata::ESODatabaseRecord::ValueStruct& record, QStandardItem* childReceiver) {
 	for (const auto& fieldName : record.fieldOrder()) {
 		auto fieldNameItem = new QStandardItem(QString::fromStdString(fieldName));
 
@@ -199,7 +199,7 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseR
 	return nullptr;
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValueAssetReference& value, QStandardItem* childReceiver) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const esodata::ESODatabaseRecord::ValueAssetReference& value, QStandardItem* childReceiver) {
 	if (value.id == 0) {
 		return new QStandardItem(QStringLiteral("NULL Asset"));
 	}
@@ -214,24 +214,24 @@ QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseR
 	}
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const esodata::ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver) {
 	return std::visit(
 		[this, &val, childReceiver](const auto& value) {
 			return convertValueToItem(val, childReceiver, value);
 		}, val.data);
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const std::monostate&) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const esodata::ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const std::monostate&) {
 	auto it = val.selector.definition->valueNames.find(val.selector.value);
 	return new QStandardItem(QString::fromStdString(it->second));
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, uint32_t unknownValue) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const esodata::ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, uint32_t unknownValue) {
 	return new QStandardItem(QStringLiteral("Unresolved polymorphic reference: type %1::%2, ID %3")
 		.arg(QString::fromStdString(val.selector.definition->name)).arg(val.selector.value).arg(unknownValue));
 }
 
-QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const ESODatabaseRecord::ValueForeignKey& fkey) {
+QStandardItem* DatabaseRecordViewerWidget::convertValueToItem(const esodata::ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const esodata::ESODatabaseRecord::ValueForeignKey& fkey) {
 	auto item = convertValueToItem(fkey, childReceiver);
 
 	auto it = val.selector.definition->valueNames.find(val.selector.value);

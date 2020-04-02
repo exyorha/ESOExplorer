@@ -1,8 +1,8 @@
 #include "ESODatabaseDefModel.h"
-#include "ESODatabaseDef.h"
+#include <ESOdata/Database/ESODatabaseDef.h>
 #include "DataStorage.h"
 
-ESODatabaseDefModel::ESODatabaseDefModel(const ESODatabaseDef* def, const DataStorage* storage, QObject* parent) : QAbstractItemModel(parent), m_def(def), m_storage(storage) {
+ESODatabaseDefModel::ESODatabaseDefModel(const esodata::ESODatabaseDef* def, const DataStorage* storage, QObject* parent) : QAbstractItemModel(parent), m_def(def), m_storage(storage) {
 
 }
 
@@ -17,7 +17,7 @@ int ESODatabaseDefModel::columnCount(const QModelIndex& parent) const {
 }
 
 QVariant ESODatabaseDefModel::data(const QModelIndex& index, int role) const {
-	auto record = static_cast<ESODatabaseRecord *>(index.internalPointer());
+	auto record = static_cast<esodata::ESODatabaseRecord *>(index.internalPointer());
 
 	switch (role) {
 	case Qt::DisplayRole:
@@ -34,7 +34,7 @@ QModelIndex ESODatabaseDefModel::index(int row, int column, const QModelIndex& p
 	if (parent.isValid() || column >= m_storage->defFieldsAsColumns().size())
 		return QModelIndex();
 
-	return createIndex(row, column, const_cast<ESODatabaseRecord *>(&m_def->records()[row]));
+	return createIndex(row, column, const_cast<esodata::ESODatabaseRecord *>(&m_def->records()[row]));
 }
 
 QModelIndex ESODatabaseDefModel::parent(const QModelIndex& index) const {
@@ -66,17 +66,17 @@ std::string ESODatabaseDefModel::convertValueForDisplay(double val) {
 	return std::to_string(val);
 }
 
-std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueArray& val) {
+std::string ESODatabaseDefModel::convertValueForDisplay(const esodata::ESODatabaseRecord::ValueArray& val) {
 	(void)val;
 	return "<array>";
 }
 
-std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueForeignKey& val) {
+std::string ESODatabaseDefModel::convertValueForDisplay(const esodata::ESODatabaseRecord::ValueForeignKey& val) {
 	(void)val;
 	return "<fk>";
 }
 
-std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueEnum& val) {
+std::string ESODatabaseDefModel::convertValueForDisplay(const esodata::ESODatabaseRecord::ValueEnum& val) {
 	if (std::find(val.definition->values.begin(), val.definition->values.end(), val.value) == val.definition->values.end()) {
 		return val.definition->name + "::<INVALID ENUM VALUE " + std::to_string(val.value) + ">";
 	}
@@ -108,14 +108,14 @@ std::string ESODatabaseDefModel::convertValueForDisplay(bool val) {
 	return val ? "true" : "false";
 }
 
-std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueAssetReference& val) {
+std::string ESODatabaseDefModel::convertValueForDisplay(const esodata::ESODatabaseRecord::ValueAssetReference& val) {
 	return "<asset>";
 }
 
-std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValueStruct& val) {
+std::string ESODatabaseDefModel::convertValueForDisplay(const esodata::ESODatabaseRecord::ValueStruct& val) {
 	return "<struct>";
 }
 
-std::string ESODatabaseDefModel::convertValueForDisplay(const ESODatabaseRecord::ValuePolymorphicReference& val) {
+std::string ESODatabaseDefModel::convertValueForDisplay(const esodata::ESODatabaseRecord::ValuePolymorphicReference& val) {
 	return "<polyref>";
 }

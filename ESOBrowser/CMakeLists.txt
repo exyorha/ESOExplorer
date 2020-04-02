@@ -4,8 +4,6 @@ add_executable(ESOBrowser
 	DatabaseBrowserWidget.cpp
 	DatabaseBrowserWidget.h
 	DatabaseBrowserWidget.ui
-	DatabaseDirectiveFile.cpp
-	DatabaseDirectiveFile.h
 	DatabaseRecordViewerItemDelegate.cpp
 	DatabaseRecordViewerItemDelegate.h
 	DatabaseRecordViewerWidget.cpp
@@ -20,8 +18,6 @@ add_executable(ESOBrowser
 	DefSearchWidget.cpp
 	DefSearchWidget.h
 	DefSearchWidget.ui
-	DirectiveFile.cpp
-	DirectiveFile.h
 	DummyTabWidget.cpp
 	DummyTabWidget.h
 	DummyTabWidget.ui
@@ -31,18 +27,10 @@ add_executable(ESOBrowser
 	ESOBrowserSelectDepotDialog.cpp
 	ESOBrowserSelectDepotDialog.h
 	ESOBrowserSelectDepotDialog.ui
-	ESODatabase.cpp
-	ESODatabase.h
-	ESODatabaseDef.cpp
-	ESODatabaseDef.h
 	ESODatabaseDefModel.cpp
 	ESODatabaseDefModel.h
 	ESODatabaseModel.cpp
 	ESODatabaseModel.h
-	ESODatabaseParsingContext.cpp
-	ESODatabaseParsingContext.h
-	ESODatabaseRecord.cpp
-	ESODatabaseRecord.h
 	ESOFilesystemModel.cpp
 	ESOFilesystemModel.h
 	ESOGraphicsTypes.cpp
@@ -59,13 +47,9 @@ add_executable(ESOBrowser
 	FileNameExtractor.h
 	FileNameExtractorCallbacks.cpp
 	FileNameExtractorCallbacks.h
-	FilenameHarvestingDirectiveFile.cpp
-	FilenameHarvestingDirectiveFile.h
 	FilesystemBrowserWidget.cpp
 	FilesystemBrowserWidget.h
 	FilesystemBrowserWidget.ui
-	FilesystemDirectiveFile.cpp
-	FilesystemDirectiveFile.h
 	FileTypeDetector.cpp
 	FileTypeDetector.h
 	FileViewWidget.cpp
@@ -92,8 +76,6 @@ add_executable(ESOBrowser
 	NameHarvestingWidget.ui
 	PersistentTabWidget.cpp
 	PersistentTabWidget.h
-	SupportedVersionsDirectiveFile.cpp
-	SupportedVersionsDirectiveFile.h
 	TextFileViewWidget.cpp
 	TextFileViewWidget.h
 	UISettingsDirectiveFile.cpp

@@ -8,7 +8,7 @@ ESOFilesystemModel::ESOFilesystemModel(QObject* parent) : QAbstractItemModel(par
 
 ESOFilesystemModel::~ESOFilesystemModel() = default;
 
-void ESOFilesystemModel::buildTree(esodata::Filesystem* fs) {
+void ESOFilesystemModel::buildTree(const esodata::Filesystem* fs) {
 	m_root.indexOfThis = QModelIndex();
 	m_root.parent = nullptr;
 	m_root.data.emplace<Directory>();

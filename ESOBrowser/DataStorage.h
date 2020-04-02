@@ -7,28 +7,18 @@
 
 #include <QObject>
 
-#include "SupportedVersionsDirectiveFile.h"
-#include "FilesystemDirectiveFile.h"
+#include <ESOData/Depot/ESODepot.h>
+#include <ESOData/Depot/IDepotLoadingCallback.h>
+
 #include "ESOFilesystemModel.h"
-#include "FilenameHarvestingDirectiveFile.h"
-#include "ESODatabase.h"
 #include "ESODatabaseModel.h"
 #include "UISettingsDirectiveFile.h"
-
-#include <ESOData/Filesystem/Filesystem.h>
 
 QT_FORWARD_DECLARE_CLASS(QProgressDialog);
 
 class ESODatabaseDefModel;
 
-enum class ValidateDepotResult {
-	Succeeded,
-	NotSpecified,
-	DoesNotExist,
-	UnsupportedVersion
-};
-
-class DataStorage final : public QObject {
+class DataStorage final : public QObject, protected esodata::IDepotLoadingCallback {
 	Q_OBJECT
 
 public:
@@ -38,14 +28,14 @@ public:
 	DataStorage(DataStorage& other) = delete;
 	DataStorage &operator =(DataStorage& other) = delete;
 
-	ValidateDepotResult validateDepot();
+	bool validateDepot(esodata::ValidateDepotResult &result);
 
 	inline const std::vector<std::string> & supportedVersions() const {
-		return m_supportedVersions.supportedVersions;
+		return m_depot.supportedVersions();
 	}
 
 	inline const std::vector<std::string>& prefixesForFilenameHarvesting() const {
-		return m_filenameHarvesting.prefixes;
+		return m_depot.prefixesForFilenameHarvesting();
 	}
 
 	inline const std::vector<std::string> defFieldsAsColumns() const {
@@ -53,15 +43,15 @@ public:
 	}
 
 	inline const std::string& depotBuild() const {
-		return m_depotBuild;
+		return m_depot.depotBuild();
 	}
 
 	inline const std::string& depotBuildDate() const {
-		return m_depotBuildDate;
+		return m_depot.depotBuildDate();
 	}
 
 	inline const std::string& depotClientVersion() const {
-		return m_depotClientVersion;
+		return m_depot.depotClientVersion();
 	}
 
 	void setDepotPath(const std::filesystem::path& path);
@@ -69,15 +59,15 @@ public:
 	bool loadDepot();
 
 	inline const esodata::Filesystem* filesystem() const {
-		return &m_fs;
+		return m_depot.filesystem();
 	}
 
 	inline ESOFilesystemModel* filesystemModel() {
 		return &m_fsModel;
 	}
 
-	inline const ESODatabase& database() const {
-		return m_database;
+	inline const esodata::ESODatabase& database() const {
+		return *m_depot.database();
 	}
 
 	inline ESODatabaseModel* databaseModel() {
@@ -93,36 +83,32 @@ private slots:
 	void loadingCancelled();
 	void loadingProgress(int progress);
 
+protected:
+	bool loadingStepsDone(unsigned int steps) override;
+
 private:
 	bool getDepotPath(std::filesystem::path& path) const;
-	bool queryDepotVersion();
 
 	void backgroundLoadingThread();
 
 	bool isLoadingCancelled() const;
 	void setLoadingProgress(int progress);
 
-	SupportedVersionsDirectiveFile m_supportedVersions;
-	FilesystemDirectiveFile m_filesystem;
-	FilenameHarvestingDirectiveFile m_filenameHarvesting;
+	esodata::ESODepot m_depot;
+
 	UISettingsDirectiveFile m_uiSettings;
-
-	std::filesystem::path m_depotPath;
-	std::string m_depotBuild;
-	std::string m_depotBuildDate;
-	std::string m_depotClientVersion;
-
+	
 	std::thread m_loadingThread;
 	std::exception_ptr m_loadingException;
 	std::atomic<bool> m_loadingCancelled;
 	QProgressDialog* m_loadingDialog;
 	
-	esodata::Filesystem m_fs;
 	ESOFilesystemModel m_fsModel;
 
-	ESODatabase m_database;
 	ESODatabaseModel m_databaseModel;
 	std::vector<std::unique_ptr<ESODatabaseDefModel>> m_defModels;
+
+	unsigned int m_loadingProgress;
 };
 
 #endif

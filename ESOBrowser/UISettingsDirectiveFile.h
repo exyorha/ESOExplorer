@@ -1,9 +1,9 @@
 #ifndef UI_SETTINGS_DIRECTIVE_FILE_H
 #define UI_SETTINGS_DIRECTIVE_FILE_H
 
-#include "DirectiveFile.h"
+#include <ESOData/Directives/DirectiveFile.h>
 
-class UISettingsDirectiveFile final : public DirectiveFile {
+class UISettingsDirectiveFile final : public esodata::DirectiveFile {
 public:
 	UISettingsDirectiveFile();
 	~UISettingsDirectiveFile();

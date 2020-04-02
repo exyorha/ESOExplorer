@@ -27,7 +27,7 @@ public:
 	QModelIndex parent(const QModelIndex& index) const override;
 	int rowCount(const QModelIndex& parent) const override;
 
-	void buildTree(esodata::Filesystem *fs);
+	void buildTree(const esodata::Filesystem *fs);
 	void sortModel();
 
 	QString nameForId(uint64_t id, bool& isDefault) const;

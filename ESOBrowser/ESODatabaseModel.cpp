@@ -1,7 +1,7 @@
 #include "ESODatabaseModel.h"
-#include "ESODatabase.h"
+#include <ESOData/Database/ESODatabase.h>
 
-ESODatabaseModel::ESODatabaseModel(const ESODatabase* database, QObject* parent) : QAbstractItemModel(parent), m_database(database) {
+ESODatabaseModel::ESODatabaseModel(const esodata::ESODatabase* database, QObject* parent) : QAbstractItemModel(parent), m_database(database) {
 
 }
 
@@ -15,7 +15,7 @@ int ESODatabaseModel::columnCount(const QModelIndex& parent) const {
 }
 
 QVariant ESODatabaseModel::data(const QModelIndex& index, int role) const {
-	auto def = static_cast<ESODatabaseDef*>(index.internalPointer());
+	auto def = static_cast<esodata::ESODatabaseDef*>(index.internalPointer());
 
 	switch (role) {
 	case Qt::DisplayRole:
@@ -30,7 +30,7 @@ QModelIndex ESODatabaseModel::index(int row, int column, const QModelIndex& pare
 	if(parent.isValid() || column != 0)
 		return QModelIndex();
 
-	return createIndex(row, column, const_cast<ESODatabaseDef *>(&m_database->defs()[row]));
+	return createIndex(row, column, const_cast<esodata::ESODatabaseDef *>(&m_database->defs()[row]));
 }
 
 QModelIndex ESODatabaseModel::parent(const QModelIndex& index) const {

@@ -9,15 +9,12 @@
 
 #include "ESODatabaseDefModel.h"
 
-DataStorage::DataStorage() : m_loadingCancelled(false), m_loadingDialog(nullptr), m_database(&m_fs), m_databaseModel(&m_database) {
+DataStorage::DataStorage() : m_loadingCancelled(false), m_loadingDialog(nullptr), m_databaseModel(m_depot.database()) {
 	std::filesystem::path applicationDirectory(QCoreApplication::applicationDirPath().toStdWString());
+	
+	m_depot.loadDirectives(applicationDirectory, true);
 
-	m_supportedVersions.parseFile(applicationDirectory / "SupportedVersions.dir");
-	m_filesystem.parseFile(applicationDirectory / "Filesystem.dir");
-	m_filenameHarvesting.parseFile(applicationDirectory / "FilenameHarvesting.dir");
 	m_uiSettings.parseFile(applicationDirectory / "UISettings.dir");
-
-	m_database.loadDirectives(applicationDirectory / "Database");
 }
 
 DataStorage::~DataStorage() {
@@ -38,19 +35,18 @@ bool DataStorage::getDepotPath(std::filesystem::path& path) const {
 	return true;
 }
 
-ValidateDepotResult DataStorage::validateDepot() {
-	if (!getDepotPath(m_depotPath))
-		return ValidateDepotResult::NotSpecified;
 
-	if (!queryDepotVersion())
-		return ValidateDepotResult::DoesNotExist;
+bool DataStorage::validateDepot(esodata::ValidateDepotResult &result) {
+	std::filesystem::path depotPath;
 
-	if (std::find(m_supportedVersions.supportedVersions.begin(), m_supportedVersions.supportedVersions.end(), m_depotClientVersion) == m_supportedVersions.supportedVersions.end()) {
-		return ValidateDepotResult::UnsupportedVersion;
-	}
-	else {
-		return ValidateDepotResult::Succeeded;
-	}
+	if (!getDepotPath(depotPath))
+		return false;
+
+	m_depot.setDepotPath(std::move(depotPath));
+
+	result = m_depot.validateDepot();
+
+	return true;
 }
 
 void DataStorage::setDepotPath(const std::filesystem::path& path) {
@@ -61,28 +57,9 @@ void DataStorage::setDepotPath(const std::filesystem::path& path) {
 	settings.setValue(pathKey, pathString);
 }
 
-bool DataStorage::queryDepotVersion() {
-	try {
-		std::ifstream stream;
-		stream.exceptions(std::ios::failbit | std::ios::eofbit | std::ios::badbit);
-		stream.open(m_depotPath / "depot" / "_databuild" / "databuild.stamp");
-		
-		std::getline(stream, m_depotBuild);
-		std::getline(stream, m_depotBuildDate);
-
-		stream.exceptions(std::ios::failbit | std::ios::badbit);
-		std::getline(stream, m_depotClientVersion);
-
-		return true;
-	}
-	catch (const std::exception&) {
-		return false;
-	}
-}
-
 bool DataStorage::loadDepot() {
 	QProgressDialog dialog(QCoreApplication::tr("Loading depot data"), QCoreApplication::tr("Cancel"), 0,
-		static_cast<int>(m_filesystem.manifests.size() + m_filesystem.fileTables.size() + 2 + m_database.defs().size()));
+		static_cast<int>(m_depot.getExpectedNumberOfLoadingSteps() + 2));
 
 	connect(&dialog, &QProgressDialog::canceled, this, &DataStorage::loadingCancelled);
 	dialog.setAutoReset(false);
@@ -104,50 +81,34 @@ bool DataStorage::loadDepot() {
 	return !isLoadingCancelled();
 }
 
+bool DataStorage::loadingStepsDone(unsigned int steps) {
+	if (isLoadingCancelled())
+		return false;
+
+	m_loadingProgress += steps;
+	setLoadingProgress(m_loadingProgress);
+
+	return true;
+}
+
 void DataStorage::backgroundLoadingThread() {
 	try {
-		int progress = 0;
-		setLoadingProgress(progress);
+		m_loadingProgress = 0;
 
-		for (const auto& manifest : m_filesystem.manifests) {
-			if (isLoadingCancelled())
-				return;
+		m_depot.load(this);
 
-			m_fs.addManifest(m_depotPath / manifest, false);
-			setLoadingProgress(++progress);
-		}
-
-		for (auto fileTable : m_filesystem.fileTables) {
-			if (isLoadingCancelled())
-				return;
-
-			m_fs.loadFileTable(fileTable);
-			setLoadingProgress(++progress);
-		}
-
-		if (isLoadingCancelled())
-			return;
-
-		m_fsModel.buildTree(&m_fs);
-		setLoadingProgress(++progress);
-
-		if (isLoadingCancelled())
-			return;
-
+		m_fsModel.buildTree(filesystem());
+		if (!loadingStepsDone(1))
+			goto finish;
+		
 		m_fsModel.sortModel();
-		setLoadingProgress(++progress);
+		if (!loadingStepsDone(1))
+			goto finish;
 
-		m_defModels.reserve(m_database.defs().size());
+		m_defModels.reserve(database().defs().size());
 
-		for (auto& def : m_database.defs()) {
-			if (isLoadingCancelled())
-				return;
-
-			def.loadDef();
-
+		for (auto& def : database().defs()) {			
 			m_defModels.emplace_back(std::make_unique<ESODatabaseDefModel>(&def, this));
-
-			setLoadingProgress(++progress);
 		}
 	}
 
@@ -155,15 +116,17 @@ void DataStorage::backgroundLoadingThread() {
 		m_loadingException = std::current_exception();
 	}
 
-	QMetaObject::invokeMethod(this, "loadingFinished");
+finish:
+	QMetaObject::invokeMethod(this, "loadingFinished", Qt::QueuedConnection);
+	printf("DONE!\n");
 }
 
 void DataStorage::setLoadingProgress(int progress) {
-	QMetaObject::invokeMethod(this, "loadingProgress", Q_ARG(int, progress));
+	QMetaObject::invokeMethod(this, "loadingProgress", Qt::QueuedConnection, Q_ARG(int, progress));
 }
 
 void DataStorage::loadingFinished() {
-	m_loadingDialog->reset();
+	m_loadingDialog->accept();
 }
 
 void DataStorage::loadingProgress(int progress) {

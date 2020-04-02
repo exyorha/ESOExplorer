@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "PersistentTabWidget.h"
-#include "ESODatabaseRecord.h"
+#include <ESOData/Database/ESODatabaseRecord.h>
 #include "ui_DatabaseRecordViewerWidget.h"
 
 class ESOBrowserMainWindow;
@@ -40,24 +40,24 @@ private:
 
 	QStandardItem* convertValueToItem(double value, QStandardItem* childReceiver);
 
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueEnum& value, QStandardItem* childReceiver);
+	QStandardItem* convertValueToItem(const esodata::ESODatabaseRecord::ValueEnum& value, QStandardItem* childReceiver);
 
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueArray& value, QStandardItem* childReceiver);
+	QStandardItem* convertValueToItem(const esodata::ESODatabaseRecord::ValueArray& value, QStandardItem* childReceiver);
 
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueForeignKey& value, QStandardItem* childReceiver);
+	QStandardItem* convertValueToItem(const esodata::ESODatabaseRecord::ValueForeignKey& value, QStandardItem* childReceiver);
 
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueAssetReference& value, QStandardItem* childReceiver);
+	QStandardItem* convertValueToItem(const esodata::ESODatabaseRecord::ValueAssetReference& value, QStandardItem* childReceiver);
 
 	QStandardItem* convertValueToItem(const std::string & value, QStandardItem* childReceiver);
 
 	QStandardItem* convertValueToItem(bool value, QStandardItem* childReceiver);
 
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValueStruct & value, QStandardItem* childReceiver);
+	QStandardItem* convertValueToItem(const esodata::ESODatabaseRecord::ValueStruct & value, QStandardItem* childReceiver);
 
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver);
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const std::monostate &);
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, uint32_t unknownValue);
-	QStandardItem* convertValueToItem(const ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const ESODatabaseRecord::ValueForeignKey &fkey);
+	QStandardItem* convertValueToItem(const esodata::ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver);
+	QStandardItem* convertValueToItem(const esodata::ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const std::monostate &);
+	QStandardItem* convertValueToItem(const esodata::ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, uint32_t unknownValue);
+	QStandardItem* convertValueToItem(const esodata::ESODatabaseRecord::ValuePolymorphicReference& val, QStandardItem* childReceiver, const esodata::ESODatabaseRecord::ValueForeignKey &fkey);
 
 	ESOBrowserMainWindow* m_window;
 	Ui::DatabaseRecordViewerWidget ui;

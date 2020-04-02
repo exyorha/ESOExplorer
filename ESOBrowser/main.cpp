@@ -40,10 +40,11 @@ int main(int argc, char* argv[]) {
 			}
 		}
 
-		auto validationResult = storage->validateDepot();
+		esodata::ValidateDepotResult validationResult;
+		bool depotSpecified = storage->validateDepot(validationResult);
 
-		while (validationResult != ValidateDepotResult::Succeeded || command == MainWindowCommand::ChangeDepot) {
-			if (validationResult == ValidateDepotResult::UnsupportedVersion && command != MainWindowCommand::ChangeDepot) {
+		while ((!depotSpecified || validationResult != esodata::ValidateDepotResult::Succeeded) || command == MainWindowCommand::ChangeDepot) {
+			if (depotSpecified && validationResult == esodata::ValidateDepotResult::UnsupportedVersion && command != MainWindowCommand::ChangeDepot) {
 				QStringList supportedVersions;
 				for (const auto& version : storage->supportedVersions()) {
 					supportedVersions.append(QString::fromStdString(version));
@@ -62,14 +63,14 @@ int main(int argc, char* argv[]) {
 						QMessageBox::No);
 
 				if (result == QMessageBox::Yes) {
-					validationResult = ValidateDepotResult::Succeeded;
+					validationResult = esodata::ValidateDepotResult::Succeeded;
 				}
 			}
 
-			if (validationResult != ValidateDepotResult::Succeeded || command == MainWindowCommand::ChangeDepot) {
+			if (!depotSpecified || validationResult != esodata::ValidateDepotResult::Succeeded || command == MainWindowCommand::ChangeDepot) {
 				ESOBrowserSelectDepotDialog selectDialog;
 				if (selectDialog.exec() == QDialog::Rejected) {
-					if (validationResult == ValidateDepotResult::Succeeded && command == MainWindowCommand::ChangeDepot) {
+					if (depotSpecified && validationResult == esodata::ValidateDepotResult::Succeeded && command == MainWindowCommand::ChangeDepot) {
 						break;
 					}
 					else {
@@ -78,10 +79,10 @@ int main(int argc, char* argv[]) {
 				}
 
 				storage->setDepotPath(selectDialog.path());
-				validationResult = storage->validateDepot();
+				depotSpecified = storage->validateDepot(validationResult);
 			}
 
-			if (validationResult == ValidateDepotResult::Succeeded) {
+			if (depotSpecified && validationResult == esodata::ValidateDepotResult::Succeeded) {
 				command = MainWindowCommand::None;
 			}
 		}

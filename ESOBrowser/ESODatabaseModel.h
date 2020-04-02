@@ -3,13 +3,15 @@
 
 #include <QAbstractItemModel>
 
-class ESODatabase;
+namespace esodata {
+	class ESODatabase;
+}
 
 class ESODatabaseModel final : public QAbstractItemModel {
 	Q_OBJECT
 
 public:
-	explicit ESODatabaseModel(const ESODatabase* database, QObject* parent = nullptr);
+	explicit ESODatabaseModel(const esodata::ESODatabase* database, QObject* parent = nullptr);
 	~ESODatabaseModel() override;
 
 	int columnCount(const QModelIndex& parent) const override;
@@ -19,7 +21,7 @@ public:
 	int rowCount(const QModelIndex& parent) const override;
 
 private:
-	const ESODatabase* m_database;
+	const esodata::ESODatabase* m_database;
 };
 
 #endif
