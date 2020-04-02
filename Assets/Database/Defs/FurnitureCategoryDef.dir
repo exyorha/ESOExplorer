@@ -1,8 +1,0 @@
-DEF 351 FurnitureCategoryDef VERSION 3
-	UINT32
-	UINT8
-	UINT32
-	UINT32
-	UINT32
-	BOOLEAN AvailableInTradingHouse
-END

@@ -1,5 +1,0 @@
-MANIFEST game\client\game.mnf
-MANIFEST depot\eso.mnf
-MANIFEST vo_en\esoaudioen.mnf
-FILE_TABLE 0x8000000100000000
-FILE_TABLE 0x0000000000ffffff

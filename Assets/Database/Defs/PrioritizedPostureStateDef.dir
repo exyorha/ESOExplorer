@@ -1,3 +1,0 @@
-DEF 156 PrioritizedPostureStateDef VERSION 8
-	ARRAY STRUCT StateEntry States
-END

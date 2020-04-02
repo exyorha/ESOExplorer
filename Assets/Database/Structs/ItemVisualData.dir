@@ -1,6 +1,0 @@
-STRUCT ItemVisualData
-	FOREIGN_KEY ItemVisualTemplateDef
-	UINT8
-	FOREIGN_KEY FxDef
-	BOOLEAN StopFxOnSheathe
-END

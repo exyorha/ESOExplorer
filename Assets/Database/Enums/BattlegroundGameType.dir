@@ -1,3 +1,0 @@
-ENUM BattlegroundGameType
-	VALUES 0 6
-END

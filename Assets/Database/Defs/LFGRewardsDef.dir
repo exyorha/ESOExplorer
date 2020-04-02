@@ -1,9 +1,0 @@
-STRUCT LFGRewardsDef_Reward
-	FOREIGN_KEY RequirementListDef
-	UINT32
-	FLOAT
-END
-
-DEF 384 LFGRewardsDef VERSION 1
-	ARRAY STRUCT LFGRewardsDef_Reward Rewards
-END

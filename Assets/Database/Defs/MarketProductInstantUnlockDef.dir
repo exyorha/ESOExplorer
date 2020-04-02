@@ -1,5 +1,0 @@
-DEF 325 MarketProductInstantUnlockDef VERSION 10
-	FOREIGN_KEY InstantUnlockRewardDef Reward
-	FOREIGN_KEY ErrorStringDef ErrorString
-	ARRAY FOREIGN_KEY RequirementListDef EligibleReqLists
-END

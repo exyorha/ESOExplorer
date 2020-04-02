@@ -1,8 +1,0 @@
-DEF 216 HelpCategoryDef VERSION 5
-	STRUCT CpStr CategoryDescription
-	ASSET_REFERENCE IconUp
-	ASSET_REFERENCE IconDown
-	ASSET_REFERENCE IconOver
-	ASSET_REFERENCE IconGamepad
-	ARRAY FOREIGN_KEY HelpDef HelpEntries
-END

@@ -1,4 +1,0 @@
-STRUCT CpStr
-	ARRAY ENUM ClientLocTags CliArgs
-	ARRAY UINT32 CliArgVals
-END

@@ -1,3 +1,0 @@
-ENUM TriggerVolumeType
-	VALUES 0 6
-END

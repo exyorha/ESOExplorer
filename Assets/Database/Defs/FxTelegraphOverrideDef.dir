@@ -1,8 +1,0 @@
-STRUCT FxTelegraphOverrideDef_MonsterToFxTelegraph
-	FOREIGN_KEY MonsterDef Monster
-	FOREIGN_KEY FxTelegraphDef Telegraph
-END
-
-DEF 276 FxTelegraphOverrideDef VERSION 1
-	ARRAY STRUCT FxTelegraphOverrideDef_MonsterToFxTelegraph MonsterOverrides
-END

@@ -1,5 +1,0 @@
-DEF 410 WorldEventLocationDef VERSION 4
-	FOREIGN_KEY WaypointDef
-	FOREIGN_KEY SubzoneDef
-	ARRAY FOREIGN_KEY WorldEventLocationDef ConnectedLocations
-END

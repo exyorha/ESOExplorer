@@ -1,4 +1,0 @@
-ENUM DerivedStats
-	VALUES 0 50
-END
-

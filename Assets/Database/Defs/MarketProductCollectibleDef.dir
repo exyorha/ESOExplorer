@@ -1,3 +1,0 @@
-DEF 324 MarketProductCollectibleDef VERSION 3
-	FOREIGN_KEY CollectibleDef Collectible
-END

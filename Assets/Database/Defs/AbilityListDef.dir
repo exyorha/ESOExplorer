@@ -1,8 +1,0 @@
-STRUCT AbilityListDef_AbilityEntry
-	FOREIGN_KEY AbilityDef Ability
-	UINT8
-END
-
-DEF 1 AbilityListDef VERSION 7
-	ARRAY STRUCT AbilityListDef_AbilityEntry Entry
-END

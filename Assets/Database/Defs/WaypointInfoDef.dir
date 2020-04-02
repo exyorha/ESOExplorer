@@ -1,4 +1,0 @@
-DEF 419 WaypointInfoDef VERSION 1
-	ARRAY UINT32 Tags
-	UINT32
-END

@@ -1,9 +1,0 @@
-STRUCT ItemMaterialDef_RacialMaterial
-	UINT32
-END
-
-DEF 185 ItemMaterialDef VERSION 6
-	ARRAY STRUCT ItemMaterialDef_RacialMaterial Materials
-	ARRAY FOREIGN_KEY TintDef PrimaryTints
-	BOOLEAN PotionMaterial
-END

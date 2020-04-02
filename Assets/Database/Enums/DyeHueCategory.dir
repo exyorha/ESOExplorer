@@ -1,3 +1,0 @@
-ENUM DyeHueCategory
-	VALUES 0 8
-END

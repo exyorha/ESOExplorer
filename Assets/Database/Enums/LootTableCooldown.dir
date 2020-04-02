@@ -1,3 +1,0 @@
-ENUM LootTableCooldown
-	VALUES 0 130
-END

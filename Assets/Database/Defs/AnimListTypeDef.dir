@@ -1,9 +1,0 @@
-DEF 370 AnimListTypeDef VERSION 2
-	BOOLEAN	Mount
-	BOOLEAN Bow
-	BOOLEAN Combat
-	BOOLEAN Torch 
-	BOOLEAN Staff
-	BOOLEAN NoChoreoError
-	BOOLEAN Flight	
-END

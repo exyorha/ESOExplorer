@@ -1,6 +1,0 @@
-DEF 398 FxCameraFacingLockDef VERSION 2
-	FLOAT
-	BOOLEAN OnCaster
-	ARRAY STRUCT FxStopInfo StopInfo
-	FLOAT
-END

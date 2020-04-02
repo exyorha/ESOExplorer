@@ -1,3 +1,0 @@
-ENUM UniversalPoseType
-	VALUES 0 9
-END

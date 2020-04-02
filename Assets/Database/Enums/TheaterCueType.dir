@@ -1,3 +1,0 @@
-ENUM TheaterCueType
-	VALUES 0 9
-END

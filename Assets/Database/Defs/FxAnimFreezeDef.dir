@@ -1,6 +1,0 @@
-DEF 396 FxAnimFreezeDef VERSION 3
-	FLOAT
-	UINT32 DurationMilliseconds
-	BOOLEAN
-	ARRAY STRUCT FxStopInfo StopInfo
-END

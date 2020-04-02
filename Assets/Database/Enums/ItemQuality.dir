@@ -1,3 +1,0 @@
-ENUM ItemQuality
-	VALUES 0 5
-END

@@ -1,9 +1,0 @@
-ENUM RaidDefEnum1
-	VALUES 0 1
-END
-
-DEF 248 RaidDef VERSION 7
-	UINT32
-	ENUM RaidDefEnum1
-	UINT32	
-END

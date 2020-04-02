@@ -1,5 +1,0 @@
-STRUCT VoCpStr
-	ARRAY ENUM ClientLocTags CliArgs
-	ARRAY UINT32 CliArgVals
-	FOREIGN_KEY VOLineDef VOLine
-END

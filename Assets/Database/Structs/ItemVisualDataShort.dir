@@ -1,4 +1,0 @@
-STRUCT ItemVisualDataShort
-	FOREIGN_KEY ItemVisualTemplateDef
-	UINT8
-END

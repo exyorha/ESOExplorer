@@ -1,5 +1,0 @@
-ENUM QuestRequirementType
-	VALUE 0 NULL%NULL$None
-	VALUE 1 QuestStepDef%NULL$StepDone
-	VALUES 2 18
-END

@@ -1,3 +1,0 @@
-DEF 137 ScriptedEventDef VERSION 23
-	BOOLEAN ShowEventCenterAsFollower
-END

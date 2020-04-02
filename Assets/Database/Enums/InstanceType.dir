@@ -1,3 +1,0 @@
-ENUM InstanceType
-	VALUES 0 7
-END

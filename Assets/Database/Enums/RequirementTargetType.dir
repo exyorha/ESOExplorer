@@ -1,3 +1,0 @@
-ENUM RequirementTargetType
-	VALUES 0 25
-END

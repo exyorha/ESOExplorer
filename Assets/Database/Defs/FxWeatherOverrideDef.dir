@@ -1,7 +1,0 @@
-DEF 206 FxWeatherOverrideDef VERSION 5
-	FOREIGN_KEY WeatherDef Weather
-	FLOAT
-	FLOAT
-	BOOLEAN OnCaster
-	ARRAY STRUCT FxStopInfo StopInfo
-END

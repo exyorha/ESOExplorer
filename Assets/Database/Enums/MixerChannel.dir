@@ -1,3 +1,0 @@
-ENUM MixerChannel
-	VALUES 0 8
-END

@@ -1,5 +1,0 @@
-DEF 245 LoadingTipDef VERSION 4
-	STRUCT CpStr Tip
-	STRUCT CpStr GamepadOverrideTip
-	STRUCT CpStr ConsoleOverrideTip
-END

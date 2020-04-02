@@ -1,9 +1,0 @@
-STRUCT FxAnimPairedAnimationVariantsDef_ScaleTargetingAnimationVariantsInfo
-	STRING
-	STRING
-	STRING
-END
-
-DEF 320 FxAnimPairedAnimationVariantsDef VERSION 1
-	ARRAY STRUCT FxAnimPairedAnimationVariantsDef_ScaleTargetingAnimationVariantsInfo ScaleTargetingAnimationVariants
-END

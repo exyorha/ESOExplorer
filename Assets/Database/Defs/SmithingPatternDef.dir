@@ -1,5 +1,0 @@
-DEF 231 SmithingPatternDef VERSION 9
-	UINT32
-	UINT8
-	ARRAY FOREIGN_KEY ItemDef Trait
-END

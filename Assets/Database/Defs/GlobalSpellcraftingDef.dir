@@ -1,4 +1,0 @@
-DEF 250 GlobalSpellcraftingDef VERSION 3
-	UINT32
-	ARRAY UINT32 SpellcraftingSkills
-END

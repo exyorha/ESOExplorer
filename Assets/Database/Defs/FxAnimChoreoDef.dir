@@ -1,9 +1,0 @@
-ENUM FxAnimChoreoDefEnum1
-	VALUES 0 1
-END
-
-DEF 163 FxAnimChoreoDef VERSION 5
-	FLOAT 
-	ENUM FxAnimChoreoDefEnum1
-	ARRAY STRUCT FxStopInfo StopInfo
-END

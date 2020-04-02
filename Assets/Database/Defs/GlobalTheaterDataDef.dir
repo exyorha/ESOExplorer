@@ -1,4 +1,0 @@
-DEF 365 GlobalTheaterDataDef VERSION 2
-	UINT32
-	FLOAT
-END

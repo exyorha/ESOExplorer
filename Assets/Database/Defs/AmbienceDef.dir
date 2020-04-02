@@ -1,8 +1,0 @@
-DEF 53 AmbienceDef VERSION 8
-	UINT32
-	ARRAY FLOAT ColorVal
-	ARRAY UINT32 AudioDSPTypes
-	FLOAT
-	UINT32
-	ARRAY FLOAT TriggerVolumePaintColor
-END

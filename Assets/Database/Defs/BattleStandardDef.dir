@@ -1,7 +1,0 @@
-ENUM BattleStandardDefEnum1
-	VALUES 0 3
-END
-
-DEF 260 BattleStandardDef VERSION 1
-	ENUM BattleStandardDefEnum1
-END

@@ -1,7 +1,0 @@
-DEF 383 OutfitSlotDataDef VERSION 7
-	FOREIGN_KEY CollectibleCategoryDef
-	BOOLEAN IsDyeable
-	FOREIGN_KEY OutfitStyleDef
-	UINT32
-	UINT32
-END

@@ -1,9 +1,0 @@
-STRUCT HolidayDef_HolidayBonus 
-	ENUM HolidayBonusType
-	FLOAT
-	UINT32
-END
-
-DEF 338 HolidayDef VERSION 4
-	ARRAY STRUCT HolidayDef_HolidayBonus Bonuses
-END

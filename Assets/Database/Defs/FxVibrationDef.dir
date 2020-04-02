@@ -1,7 +1,0 @@
-DEF 267 FxVibrationDef VERSION 6
-	FLOAT
-	FOREIGN_KEY VibrationDef Vibration
-	BOOLEAN OnCaster
-	BOOLEAN MultiFire
-	ARRAY STRUCT FxStopInfo StopInfo
-END

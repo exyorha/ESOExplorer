@@ -1,4 +1,0 @@
-DEF 401 TeachableMomentDef VERSION 1
-	STRUCT CpStr KeyboardDescription
-	STRUCT CpStr GamepadDescription
-END

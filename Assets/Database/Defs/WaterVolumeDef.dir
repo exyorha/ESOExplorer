@@ -1,6 +1,0 @@
-DEF 69 WaterVolumeDef VERSION 10
-	UINT32
-	FOREIGN_KEY WaterVisualDef
-	UINT32
-	ENUM WaterSplashType
-END

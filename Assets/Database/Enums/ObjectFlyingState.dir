@@ -1,3 +1,0 @@
-ENUM ObjectFlyingState
-	VALUES 0 5
-END

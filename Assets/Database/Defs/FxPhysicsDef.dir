@@ -1,6 +1,0 @@
-DEF 363 FxPhysicsDef VERSION 3
-	FLOAT
-	ENUM FxMessage
-	ENUM PhysicsActorState
-	ARRAY STRUCT FxStopInfo StopInfo
-END

@@ -1,3 +1,0 @@
-ENUM BonusCategory
-	VALUES 0 10
-END

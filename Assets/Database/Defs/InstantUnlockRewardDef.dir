@@ -1,8 +1,0 @@
-DEF 388 InstantUnlockRewardDef VERSION 3
-	ENUM InstantUnlockRewardType
-	STRUCT CpStr Description
-	ASSET_REFERENCE
-	FOREIGN_KEY RequirementListDef
-	STRUCT CpStr CompleteDescription
-	UINT32
-END

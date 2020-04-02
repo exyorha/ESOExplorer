@@ -1,3 +1,0 @@
-ENUM InstantUnlockRewardType
-	VALUES 0 15
-END

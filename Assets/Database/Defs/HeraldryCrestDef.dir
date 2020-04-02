@@ -1,6 +1,0 @@
-DEF 257 HeraldryCrestDef VERSION 4
-	FOREIGN_KEY HeraldryCategoryDef Category
-	ASSET_REFERENCE
-	FOREIGN_KEY ItemVisualTemplateDef
-	ASSET_REFERENCE
-END

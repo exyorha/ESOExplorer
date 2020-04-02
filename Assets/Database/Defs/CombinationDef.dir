@@ -1,7 +1,0 @@
-DEF 405 CombinationDef VERSION 5
-	ARRAY UINT32 Items
-	ARRAY FOREIGN_KEY CollectibleDef ComponentCollectibles
-	FOREIGN_KEY CollectibleDef
-	STRUCT CpStr Description
-	BOOLEAN IsRepeatable
-END

@@ -1,8 +1,0 @@
-ENUM StoreDef_Enum1
-	VALUES 0 1
-END
-
-DEF 51 StoreDef VERSION 17
-	UINT32
-	ENUM StoreDef_Enum1
-END

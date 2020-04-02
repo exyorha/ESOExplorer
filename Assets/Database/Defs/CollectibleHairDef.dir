@@ -1,7 +1,0 @@
-DEF 331 CollectibleHairDef VERSION 1
-	FOREIGN_KEY ItemVisualTemplateDef ItemVisualTemplate
-	UINT32
-	UINT32
-	UINT32
-	UINT32
-END

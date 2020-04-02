@@ -1,6 +1,0 @@
-DEF 393 AbilityRankDeltaDef VERSION 1
-	ENUM AbilityRankDeltaType
-	ARRAY INT32 Deltas
-	BOOLEAN IsPercent
-	INT32
-END

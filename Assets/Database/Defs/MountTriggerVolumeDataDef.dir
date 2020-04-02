@@ -1,8 +1,0 @@
-ENUM MountTriggerVolumeDataDefEnum1
-	VALUES 0 3
-END
-
-DEF 292 MountTriggerVolumeDataDef VERSION 1
-	ENUM MountTriggerVolumeDataDefEnum1
-	ARRAY FLOAT TriggerVolumePaintColor
-END

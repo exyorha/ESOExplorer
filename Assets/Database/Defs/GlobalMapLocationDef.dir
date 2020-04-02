@@ -1,7 +1,0 @@
-STRUCT GlobalMapLocationDef_TooltipLineCategoryGroup
-	ARRAY FOREIGN_KEY MapLocationTooltipCategoryDef TooltipLineCategories
-END
-
-DEF 238 GlobalMapLocationDef VERSION 2
-	ARRAY STRUCT GlobalMapLocationDef_TooltipLineCategoryGroup TooltipLineCategoryGroups
-END

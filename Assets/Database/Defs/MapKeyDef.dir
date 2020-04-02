@@ -1,3 +1,0 @@
-DEF 241 MapKeyDef VERSION 1
-	ARRAY FOREIGN_KEY MapKeySectionDef Sections
-END

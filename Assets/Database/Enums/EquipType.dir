@@ -1,3 +1,0 @@
-ENUM EquipType
-	VALUES 0 15
-END

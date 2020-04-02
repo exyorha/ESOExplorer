@@ -1,3 +1,0 @@
-DEF 160 PrioritizedFXSetStateDef VERSION 5
-	ARRAY STRUCT StateEntry States
-END

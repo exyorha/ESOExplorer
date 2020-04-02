@@ -1,3 +1,0 @@
-ENUM ConsoleEventType
-	VALUES 0 58
-END

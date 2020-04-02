@@ -1,6 +1,0 @@
-DEF 382 GlobalOutfitDef VERSION 5
-	FLOAT
-	UINT32
-	ARRAY FOREIGN_KEY OutfitSlotDataDef
-	UINT32
-END

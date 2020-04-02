@@ -1,3 +1,0 @@
-DEF 220 GlobalPOIDataDef VERSION 5
-	ARRAY UINT32 NearbyDistanceThresholds
-END

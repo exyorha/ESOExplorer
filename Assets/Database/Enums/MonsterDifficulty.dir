@@ -1,3 +1,0 @@
-ENUM MonsterDifficulty
-	VALUES 0 12
-END

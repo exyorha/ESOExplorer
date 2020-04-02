@@ -1,3 +1,0 @@
-ENUM MonsterType
-	VALUES 0 30
-END

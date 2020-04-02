@@ -1,4 +1,0 @@
-DEF 295 DisplayAlertDef VERSION 1
-	; string context: 0x9CC58E4, id, 0
-	STRUCT CpStr
-END

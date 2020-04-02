@@ -2,19 +2,19 @@ set(commands)
 set(generated_materials)
 
 foreach(dir_file IN ITEMS
-	FilenameHarvesting.dir
-	Filesystem.dir
-	SupportedVersions.dir
-	UISettings.dir
+	${ESOData_SOURCE_DIR}/Directives/FilenameHarvesting.dir
+	${ESOData_SOURCE_DIR}/Directives/Filesystem.dir
+	${ESOData_SOURCE_DIR}/Directives/SupportedVersions.dir
+	${CMAKE_CURRENT_SOURCE_DIR}/UISettings.dir
 )
 
-	list(APPEND commands COMMAND cmake -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/${dir_file} $<TARGET_FILE_DIR:ESOBrowser>)
+	list(APPEND commands COMMAND cmake -E copy_if_different ${dir_file} $<TARGET_FILE_DIR:ESOBrowser>)
 	
 endforeach()
 
-file(GLOB_RECURSE database_files "${CMAKE_CURRENT_SOURCE_DIR}/Database/*.dir")
+file(GLOB_RECURSE database_files "${ESOData_SOURCE_DIR}/Directives/Database/*.dir")
 foreach(database_file IN LISTS database_files)
-	file(RELATIVE_PATH relative "${CMAKE_CURRENT_SOURCE_DIR}" "${database_file}")
+	file(RELATIVE_PATH relative "${ESOData_SOURCE_DIR}/Directives" "${database_file}")
 	
 	get_filename_component(subdirectory "${relative}" DIRECTORY)
 

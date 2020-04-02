@@ -1,6 +1,0 @@
-DEF 330 LootCrateTierDef VERSION 14
-	ARRAY FOREIGN_KEY MarketProductDef TierItems
-	ARRAY STRUCT LootCrateParticleInfo ParticleEmitters
-	FOREIGN_KEY LootCrateTierTemplateDef Template
-	ARRAY UINT32 DuplicateReservoir
-END

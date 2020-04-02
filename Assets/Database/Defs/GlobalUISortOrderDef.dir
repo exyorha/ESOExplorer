@@ -1,3 +1,0 @@
-DEF 375 GlobalUISortOrderDef VERSION 1
-	ARRAY FOREIGN_KEY HelpCategoryDef HelpCategories
-END

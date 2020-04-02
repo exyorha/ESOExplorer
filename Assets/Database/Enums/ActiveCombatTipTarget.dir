@@ -1,3 +1,0 @@
-ENUM ActiveCombatTipTarget
-	VALUES 0 6
-END

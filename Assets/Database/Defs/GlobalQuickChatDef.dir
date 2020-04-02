@@ -1,9 +1,0 @@
-STRUCT GlobalQuickChatDef_QuickChat
-	; String context: 0x7422f85, id, array index
-	FOREIGN_KEY PlayerEmoteDef Emote
-	; String context: 0x4a95205, id, array index
-END
-
-DEF 289 GlobalQuickChatDef VERSION 1
-	ARRAY STRUCT GlobalQuickChatDef_QuickChat QuickChats
-END

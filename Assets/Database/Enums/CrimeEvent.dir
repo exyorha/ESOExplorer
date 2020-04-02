@@ -1,3 +1,0 @@
-ENUM CrimeEvent
-	VALUES 0 18
-END

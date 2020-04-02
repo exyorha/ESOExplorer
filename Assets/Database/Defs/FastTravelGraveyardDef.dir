@@ -1,8 +1,0 @@
-ENUM FastTravelGraveyardDefEnum1
-	VALUES 0 5
-END
-
-DEF 154 FastTravelGraveyardDef VERSION 6
-	ARRAY FOREIGN_KEY GraveyardDef Graveyards
-	ENUM FastTravelGraveyardDefEnum1
-END

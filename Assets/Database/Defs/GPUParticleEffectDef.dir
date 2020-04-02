@@ -1,3 +1,0 @@
-DEF 358 GPUParticleEffectDef VERSION 2
-	ARRAY FOREIGN_KEY GPUParticleEmitterDef Emitters
-END

@@ -1,4 +1,0 @@
-DEF 232 SmithingPatternListDef VERSION 2
-	FOREIGN_KEY ItemSetDef ItemSet
-	ARRAY FOREIGN_KEY SmithingPatternDef Patterns
-END

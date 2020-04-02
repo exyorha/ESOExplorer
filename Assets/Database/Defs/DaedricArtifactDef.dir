@@ -1,6 +1,0 @@
-DEF 416 DaedricArtifactDef VERSION 3
-	FOREIGN_KEY ItemDef
-	
-	; Since version 2
-		INT32
-END

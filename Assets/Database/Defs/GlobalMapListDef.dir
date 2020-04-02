@@ -1,8 +1,0 @@
-STRUCT GlobalMapListDef_Map
-	INT32
-	FOREIGN_KEY MapDef Map
-END
-
-DEF 132 GlobalMapListDef VERSION 2
-	ARRAY STRUCT GlobalMapListDef_Map Maps
-END

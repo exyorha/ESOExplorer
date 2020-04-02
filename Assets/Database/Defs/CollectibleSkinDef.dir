@@ -1,7 +1,0 @@
-DEF 314 CollectibleSkinDef VERSION 1
-	FOREIGN_KEY ItemVisualTemplateDef
-	UINT32
-	UINT32
-	UINT32
-	UINT32
-END

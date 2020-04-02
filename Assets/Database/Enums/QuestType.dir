@@ -1,3 +1,0 @@
-ENUM QuestType
-	VALUES 0 13
-END

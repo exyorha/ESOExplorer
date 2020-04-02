@@ -1,7 +1,0 @@
-DEF 308 TheaterBlockingMarkerDef VERSION 3
-	INT32
-	INT32
-	INT32
-	FLOAT
-	UINT32
-END

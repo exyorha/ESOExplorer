@@ -1,8 +1,0 @@
-DEF 41 TerrainTextureDef VERSION 7
-	FLOAT scale
-	UINT32 audioSurface
-	ASSET_REFERENCE baseMap
-	ASSET_REFERENCE normalMap
-	FLOAT biasU
-	FLOAT biasV
-END

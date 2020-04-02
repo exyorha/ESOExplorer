@@ -1,3 +1,0 @@
-DEF 213 GlobalEntitlementPackageDef VERSION 11
-	ARRAY UINT32 PlayAsAnyEntitlements
-END

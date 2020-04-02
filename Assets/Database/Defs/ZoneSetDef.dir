@@ -1,4 +1,0 @@
-DEF 362 ZoneSetDef VERSION 1
-	ARRAY FOREIGN_KEY ZoneDef Zones
-	BOOLEAN IncludeChildZones
-END

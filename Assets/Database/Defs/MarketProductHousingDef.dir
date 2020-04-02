@@ -1,4 +1,0 @@
-DEF 356 MarketProductHousingDef VERSION 2
-	FOREIGN_KEY HouseTemplateDef HouseTemplate
-	ARRAY FOREIGN_KEY MarketProductDef ParentMarketProducts
-END

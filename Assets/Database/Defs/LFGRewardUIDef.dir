@@ -1,8 +1,0 @@
-STRUCT LFGRewardUIDef_RewardNode
-	ASSET_REFERENCE
-	ARRAY FLOAT TextColor
-END
-
-DEF 385 LFGRewardUIDef VERSION 2
-	ARRAY STRUCT LFGRewardUIDef_RewardNode RewardNodes	
-END

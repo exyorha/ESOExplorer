@@ -1,3 +1,0 @@
-ENUM TargetType
-	VALUES 0 14
-END
