@@ -1,7 +1,7 @@
 #include "ModelViewerWidget.h"
 #include "DataStorage.h"
 #include "ESOBrowserMainWindow.h"
-#include "Granny2TypeHelpers.h"
+#include <ESOData/Granny2/Granny2TypeHelpers.h>
 #include "Granny2Model.h"
 #include "Granny2Renderable.h"
 #include "FilamentViewport.h"
@@ -36,7 +36,7 @@ void ModelViewerWidget::loadSingleModel(uint64_t key) {
 		if (!rawFile)
 			throw std::logic_error("GrannyReadEntireFileFromMemory failed");
 
-		GrannyFile file(rawFile);
+		esodata::GrannyFile file(rawFile);
 
 		granny_variant root;
 		GrannyGetDataTreeFromFile(file.get(), &root);

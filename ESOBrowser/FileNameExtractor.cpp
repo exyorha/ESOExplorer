@@ -1,6 +1,6 @@
 #include "FileNameExtractor.h"
 #include "FileTypeDetector.h"
-#include "Granny2TypeHelpers.h"
+#include <ESOdata/Granny2/Granny2TypeHelpers.h>
 #include "ESOGraphicsTypes.h"
 #include "FileNameExtractorCallbacks.h"
 
@@ -34,7 +34,7 @@ void FileNameExtractor::extractNamesFromFile(uint64_t id) {
 }
 
 void FileNameExtractor::extractNamesFromGranny(std::vector<unsigned char>& fileData) {
-	GrannyFile file(GrannyReadEntireFileFromMemory(fileData.size(), fileData.data()));
+	esodata::GrannyFile file(GrannyReadEntireFileFromMemory(fileData.size(), fileData.data()));
 	if (!file) {
 		std::stringstream error;
 		error << "Failed to read granny2 file " << std::hex << m_key;

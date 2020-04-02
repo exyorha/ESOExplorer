@@ -61,8 +61,6 @@ add_executable(ESOBrowser
 	Granny2Model.h
 	Granny2Renderable.cpp
 	Granny2Renderable.h
-	Granny2TypeHelpers.cpp
-	Granny2TypeHelpers.h
 	HexView.cpp
 	HexView.h
 	main.cpp

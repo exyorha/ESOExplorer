@@ -6,7 +6,7 @@
 #include <vector>
 #include <unordered_set>
 
-#include "Granny2TypeHelpers.h"
+#include <ESOData/Granny2/Granny2TypeHelpers.h>
 #include "FilamentTypeHelpers.h"
 
 class FilamentEngineInstance;
@@ -52,7 +52,7 @@ private:
 	
 	FilamentEngineInstance* m_engine;
 	uint64_t m_key;
-	GrannyFile m_file;
+	esodata::GrannyFile m_file;
 	std::unordered_set<std::shared_ptr<DDSTexture>> m_requiredTextures;
 	std::vector<FilamentVertexBuffer> m_vertexBuffers;
 	std::vector<filament::Box> m_backupBoundingBoxes;

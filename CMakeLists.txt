@@ -9,6 +9,5 @@ find_package(filament REQUIRED)
 
 add_subdirectory(ESOData)
 add_subdirectory(DirectXTex)
-add_subdirectory(granny2)
 add_subdirectory(Assets)
 add_subdirectory(ESOBrowser)

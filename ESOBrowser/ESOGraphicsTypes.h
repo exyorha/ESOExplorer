@@ -5,20 +5,7 @@
 
 #pragma pack(push)
 #pragma pack(4)
-/*
-struct ESOLikeVertex {
-	float Position[3];
-	uint8_t DiffuseColor0[4];
-	int16_t TextureCoord0[2];
-	int16_t TextureCoord1[2];
-};
 
-struct ESOLikeVertexAside {
-	int16_t Normal[2];
-	int16_t Tangent[2];
-	int16_t Binormal[2];
-};
-*/
 struct ESOMeshExtendedData {
 	float BBoxMin[3];
 	float BBoxMax[3];
