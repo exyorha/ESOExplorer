@@ -1,2 +1,27 @@
+STRUCT ClassDef_PregameStartingItems
+	ARRAY FOREIGN_KEY ItemDef Item
+END
+
 DEF 2 ClassDef VERSION 100
+	FOREIGN_KEY AbilityListDef AbilityList
+	ARRAY STRUCT ClassDef_PregameStartingItems PregameStartingItems
+	ARRAY FOREIGN_KEY ItemDef DisplayItems2
+	UINT32
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ARRAY UINT32 BaseDerivedStats
+	ARRAY FLOAT DerivedStatsPerLevel
+	ARRAY FOREIGN_KEY AbilityDef SpecialMove
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	ASSET_REFERENCE
+	UINT64
+	ARRAY UINT32 CreatePermissionsEntitlements
+	ARRAY FOREIGN_KEY SkillLineDef ClassSkills
+	ARRAY FOREIGN_KEY SkillAdvisorBuildDef SkillBuilds
+	FOREIGN_KEY SkillAdvisorBuildDef InitialBuild
+	ARRAY FLOAT Color
+	FOREIGN_KEY CollectibleDef
 END

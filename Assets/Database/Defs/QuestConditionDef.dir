@@ -1,2 +1,28 @@
 DEF 9 QuestConditionDef VERSION 68
+	ENUM QuestConditionType
+	STRUCT CpStr TrackerGoalText
+	ARRAY UINT32 Target
+	ARRAY UINT32 ItemTags
+	UINT16
+	ARRAY STRUCT QuestAssist QuestAssistLocation
+	BOOLEAN ; 0
+	BOOLEAN ; 1
+	BOOLEAN ; 2
+	BOOLEAN ; 3
+	BOOLEAN ; 4
+	BOOLEAN ; 5
+	BOOLEAN ; 6
+	BOOLEAN ; 7
+	STRUCT CpStr TOCText
+	STRUCT VoCpStr Dialogue
+	ARRAY FOREIGN_KEY MonsterDef InformativeMonsters
+	UINT32
+	INT32
+	INT32
+	INT32
+	UINT32
+	UINT32
+	BOOLEAN
+	UINT32
+	STRUCT CpStr TrackerGoalText2
 END

@@ -1,2 +1,37 @@
+ENUM QuestEndingDefEnum1
+	VALUES 1 3
+END
+
+ENUM QuestEndingDefEnum2
+	VALUES 0 1
+END
+
+STRUCT QuestEndingDef_DoorEntry
+	UINT32
+	ENUM QuestEndingDefEnum2
+END
+
+STRUCT QuestEndingDef_WEPAVOEntry
+	UINT32
+	UINT32
+END
+
 DEF 11 QuestEndingDef VERSION 42
+	ENUM QuestEndingDefEnum1
+	FOREIGN_KEY InteractableObjectDef
+	STRUCT CpStr TrackerEndGoalText
+	STRUCT VoCpStr EndDialogue
+	STRUCT CpStr CompleteJournalText
+	BOOLEAN IsSuccess
+	BOOLEAN LogCompletionTime
+	BOOLEAN NoXpOrMoneyRewardOverride
+	FOREIGN_KEY QuestDef
+	ARRAY STRUCT QuestAssist QuestAssistLocation
+	STRUCT CpStr TOCText
+	STRUCT CpStr CompleteOverrideText
+	STRUCT CpStr CancelOverrideText
+	ARRAY STRUCT QuestEndingDef_DoorEntry SparklyDoors
+	ARRAY FOREIGN_KEY MonsterDef InformativeMonsters
+	ARRAY STRUCT QuestEndingDef_WEPAVOEntry WepaVOEntries
+	FOREIGN_KEY QuestRewardDef
 END

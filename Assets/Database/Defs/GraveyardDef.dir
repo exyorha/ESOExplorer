@@ -1,2 +1,18 @@
 DEF 3 GraveyardDef VERSION 23
+	FOREIGN_KEY WorldDef World
+	INT32 PositionX
+	INT32 PositionY
+	INT32 PositionZ
+	
+	INT32 Position2X
+	INT32 Position2Y
+	INT32 Position2Z
+	
+	FOREIGN_KEY FastTravelGraveyardDef
+	FOREIGN_KEY PointOfInterestDef
+	
+	UINT32
+	
+	INT32
+	ENUM CurrencyType
 END

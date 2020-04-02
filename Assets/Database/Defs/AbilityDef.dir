@@ -1,2 +1,409 @@
+ENUM AbilityDef_Enum1
+	VALUES 0 3
+END
+
+ENUM AbilityDef_Enum2
+	VALUES 0 9
+END
+
+ENUM AbilityDef_Enum3
+	VALUES 0 2
+END
+
+ENUM AbilityDef_Enum4
+	VALUES 0 1
+END
+
+ENUM AbilityDef_Enum5
+	VALUES 0 2
+END
+
+ENUM AbilityDef_Enum6
+	VALUES 0 9
+END
+
+ENUM AbilityDef_Enum7
+	VALUES 0 2
+END
+
+ENUM AbilityDef_Enum8
+	VALUES -1 3
+END
+
+ENUM AbilityDef_Enum9
+	VALUES 0 2
+END
+
+ENUM AbilityDef_Enum10
+	VALUES 0 6
+END
+
+ENUM AbilityDef_Enum11
+	VALUES 0 4
+END
+
+
+ENUM AbilityDef_Enum12
+	VALUES 0 3
+END
+
+ENUM AbilityDef_Enum13
+	VALUES 0 2
+END
+
+STRUCT AbilityDef_DamageTypeDeathFxInfo
+	UINT32
+	UINT32
+END
+
+ENUM AbilityDef_Enum14
+	VALUES 0 2
+END
+
+ENUM AbilityDef_Enum15
+	VALUES 0 2
+END
+
+ENUM AbilityDef_Enum16
+	VALUES 0 2
+END
+
+ENUM AbilityDef_Enum17
+	VALUES 0 2
+END
+
+ENUM AbilityDef_Enum18
+	VALUES 0 2
+END
+
+ENUM AbilityDef_Enum19
+	VALUES 0 2
+END
+
+STRUCT AbilityDef_BonusType 
+	ENUM BonusCategory
+	UINT32
+END
+
+ENUM AbilityDef_Enum20
+	VALUES 0 3
+END
+
+STRUCT AbilityDef_ExecuteData
+	ENUM AbilityDef_Enum19
+	UINT32
+	INT32
+END
+
 DEF 0 AbilityDef VERSION 437
+	UINT32
+	UINT32
+	INT32
+	INT32
+	UINT32
+	ENUM AbilityType
+	ENUM TargetType
+	UINT32
+	ENUM AbilityDef_Enum1
+	ENUM CrimeEvent
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	FLOAT
+	FLOAT
+	UINT32
+	FOREIGN_KEY FxDef
+	BOOLEAN MoveCasting
+	BOOLEAN ToggleOff
+	BOOLEAN Permanent
+	BOOLEAN ; +34 3
+	BOOLEAN RefreshSelf
+	BOOLEAN Negative
+	BOOLEAN Channeled
+	BOOLEAN CastForLess
+	BOOLEAN ; +34 8
+	BOOLEAN PercentBonus
+	BOOLEAN ; +34 10
+	BOOLEAN CastDisoriented
+	BOOLEAN CastDead
+	BOOLEAN ; +34 13
+	BOOLEAN Passive
+	BOOLEAN CanClickOff
+	BOOLEAN CastStunned
+	BOOLEAN ; +34 17
+	BOOLEAN IgnoreVerticalDistance
+	BOOLEAN ; +34 19
+	BOOLEAN SetGlobalCooldown
+	BOOLEAN IgnoreGlobalCooldown
+	BOOLEAN KeepOnDeath
+	BOOLEAN ReplaceCast
+	BOOLEAN ; +34 24
+	BOOLEAN ClearsRewindTimeHistory
+	BOOLEAN OnlyCastOnDead
+	BOOLEAN ; +34 27
+	BOOLEAN AddAngleCombatSpacing
+	BOOLEAN ; +34 29
+	BOOLEAN CastFeared
+	BOOLEAN ApplyCostsWithNoTargets
+	BOOLEAN ; +35 2
+	BOOLEAN CountdownOffline
+	BOOLEAN TargetDead
+	BOOLEAN ; +35 5
+	BOOLEAN ; +35 6
+	BOOLEAN ; +35 7
+	BOOLEAN ; +35 8
+	BOOLEAN CastCharging
+	BOOLEAN ; +35 10
+	BOOLEAN ; +35 11
+	BOOLEAN ContinuousCastBar
+	BOOLEAN CastStaggered
+	BOOLEAN UseOnKeyDown
+	BOOLEAN ; +35 15
+	BOOLEAN CanTargetAreaEffects
+	BOOLEAN CastCharging
+	BOOLEAN ; +35 18
+	BOOLEAN ; +35 19
+	BOOLEAN ShowStacks
+	BOOLEAN CancelIfHitDuringCast
+	BOOLEAN NoTurnWhileCasting
+	BOOLEAN ; +35 23
+	BOOLEAN CastRollDodging
+	BOOLEAN ; +35 25
+	BOOLEAN AddSummonerModifiers
+	BOOLEAN FaceTargetAfterCharge
+	BOOLEAN IgnoreKeepWallMovementMitigation
+	BOOLEAN CastCanBeReplaced
+	BOOLEAN CanBeInterrupted
+	BOOLEAN CanBeBlocked
+	BOOLEAN CanAffectNoTarget
+	BOOLEAN FireAtBeginCastTargetLocation
+	BOOLEAN CastLevitated
+	BOOLEAN CanBeDefended
+	BOOLEAN ; +36 7
+	BOOLEAN CastAbilityOnLink
+	BOOLEAN CanBeParried
+	BOOLEAN ; +36 10
+	BOOLEAN NoRecalculateConditionalBonus
+	BOOLEAN ; +36 12
+	BOOLEAN IsAura
+	BOOLEAN CalculateBonusOnCheck
+	BOOLEAN BonusOnlyForThisAbility
+	BOOLEAN ; +36 16
+	BOOLEAN CastSilenced
+	BOOLEAN CastRooted
+	BOOLEAN AllowTurningInPostDelay
+	BOOLEAN CastSprinting
+	BOOLEAN IsChargeUp
+	BOOLEAN CastSwimming
+	BOOLEAN ; +36 23
+	BOOLEAN AreaEffectUsePositionSweep
+	BOOLEAN IsSynergy
+	BOOLEAN IsolateActorContext
+	BOOLEAN CastReincarnating
+	BOOLEAN ; +37 1
+	BOOLEAN ; +37 2
+	BOOLEAN ; +37 3
+	BOOLEAN AddCombatSpacing
+	BOOLEAN ; +37 5
+	BOOLEAN ClearOnEvade
+	BOOLEAN ; +37 7
+	BOOLEAN AllowFreeSwing
+	BOOLEAN DropTargetAreaEffectToGround
+	BOOLEAN HotBarSwapToggleOff
+	BOOLEAN ; +37 11
+	BOOLEAN ; +37 12
+	BOOLEAN AllowSwitchChannelTarget
+	BOOLEAN OnlyClientCanCompleteCast
+	BOOLEAN HighlightFriendlyPhase
+	BOOLEAN ; +37 16
+	BOOLEAN IgnoreHotBarRestrictedCast
+	BOOLEAN ; +37 18
+	BOOLEAN IsProc
+	BOOLEAN ; +37 20
+	BOOLEAN CastKnockbackOrLeap
+	BOOLEAN AllowDamageModifiers
+	BOOLEAN SuppressImmunityErrors
+	BOOLEAN ; +37 24
+	BOOLEAN ; +37 25
+	BOOLEAN ; +37 26
+	BOOLEAN ; +37 27
+	BOOLEAN ; +37 28
+	BOOLEAN ; +37 29
+	BOOLEAN AllowOverCorpseConsumption
+	BOOLEAN IgnoreInstanceTypeForPets
+	BOOLEAN ; +38 0
+	BOOLEAN ; +38 1
+	BOOLEAN ApplyToFalloffTarget
+	BOOLEAN CooldownGroupShareCooldownTimer
+	BOOLEAN ; +38 4
+	BOOLEAN ; +38 5
+	BOOLEAN ; +38 6
+	BOOLEAN ; +38 7
+	BOOLEAN ; +38 8
+	BOOLEAN MultiplicativeBonus
+	BOOLEAN IgnorePreventAttackingInnocents
+	BOOLEAN CalculateBonusInSecondRound
+	BOOLEAN ; +38 12
+	BOOLEAN ; +38 13
+	BOOLEAN GeneratesUltimate
+	BOOLEAN ; +38 15
+	BOOLEAN ; +38 16
+	BOOLEAN ValidateRange
+	BOOLEAN AttackerUsesParentBonusesAndDerivedStats
+	BOOLEAN RecastOnLoad
+	BOOLEAN ; +38 20
+	BOOLEAN ; +38 21
+	BOOLEAN ; +38 22
+	BOOLEAN ChampionLeveledPassive
+	BOOLEAN BonusConsumedOnUse
+	BOOLEAN DisableAllTriggers
+	BOOLEAN CostChargedPerTick
+	BOOLEAN ; +38 27
+	BOOLEAN ProcEnchantmentOrPoison
+	BOOLEAN IgnoreCCImmunity
+	BOOLEAN IsSiege
+	BOOLEAN NoEffectBar
+	BOOLEAN UseSoftTarget
+	BOOLEAN NoCombatLog
+	BOOLEAN NoTimeDisplay
+	BOOLEAN HighlightFriendlyWhenSlotted
+	BOOLEAN SuppressHitReaction
+	BOOLEAN SuppressSCT
+	BOOLEAN ShowActivationHighlight
+	BOOLEAN CausesWeaponsUnsheathed
+	BOOLEAN CastFalling
+	BOOLEAN HideCastBar
+	BOOLEAN HidePlayerCastBar
+	BOOLEAN HideFromSpellbook
+	BOOLEAN WeaponDrawStopFXOnSheath
+	BOOLEAN IsImpactResponse
+	BOOLEAN IsTankRole
+	BOOLEAN IsHealerRole
+	BOOLEAN IsDamageRole
+	BOOLEAN SecondaryCast
+	BOOLEAN ForceCameraFromFirstPersonToThirdPerson
+	BOOLEAN FallDamageAllowed
+	BOOLEAN AllowsMultitargetImpactDelays
+	BOOLEAN CastInAir
+	BOOLEAN SuppressDotFx
+	BOOLEAN TreatAsPathingAbility
+	BOOLEAN OverridePrimaryAnimList
+	BOOLEAN DirectionalImpactActive
+	BOOLEAN OnlyServerCanCompleteCast
+	BOOLEAN IgnorePropagationHeightOnClient
+	BOOLEAN NoEncounterLog
+	ARRAY ENUM EffectLinkType LinkType
+	ARRAY FOREIGN_KEY AbilityDef LinkNumber
+	UINT32
+	INT32
+	UINT32
+	INT32
+	UINT32
+	UINT32
+	ARRAY UINT32 ParameterArray
+	UINT32
+	ENUM AbilityDef_Enum2
+	ENUM StatusEffectType
+	ENUM AbilityDef_Enum3
+	ENUM CombatMechanicType
+	ENUM DamageType
+	UINT32
+	STRUCT CpStr TooltipTextHeader
+	STRUCT CpStr TooltipText
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ARRAY UINT32 AbilityGroup
+	ARRAY UINT32 StatusLine
+	FLOAT
+	FLOAT
+	ENUM AbilityDef_Enum4
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ENUM AbilityUseEquipSlot
+	ENUM AbilityDef_Enum5
+	ENUM DerivedStats
+	FLOAT	
+	ENUM DerivedStats
+	FLOAT
+	ENUM DerivedStats
+	FLOAT
+	ENUM DerivedStats
+	FLOAT
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ENUM AbilityDef_Enum6
+	FLOAT
+	UINT32
+	ARRAY UINT32 TooltipPreReqs
+	ENUM AbilityDef_Enum7
+	FLOAT
+	ASSET_REFERENCE
+	UINT32
+	ARRAY UINT32 ChainList
+	UINT32
+	UINT32
+	STRUCT CpStr UpgradeTooltipText
+	UINT32
+	FLOAT
+	UINT32
+	ENUM AbilityDef_Enum8
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ENUM AbilityDef_Enum9
+	STRUCT CpStr EffectTooltipText
+	FLOAT
+	ENUM AbilityDef_Enum10
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	UINT32
+	ENUM AbilityDef_Enum11
+	FLOAT
+	FLOAT
+	ENUM AbilityDef_Enum12
+	UINT32
+	UINT32
+	ENUM AbilityDef_Enum13
+	ENUM UnitAttributeVisual
+	UINT32
+	ARRAY STRUCT AbilityDef_DamageTypeDeathFxInfo DamageTypeDeathFxInfoOverride
+	ENUM AbilityDef_Enum14
+	UINT32
+	ENUM AbilityDef_Enum15
+	UINT32
+	FLOAT
+	ENUM AbilityDef_Enum16
+	ENUM BuffType
+	UINT32
+	ENUM AbilityDef_Enum17
+	FLOAT
+	ENUM AbilityDef_Enum18	
+	UINT32
+	UINT32
+	ENUM TutorialTrigger
+	ENUM WeaponConfigType
+	FLOAT
+	UINT32
+	UINT32
+	STRUCT AbilityDef_ExecuteData
+	UINT32
+	ARRAY STRUCT AbilityDef_BonusType BonusTypes
+	ENUM AbilityDef_Enum20
 END

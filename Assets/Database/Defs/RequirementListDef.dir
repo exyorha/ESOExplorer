@@ -1,2 +1,38 @@
+ENUM RequirementListDefEnum1
+	VALUES 0 2
+END	
+
+ENUM RequirementListDefEnum2
+	VALUES 0 6
+END
+
+ENUM RequirementListDefEnum3
+	VALUES 0 8
+END
+
+STRUCT RequirementListDef_Requirement
+	ENUM RequirementType
+	INT32
+	ENUM RequirementListDefEnum2
+	INT32
+	ENUM RequirementListDefEnum3
+	ENUM RequirementTargetType
+	UINT32
+	ENUM RequirementTargetType
+	UINT32
+	UINT8
+	UINT8
+	INT32
+	INT64
+	INT32
+	UINT32
+END
+
 DEF 13 RequirementListDef VERSION 29
+	ENUM RequirementListDefEnum1
+	INT32
+	INT32
+	UINT32
+	UINT32
+	ARRAY STRUCT RequirementListDef_Requirement Req
 END

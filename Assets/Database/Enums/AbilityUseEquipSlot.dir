@@ -1,0 +1,6 @@
+ENUM AbilityUseEquipSlot
+	VALUES 0 3
+	VALUE 5
+	VALUE 15
+	VALUES 17 22
+END

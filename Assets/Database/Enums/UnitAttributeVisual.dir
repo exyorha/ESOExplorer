@@ -1,0 +1,3 @@
+ENUM UnitAttributeVisual
+	VALUES -1 10
+END
