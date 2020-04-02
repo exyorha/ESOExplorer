@@ -8,6 +8,5 @@ find_package(Qt5 COMPONENTS Widgets Sql REQUIRED)
 find_package(filament REQUIRED)
 
 add_subdirectory(ESOData)
-add_subdirectory(DirectXTex)
 add_subdirectory(Assets)
 add_subdirectory(ESOBrowser)
